@@ -152,5 +152,33 @@
         }
       }
     }
+  },
+  "qwen3.6-27b": {
+    "name": "Qwen3.6 27B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3.6-27B",
+    "dev": "https://github.com/QwenLM/Qwen3.6",
+    "cost": {
+      "input": 0.500,
+      "output": 3.000
+    },
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "ollama": {
+        "id": "qwen3.6:27b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
   }
 }
