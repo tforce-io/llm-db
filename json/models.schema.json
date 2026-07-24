@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Models",
+  "description": "Schema for LLM model definitions",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" }
+  },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["name", "home", "capabilities", "cost", "limit", "modalities", "deployment"],
+    "properties": {
+      "name": { "type": "string" },
+      "home": { "type": "string", "format": "uri" },
+      "oss": { "type": "string", "format": "uri" },
+      "dev": { "type": "string", "format": "uri" },
+      "cost": {
+        "type": "object",
+        "required": ["input", "output"],
+        "properties": {
+          "input": { "type": "number", "minimum": 0 },
+          "output": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": false
+      },
+      "capabilities": { "$ref": "#/definitions/capabilities" },
+      "limit": { "$ref": "#/definitions/limit" },
+      "modalities": {
+        "type": "object",
+        "required": ["input", "output"],
+        "properties": {
+          "input": { "type": "array", "items": { "type": "string", "enum": ["text", "image", "video", "audio"] } },
+          "output": { "type": "array", "items": { "type": "string", "enum": ["text", "image", "video", "audio"] } }
+        },
+        "additionalProperties": false
+      },
+      "deployment": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string" },
+            "limit": { "$ref": "#/definitions/limit" },
+            "capabilities": { "$ref": "#/definitions/capabilities" }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "additionalProperties": false
+  },
+  "definitions": {
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"]
+      },
+      "uniqueItems": true
+    },
+    "limit": {
+      "type": "object",
+      "required": ["context", "output"],
+      "properties": {
+        "context": { "type": "integer", "minimum": 1 },
+        "output": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

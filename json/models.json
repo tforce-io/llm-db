@@ -1,14 +1,15 @@
 {
+  "$schema": "./models.schema.json",
   "glm-4.7-flash-30b-a3b": {
     "name": "GLM 4.7 Flash 30B A3B",
     "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
     "oss": "https://huggingface.co/zai-org/GLM-4.7-Flash",
     "dev": "https://github.com/zai-org/GLM-4.5",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "cost": {
       "input": 0.060,
       "output": 0.300
     },
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "limit": {
       "context": 202752,
       "output": 131072
@@ -32,11 +33,11 @@
     "home": "https://docs.z.ai/guides/llm/glm-4.7",
     "oss": "https://huggingface.co/zai-org/GLM-4.7",
     "dev": "https://github.com/zai-org/GLM-4.5",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "cost": {
       "input": 0.600,
       "output": 2.200
     },
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "limit": {
       "context": 202752,
       "output": 131072
@@ -60,11 +61,11 @@
     "home": "https://openai.com/index/introducing-gpt-oss",
     "oss": "https://huggingface.co/openai/gpt-oss-20b",
     "dev": "https://github.com/openai/gpt-oss",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "cost": {
       "input": 0.050,
       "output": 0.200
     },
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "limit": {
       "context": 131072,
       "output": 131072
@@ -109,11 +110,11 @@
     "home": "https://openai.com/index/introducing-gpt-oss",
     "oss": "https://huggingface.co/openai/gpt-oss-120b",
     "dev": "https://github.com/openai/gpt-oss",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "cost": {
       "input": 0.150,
       "output": 0.600
     },
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
     "limit": {
       "context": 131072,
       "output": 131072
@@ -158,11 +159,11 @@
     "home": "https://qwen.ai/home",
     "oss": "https://huggingface.co/Qwen/Qwen3.6-27B",
     "dev": "https://github.com/QwenLM/Qwen3.6",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
     "cost": {
       "input": 0.500,
       "output": 3.000
     },
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
     "limit": {
       "context": 262144,
       "output": 65536
