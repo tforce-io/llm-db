@@ -207,6 +207,33 @@
       }
     }
   },
+  "mimo-v2.5-310b-a15b": {
+    "name": "MiMo V2.5 310B A15B",
+    "home": "https://mimo.xiaomi.com/mimo-v2-5",
+    "oss": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 0.140,
+      "output": 0.280
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "mimo-v2.5-free",
+        "limit": {
+          "context": 200000,
+          "output": 32000
+        }
+      }
+    }
+  },
   "nemotron-3-ultra-550b-a55b": {
     "name": "Nemotron 3 Ultra 550B A55B",
     "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
