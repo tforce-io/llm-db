@@ -103,5 +103,54 @@
         }
       }
     }
+  },
+  "gpt-oss-120-21b-a3b": {
+    "name": "GPT OSS 120 117B A5B",
+    "home": "https://openai.com/index/introducing-gpt-oss",
+    "oss": "https://huggingface.co/openai/gpt-oss-120b",
+    "dev": "https://github.com/openai/gpt-oss",
+    "cost": {
+      "input": 0.150,
+      "output": 0.600
+    },
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "limit": {
+      "context": 131072,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "cerebras": {
+        "id": "gpt-oss-120b",
+        "limit": {
+          "context": 131072,
+          "output": 40960
+        }
+      },
+      "groq": {
+        "id": "openai/gpt-oss-120b",
+        "limit": {
+          "context": 131072,
+          "output": 65536
+        }
+      },
+      "nvidia": {
+        "id": "openai/gpt-oss-120b",
+        "limit": {
+          "context": 128000,
+          "output": 8192
+        }
+      },
+      "ollama": {
+        "id": "gpt-oss:120b",
+        "limit": {
+          "context": 131072,
+          "output": 32768
+        }
+      }
+    }
   }
 }
