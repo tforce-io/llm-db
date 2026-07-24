@@ -1,0 +1,58 @@
+{
+  "glm-4.7-flash-30b-a3b": {
+    "name": "GLM 4.7 Flash 30B A3B",
+    "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
+    "oss": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+    "dev": "https://github.com/zai-org/GLM-4.5",
+    "cost": {
+      "input": 0.060,
+      "output": 0.300
+    },
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "limit": {
+      "context": 202752,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "ollama": {
+        "id": "glm-4.7-flash:30b-a3b",
+        "limit": {
+          "context": 202752,
+          "output": 131072
+        }
+      }
+    }
+  },
+  "glm-4.7-355b-a32b": {
+    "name": "GLM 4.7 355B A32B",
+    "home": "https://docs.z.ai/guides/llm/glm-4.7",
+    "oss": "https://huggingface.co/zai-org/GLM-4.7",
+    "dev": "https://github.com/zai-org/GLM-4.5",
+    "cost": {
+      "input": 0.600,
+      "output": 2.200
+    },
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "limit": {
+      "context": 202752,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "cerebras": {
+        "id": "zai-glm-4.7",
+        "limit": {
+          "context": 131072,
+          "output": 16384
+        }
+      }
+    }
+  }
+}
