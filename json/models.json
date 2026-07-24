@@ -1,5 +1,31 @@
 {
   "$schema": "./models.schema.json",
+  "big-pickle": {
+    "name": "Big Pickle",
+    "home": "https://opencode.ai/docs/zen/",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.250,
+      "output": 0.500
+    },
+    "limit": {
+      "context": 200000,
+      "output": 32000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "big-pickle",
+        "limit": {
+          "context": 200000,
+          "output": 32000
+        }
+      }
+    }
+  },
   "glm-4.7-flash-30b-a3b": {
     "name": "GLM 4.7 Flash 30B A3B",
     "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
