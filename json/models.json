@@ -241,6 +241,33 @@
       }
     }
   },
+  "north-mini-code-1.0-30b-a3b": {
+    "name": "North Mini Code 1.0 30B A3B",
+    "home": "https://cohere.com/blog/north-mini-code",
+    "oss": "https://huggingface.co/CohereLabs/North-Mini-Code-1.0",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.060,
+      "output": 0.300
+    },
+    "limit": {
+      "context": 256000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "north-mini-code-free",
+        "limit": {
+          "context": 256000,
+          "output": 64000
+        }
+      }
+    }
+  },
   "qwen3.6-27b": {
     "name": "Qwen3.6 27B",
     "home": "https://qwen.ai/home",
