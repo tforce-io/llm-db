@@ -14,6 +14,13 @@ import (
 
 var version = "0.1.0"
 
+// Log error message
+func logProgramError(logger zerolog.Logger, err error) {
+	if err != nil {
+		logger.Err(err).Msg("Unexpected error has occurred. Program will exit.")
+	}
+}
+
 // InitApp initializes the logger.
 func InitApp() zerolog.Logger {
 	logger := config.InitZerolog()
@@ -31,6 +38,8 @@ func Execute() {
 		Long:    fmt.Sprintf("LLM-DB Utiltity v%s.\nCopyright (C) %d T-Force I/O.\nLicensed under MIT license.", version, 2025),
 		Version: version,
 	}
+
+	rootCmd.AddCommand(ConvertCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
