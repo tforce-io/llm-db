@@ -1,0 +1,38 @@
+// Copyright (C) 2025 T-Force I/O
+// SPDX-License-Identifier: MIT
+
+package engine
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/rs/zerolog"
+	"github.com/spf13/cobra"
+	"github.com/tforceaio/llm-db/config"
+)
+
+var version = "0.1.0"
+
+// InitApp initializes the logger.
+func InitApp() zerolog.Logger {
+	logger := config.InitZerolog()
+
+	fmt.Printf("LLM-DB Utiltity v%s.\nCopyright (C) %d T-Force I/O.\nLicensed under MIT license.\n\n", version, 2025)
+
+	return logger
+}
+
+// Execute runs the CLI application.
+func Execute() {
+	rootCmd := &cobra.Command{
+		Use:     "llm-db",
+		Short:   fmt.Sprintf("LLM DB Utiltity v%s\n", version),
+		Long:    fmt.Sprintf("LLM-DB Utiltity v%s.\nCopyright (C) %d T-Force I/O.\nLicensed under MIT license.", version, 2025),
+		Version: version,
+	}
+
+	if err := rootCmd.Execute(); err != nil {
+		os.Exit(1)
+	}
+}
