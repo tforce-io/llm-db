@@ -207,6 +207,33 @@
       }
     }
   },
+  "laguna-s-2.1-118b-a8b": {
+    "name": "Laguna S 2.1 118B A8B",
+    "home": "https://docs.poolside.ai/release-notes/models#laguna-s-2-1",
+    "oss": "https://huggingface.co/poolside/Laguna-S-2.1",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.100,
+      "output": 0.200
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "laguna-s-2.1-free",
+        "limit": {
+          "context": 256000,
+          "output": 32000
+        }
+      }
+    }
+  },
   "mimo-v2.5-310b-a15b": {
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
