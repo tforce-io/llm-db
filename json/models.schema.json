@@ -8,7 +8,7 @@
   },
   "additionalProperties": {
     "type": "object",
-    "required": ["name", "home", "capabilities", "cost", "limit", "modalities", "deployment"],
+    "required": ["name", "home", "capabilities", "cost", "limit", "modalities", "deployments"],
     "properties": {
       "name": { "type": "string" },
       "home": { "type": "string", "format": "uri" },
@@ -34,7 +34,7 @@
         },
         "additionalProperties": false
       },
-      "deployment": {
+      "deployments": {
         "type": "object",
         "additionalProperties": {
           "type": "object",

@@ -16,7 +16,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "big-pickle",
         "limit": {
@@ -43,7 +43,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "deepseek-v4-flash-free",
         "limit": {
@@ -71,7 +71,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "ollama": {
         "id": "glm-4.7-flash:30b-a3b",
         "limit": {
@@ -99,7 +99,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "cerebras": {
         "id": "zai-glm-4.7",
         "limit": {
@@ -127,7 +127,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "groq": {
         "id": "openai/gpt-oss-20b",
         "limit": {
@@ -176,7 +176,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "cerebras": {
         "id": "gpt-oss-120b",
         "limit": {
@@ -224,7 +224,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "laguna-s-2.1-free",
         "limit": {
@@ -250,7 +250,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "ling-3.0-flash-free",
         "limit": {
@@ -277,7 +277,7 @@
       "input": ["text", "image", "video", "audio"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "mimo-v2.5-free",
         "limit": {
@@ -304,7 +304,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "ollama": {
         "id": "nemotron-3-ultra",
         "limit": {
@@ -338,7 +338,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "opencode-zen": {
         "id": "north-mini-code-free",
         "limit": {
@@ -366,7 +366,7 @@
       "input": ["text", "image", "video", "audio"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "ollama": {
         "id": "qwen3.6:27b",
         "limit": {
@@ -394,7 +394,7 @@
       "input": ["text", "image", "video", "audio"],
       "output": ["text"]
     },
-    "deployment": {
+    "deployments": {
       "ollama": {
         "id": "qwen3.6:35b-a3b",
         "limit": {
