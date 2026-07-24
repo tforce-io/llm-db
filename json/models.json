@@ -370,7 +370,35 @@
       "ollama": {
         "id": "qwen3.6:27b",
         "limit": {
-          "context": 262144,
+          "context": 196608,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "qwen3.6-35b-a3b": {
+    "name": "Qwen3.6 35B A3B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "dev": "https://github.com/QwenLM/Qwen3.6",
+    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 0.250,
+      "output": 1.500
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "ollama": {
+        "id": "qwen3.6:35b-a3b",
+        "limit": {
+          "context": 196608,
           "output": 65536
         }
       }
