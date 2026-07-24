@@ -207,6 +207,40 @@
       }
     }
   },
+  "nemotron-3-ultra-550b-a55b": {
+    "name": "Nemotron 3 Ultra 550B A55B",
+    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
+    "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.500,
+      "output": 2.500
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "ollama": {
+        "id": "nemotron-3-ultra",
+        "limit": {
+          "context": 262144,
+          "output": 128000
+        }
+      },
+      "opencode-zen": {
+        "id": "nemotron-3-ultra-free",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
+  },
   "qwen3.6-27b": {
     "name": "Qwen3.6 27B",
     "home": "https://qwen.ai/home",
