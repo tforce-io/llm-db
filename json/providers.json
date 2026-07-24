@@ -1,0 +1,31 @@
+{
+  "$schema": "./providers.schema.json",
+  "bifrost": {
+    "name": "Bifrost",
+    "npm": "@ai-sdk/openai-compatible",
+    "uri": "http://ollamago.tforce.xyz/v1"
+  },
+  "cerebras": {
+    "name": "Cerebras"
+  },
+  "github-copilot": {
+    "name": "Github Copilot"
+  },
+  "groq": {
+    "name": "Groq"
+  },
+  "nvidia": {
+    "name": "Nvidia"
+  },
+  "ollama": {
+    "name": "Ollama",
+    "npm": "@ai-sdk/openai-compatible",
+    "uri": "http://ollamago.tforce.xyz/v1"
+  },
+  "opencode-zen": {
+    "name": "OpenCode Zen"
+  },
+  "openrouter": {
+    "name": "OpenRouter"
+  }
+}
