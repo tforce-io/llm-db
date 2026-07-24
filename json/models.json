@@ -234,6 +234,32 @@
       }
     }
   },
+  "ling-3.0-flash-124b-a5b": {
+    "name": "Ling 3.0 Flash 124B A5B",
+    "home": "https://www.inclusion-ai.org/model",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.100,
+      "output": 0.200
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "ling-3.0-flash-free",
+        "limit": {
+          "context": 262144,
+          "output": 32768
+        }
+      }
+    }
+  },
   "mimo-v2.5-310b-a15b": {
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
