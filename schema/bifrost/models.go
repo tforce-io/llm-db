@@ -3,7 +3,26 @@
 
 package bifrost
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"strconv"
+)
+
+// Float64 is a float64 that marshals to decimal notation (e.g. 0.0000001) instead of scientific notation (e.g. 1e-7).
+type Float64 float64
+
+func (f Float64) MarshalJSON() ([]byte, error) {
+	return []byte(strconv.FormatFloat(float64(f), 'f', -1, 64)), nil
+}
+
+func (f *Float64) UnmarshalJSON(data []byte) error {
+	v, err := strconv.ParseFloat(string(data), 64)
+	if err != nil {
+		return err
+	}
+	*f = Float64(v)
+	return nil
+}
 
 type Models map[string]Model
 
@@ -11,8 +30,8 @@ type Model struct {
 	Provider             string  `json:"provider"`
 	BaseModel            string  `json:"base_model"`
 	Mode                 string  `json:"mode"`
-	InputCost            float64 `json:"input_cost_per_token"`
-	OutputCost           float64 `json:"output_cost_per_token"`
+	InputCost            Float64 `json:"input_cost_per_token"`
+	OutputCost           Float64 `json:"output_cost_per_token"`
 	MaxInputTokens       int     `json:"max_input_tokens"`
 	MaxOutputTokens      int     `json:"max_output_tokens"`
 	MaxTokens            int     `json:"max_tokens"`

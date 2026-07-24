@@ -8,18 +8,21 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
+	"github.com/tforceaio/llm-db/schema/bifrost"
 	"github.com/tforceaio/llm-db/schema/llmdb"
 	"github.com/tforceaio/llm-db/schema/opencode"
 )
 
 const (
-	modelsPath    = "json/models.json"
-	providersPath = "json/providers.json"
-	outputDir     = "exported"
-	outputPath    = "exported/opencode.json"
+	modelsPath         = "json/models.json"
+	providersPath      = "json/providers.json"
+	outputDir          = "exported"
+	bifrostOutputPath  = "exported/bifrost-models.json"
+	openCodeOutputPath = "exported/opencode.json"
 )
 
 // ConvertModule handles conversion of llmdb models to different formats.
@@ -32,6 +35,103 @@ func NewConvertModule(logger zerolog.Logger, cmdName string) *ConvertModule {
 	return &ConvertModule{
 		logger: logger.With().Str("module", "convert").Str("cmd", cmdName).Logger(),
 	}
+}
+
+// Export LLMDB models into Bifrost models JSON.
+func (m *ConvertModule) Bifrost() error {
+	m.logger.Info().Msg("Loading models...")
+	modelsData, err := os.ReadFile(modelsPath)
+	if err != nil {
+		return fmt.Errorf("failed to read %s: %w", modelsPath, err)
+	}
+
+	models, err := llmdb.LoadModels(modelsData)
+	if err != nil {
+		return fmt.Errorf("failed to parse models: %w", err)
+	}
+
+	m.logger.Info().Int("count", len(models.Models)).Msg("Loaded models.")
+
+	bModels := m.buildBifrostModels(models)
+
+	m.logger.Info().Str("dir", outputDir).Msg("Creating output directory...")
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create %s: %w", outputDir, err)
+	}
+
+	m.logger.Info().Str("path", bifrostOutputPath).Msg("Writing bifrost models...")
+	outputData, err := json.MarshalIndent(bModels, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal models: %w", err)
+	}
+
+	if err := os.WriteFile(bifrostOutputPath, outputData, 0644); err != nil {
+		return fmt.Errorf("failed to write %s: %w", bifrostOutputPath, err)
+	}
+
+	absPath, _ := filepath.Abs(bifrostOutputPath)
+	m.logger.Info().Str("path", absPath).Msg("Conversion complete.")
+	return nil
+}
+
+func (m *ConvertModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
+	result := make(bifrost.Models)
+
+	for _, model := range models.Models {
+		for deployKey, deployment := range model.Deployments {
+			key := deployment.ID
+			if deployKey != "ollama" {
+				key = deployKey + "/" + deployment.ID
+			}
+
+			maxInput := model.Limit.Context
+			maxOutput := model.Limit.Output
+			if deployment.Limit != nil {
+				if deployment.Limit.Context > 0 {
+					maxInput = deployment.Limit.Context
+				}
+				if deployment.Limit.Output > 0 {
+					maxOutput = deployment.Limit.Output
+				}
+			}
+
+			mode := "chat"
+			if len(model.Capabilities) == 0 {
+				mode = "embedding"
+			}
+
+			bModel := bifrost.Model{
+				Provider:        deployKey,
+				BaseModel:       deployment.ID,
+				Mode:            mode,
+				InputCost:       bifrost.Float64(divMillionth(model.Cost.Input)),
+				OutputCost:      bifrost.Float64(divMillionth(model.Cost.Output)),
+				MaxInputTokens:  maxInput,
+				MaxOutputTokens: maxOutput,
+				MaxTokens:       maxInput,
+			}
+
+			if containsString(model.Capabilities, llmdb.CapabilityFunctionCall) ||
+				containsString(model.Capabilities, llmdb.CapabilityTools) {
+				bModel.SupportsFunctionCall = boolPtr(true)
+			}
+			if containsString(model.Capabilities, llmdb.CapabilityReasoning) {
+				bModel.SupportsReasoning = boolPtr(true)
+			}
+			if containsString(model.Capabilities, llmdb.CapabilityStructured) {
+				bModel.SupportsStructured = boolPtr(true)
+			}
+			if containsString(model.Capabilities, llmdb.CapabilityToolChoice) {
+				bModel.SupportsToolChoice = boolPtr(true)
+			}
+			if containsString(model.Capabilities, llmdb.CapabilityVision) {
+				bModel.SupportsVision = boolPtr(true)
+			}
+
+			result[key] = bModel
+		}
+	}
+	return result
 }
 
 // Export LLMDB models into OpenCode config.
@@ -69,17 +169,17 @@ func (m *ConvertModule) OpenCode(apiKey string) error {
 		return fmt.Errorf("failed to create %s: %w", outputDir, err)
 	}
 
-	m.logger.Info().Str("path", outputPath).Msg("Writing opencode config...")
+	m.logger.Info().Str("path", openCodeOutputPath).Msg("Writing opencode config...")
 	outputData, err := json.MarshalIndent(cfg, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to marshal config: %w", err)
 	}
 
-	if err := os.WriteFile(outputPath, outputData, 0644); err != nil {
-		return fmt.Errorf("failed to write %s: %w", outputPath, err)
+	if err := os.WriteFile(openCodeOutputPath, outputData, 0644); err != nil {
+		return fmt.Errorf("failed to write %s: %w", openCodeOutputPath, err)
 	}
 
-	absPath, _ := filepath.Abs(outputPath)
+	absPath, _ := filepath.Abs(openCodeOutputPath)
 	m.logger.Info().Str("path", absPath).Msg("Conversion complete.")
 	return nil
 }
@@ -213,6 +313,17 @@ func ConvertCmd() *cobra.Command {
 
 	var apiKey string
 
+	bifrostCmd := &cobra.Command{
+		Use:   "bifrost",
+		Short: "Export LLMDB models into Bifrost models JSON.",
+		Run: func(cmd *cobra.Command, args []string) {
+			logger := InitApp()
+			m := NewConvertModule(logger, "bifrost")
+			m.logError(m.Bifrost())
+		},
+	}
+	rootCmd.AddCommand(bifrostCmd)
+
 	opencodeCmd := &cobra.Command{
 		Use:   "opencode",
 		Short: "Export LLMDB models into OpenCode config.",
@@ -227,4 +338,16 @@ func ConvertCmd() *cobra.Command {
 
 	rootCmd.AddCommand(opencodeCmd)
 	return rootCmd
+}
+
+func boolPtr(b bool) *bool {
+	return &b
+}
+
+// divMillionth divides f by 1,000,000 and strips floating-point artifacts by
+// parsing the result through a 10-significant-figure string representation.
+func divMillionth(f float64) float64 {
+	s := strconv.FormatFloat(f/1_000_000, 'g', 10, 64)
+	v, _ := strconv.ParseFloat(s, 64)
+	return v
 }
