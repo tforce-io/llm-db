@@ -26,6 +26,33 @@
       }
     }
   },
+  "deepseek-v4-flash-284b-a13b": {
+    "name": "DeepSeek V4 Flash 284B A13B",
+    "home": "https://api-docs.deepseek.com/news/news260424/",
+    "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 0.140,
+      "output": 0.280
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 384000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployment": {
+      "opencode-zen": {
+        "id": "deepseek-v4-flash-free",
+        "limit": {
+          "context": 200000,
+          "output": 128000
+        }
+      }
+    }
+  },
   "glm-4.7-flash-30b-a3b": {
     "name": "GLM 4.7 Flash 30B A3B",
     "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
