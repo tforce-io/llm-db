@@ -914,5 +914,50 @@
         }
       }
     }
+  },
+  "qwen3.6-plus": {
+    "name": "Qwen3.6 Plus",
+    "home": "https://qwen.ai/home",
+    "dev": "https://github.com/QwenLM/Qwen3.6",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.500,
+      "output": 3.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "qwen3.6-plus"
+      }
+    }
+  },
+  "qwen3.7-plus": {
+    "name": "Qwen3.7 Plus",
+    "home": "https://qwen.ai/home",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.400,
+      "output": 1.600
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "qwen3.7-plus"
+      }
+    }
   }
 }
