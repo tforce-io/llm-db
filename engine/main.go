@@ -39,7 +39,7 @@ func Execute() {
 		Version: version,
 	}
 
-	rootCmd.AddCommand(ConvertCmd())
+	rootCmd.AddCommand(ExportCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)

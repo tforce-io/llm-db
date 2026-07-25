@@ -25,20 +25,20 @@ const (
 	openCodeOutputPath = "exported/opencode.json"
 )
 
-// ConvertModule handles conversion of llmdb models to different formats.
-type ConvertModule struct {
+// ExportModule handles conversion of llmdb models to different formats.
+type ExportModule struct {
 	logger zerolog.Logger
 }
 
-// Return a new ConvertModule.
-func NewConvertModule(logger zerolog.Logger, cmdName string) *ConvertModule {
-	return &ConvertModule{
-		logger: logger.With().Str("module", "convert").Str("cmd", cmdName).Logger(),
+// Return a new ExportModule.
+func NewExportModule(logger zerolog.Logger, cmdName string) *ExportModule {
+	return &ExportModule{
+		logger: logger.With().Str("module", "export").Str("cmd", cmdName).Logger(),
 	}
 }
 
 // Export LLMDB models into Bifrost models JSON.
-func (m *ConvertModule) Bifrost() error {
+func (m *ExportModule) Bifrost() error {
 	m.logger.Info().Msg("Loading models...")
 	modelsData, err := os.ReadFile(modelsPath)
 	if err != nil {
@@ -70,11 +70,11 @@ func (m *ConvertModule) Bifrost() error {
 	}
 
 	absPath, _ := filepath.Abs(bifrostOutputPath)
-	m.logger.Info().Str("path", absPath).Msg("Conversion complete.")
+	m.logger.Info().Str("path", absPath).Msg("Export complete.")
 	return nil
 }
 
-func (m *ConvertModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
+func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 	result := make(bifrost.Models)
 
 	for _, model := range models.Models {
@@ -135,7 +135,7 @@ func (m *ConvertModule) buildBifrostModels(models *llmdb.Models) bifrost.Models 
 }
 
 // Export LLMDB models into OpenCode config.
-func (m *ConvertModule) OpenCode(apiKey string) error {
+func (m *ExportModule) OpenCode(apiKey string) error {
 	m.logger.Info().Msg("Loading models...")
 	modelsData, err := os.ReadFile(modelsPath)
 	if err != nil {
@@ -180,11 +180,11 @@ func (m *ConvertModule) OpenCode(apiKey string) error {
 	}
 
 	absPath, _ := filepath.Abs(openCodeOutputPath)
-	m.logger.Info().Str("path", absPath).Msg("Conversion complete.")
+	m.logger.Info().Str("path", absPath).Msg("Export complete.")
 	return nil
 }
 
-func (m *ConvertModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, apiKey string) *opencode.RootConfig {
+func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, apiKey string) *opencode.RootConfig {
 	cfg := &opencode.RootConfig{
 		Schema:       "https://opencode.ai/config.json",
 		SmallModel:   "opencode/deepseek-v4-flash-free",
@@ -197,19 +197,11 @@ func (m *ConvertModule) buildOpenCodeConfig(models *llmdb.Models, providers *llm
 	}
 
 	ollamaProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
-	openCodeProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 	bifrostProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 
 	for _, model := range models.Models {
 		for deployKey, deployment := range model.Deployments {
 			mc := m.buildOpenCodeModel(model, deployment)
-
-			if deployKey == "opencode-zen" {
-				openCodeProvider.Models[deployment.ID] = opencode.ModelConfig{
-					Name: mc.Name,
-					Cost: mc.Cost,
-				}
-			}
 			if deployKey == "ollama" {
 				ollamaProvider.Models[deployment.ID] = mc
 			} else {
@@ -258,13 +250,12 @@ func (m *ConvertModule) buildOpenCodeConfig(models *llmdb.Models, providers *llm
 	}
 
 	cfg.Providers["ollama"] = ollamaProvider
-	cfg.Providers["opencode"] = openCodeProvider
 	cfg.Providers["bifrost"] = bifrostProvider
 
 	return cfg
 }
 
-func (m *ConvertModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.Deployment) opencode.ModelConfig {
+func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.Deployment) opencode.ModelConfig {
 	reasoning := containsString(model.Capabilities, llmdb.CapabilityReasoning)
 	temperature := containsString(model.Capabilities, llmdb.CapabilityTemperature)
 	toolCall := containsString(model.Capabilities, llmdb.CapabilityTools) || containsString(model.Capabilities, llmdb.CapabilityFunctionCall)
@@ -283,7 +274,7 @@ func (m *ConvertModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.D
 	return mc
 }
 
-func (m *ConvertModule) resolveLimit(base llmdb.ModelLimit, override *llmdb.ModelLimit) *opencode.ModelLimit {
+func (m *ExportModule) resolveLimit(base llmdb.ModelLimit, override *llmdb.ModelLimit) *opencode.ModelLimit {
 	if override != nil {
 		return &opencode.ModelLimit{Context: override.Context, Output: override.Output}
 	}
@@ -300,15 +291,15 @@ func containsString(slice []string, item string) bool {
 }
 
 // Decorator to log error occurred when calling handlers.
-func (m *ConvertModule) logError(err error) {
+func (m *ExportModule) logError(err error) {
 	logProgramError(m.logger, err)
 }
 
-// Define Cobra Command for Convert opencode module.
-func ConvertCmd() *cobra.Command {
+// Define Cobra Command for Export opencode module.
+func ExportCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use:   "convert",
-		Short: "Convert models to different formats.",
+		Use:   "export",
+		Short: "Export models to different formats.",
 	}
 
 	var apiKey string
@@ -318,7 +309,7 @@ func ConvertCmd() *cobra.Command {
 		Short: "Export LLMDB models into Bifrost models JSON.",
 		Run: func(cmd *cobra.Command, args []string) {
 			logger := InitApp()
-			m := NewConvertModule(logger, "bifrost")
+			m := NewExportModule(logger, "bifrost")
 			m.logError(m.Bifrost())
 		},
 	}
@@ -329,7 +320,7 @@ func ConvertCmd() *cobra.Command {
 		Short: "Export LLMDB models into OpenCode config.",
 		Run: func(cmd *cobra.Command, args []string) {
 			logger := InitApp()
-			m := NewConvertModule(logger, "opencode")
+			m := NewExportModule(logger, "opencode")
 			m.logError(m.OpenCode(apiKey))
 		},
 	}
