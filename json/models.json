@@ -206,11 +206,49 @@
       "output": ["text"]
     },
     "deployments": {
+      "opencode-go": {
+        "id": "deepseek-v4-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      },
       "opencode-zen": {
         "id": "deepseek-v4-flash-free",
         "limit": {
           "context": 200000,
           "output": 128000
+        }
+      }
+    }
+  },
+  "deepseek-v4-pro-1.6t-a49b": {
+    "name": "DeepSeek V4 Pro 1.6T A49B",
+    "home": "https://api-docs.deepseek.com/news/news260424/",
+    "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "cost": {
+      "input": 1.740,
+      "output": 3.480
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 384000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "deepseek-v4-pro",
+        "cost": {
+          "input": 0.435,
+          "output": 0.870
+        },
+        "limit": {
+          "context": 1000000,
+          "output": 384000
         }
       }
     }
