@@ -705,6 +705,35 @@
       }
     }
   },
+  "hy3-295b-a21b": {
+    "name": "Hy3 295B A21B",
+    "home": "https://hy.tencent.com/research/hy3",
+    "oss": "https://huggingface.co/tencent/Hy3",
+    "specs": "https://artificialanalysis.ai/models/hy3",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.140,
+      "output": 0.580,
+      "cache": 0.035
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "hy3",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
   "kimi-k2.5-1000b-a32b": {
     "name": "Kimi K2.5 1000B A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-5",
