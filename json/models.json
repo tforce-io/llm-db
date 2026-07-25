@@ -280,6 +280,148 @@
       }
     }
   },
+  "gemma-4-e2b-5b-a2b-instruct": {
+    "name": "Gemma 4 E2B 5B A2B",
+    "home": "https://deepmind.google/models/gemma",
+    "oss": "https://huggingface.co/google/gemma-4-E2B-it",
+    "specs": "https://artificialanalysis.ai/models/gemma-4-e2b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.015,
+      "output": 0.075
+    },
+    "limit": {
+      "context": 131072,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "gemma-4:5b-a2b-instruct",
+        "limit": {
+          "context": 131072,
+          "output": 16384
+        }
+      }
+    }
+  },
+  "gemma-4-e4b-8b-a4b-instruct": {
+    "name": "Gemma 4 E4B 8B A4B",
+    "home": "https://deepmind.google/models/gemma",
+    "oss": "https://huggingface.co/google/gemma-4-E4B-it",
+    "specs": "https://artificialanalysis.ai/models/gemma-4-e4b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.020,
+      "output": 0.100
+    },
+    "limit": {
+      "context": 131072,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "gemma-4:8b-a4b-instruct",
+        "limit": {
+          "context": 131072,
+          "output": 16384
+        }
+      }
+    }
+  },
+  "gemma-4-12b-instruct": {
+    "name": "Gemma 4 12B Instruct",
+    "home": "https://deepmind.google/models/gemma",
+    "oss": "https://huggingface.co/google/gemma-4-12B-it",
+    "specs": "https://artificialanalysis.ai/models/gemma-4-12b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.100,
+      "output": 0.300
+    },
+    "limit": {
+      "context": 262144,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "gemma-4:8b-a4b-instruct",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "gemma-4-26b-a4b-instruct": {
+    "name": "Gemma 4 26B A4B Instruct",
+    "home": "https://deepmind.google/models/gemma",
+    "oss": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+    "specs": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.130,
+      "output": 0.400,
+      "cache": 0.085
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "gemma-4:26b-a4b-instruct",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "gemma-4-31b-instruct": {
+    "name": "Gemma 4 31B Instruct",
+    "home": "https://deepmind.google/models/gemma",
+    "oss": "https://huggingface.co/google/gemma-4-31B-it",
+    "specs": "https://artificialanalysis.ai/models/gemma-4-31b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.140,
+      "output": 0.400,
+      "cache": 0.085
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "gemma-4:31b-instruct",
+        "limit": {
+          "context": 131072,
+          "output": 65536
+        }
+      }
+    }
+  },
   "glm-4.7-flash-30b-a3b": {
     "name": "GLM 4.7 Flash 30B A3B",
     "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
