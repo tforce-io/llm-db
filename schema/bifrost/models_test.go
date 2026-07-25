@@ -57,6 +57,12 @@ func TestLoadModels(t *testing.T) {
 	if qwen.SupportsVision == nil || !*qwen.SupportsVision {
 		t.Error("expected qwen3.6:27b supports_vision to be true")
 	}
+	if qwen.CacheReadInputTokenCost != 0.000000250 {
+		t.Errorf("expected cache_read_input_token_cost 0.000000250, got %f", qwen.CacheReadInputTokenCost)
+	}
+	if qwen.CacheCreationInputTokenCost != 0.000004000 {
+		t.Errorf("expected cache_creation_input_token_cost 0.000004000, got %f", qwen.CacheCreationInputTokenCost)
+	}
 
 	pickle := models["opencode-zen/big-pickle"]
 	if pickle.Provider != "opencode-zen" {

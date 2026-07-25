@@ -6,7 +6,7 @@ package llmdb
 import "encoding/json"
 
 type Providers struct {
-	Schema    string             `json:"$schema,omitempty"`
+	Schema    string `json:"$schema,omitempty"`
 	Providers map[string]Provider
 }
 

@@ -56,7 +56,9 @@
           "name": "Gemma 4 31B Instruct",
           "cost": {
             "input": 0.140,
-            "output": 0.400
+            "output": 0.400,
+            "cache_read": 0.070,
+            "cache_write": 0.560
           },
           "limit": {
             "context": 98304,

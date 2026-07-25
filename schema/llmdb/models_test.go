@@ -63,6 +63,14 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 		t.Errorf("%s: cost.output must not be negative", id)
 	}
 
+	if m.Cost.Cache < 0 {
+		t.Errorf("%s: cost.cache must not be negative", id)
+	}
+
+	if m.Cost.CacheWrite < 0 {
+		t.Errorf("%s: cost.cache_write must not be negative", id)
+	}
+
 	if m.Limit.Context <= 0 {
 		t.Errorf("%s: limit.context must be positive", id)
 	}
@@ -91,20 +99,30 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 		}
 	}
 
-	if len(m.Deployments) == 0 {
-		t.Errorf("%s: deployment must not be empty", id)
-	} else {
-		for providerName, dep := range m.Deployments {
-			if dep.ID == "" {
-				t.Errorf("%s.deployment.%s: id is required", id, providerName)
+	for providerName, dep := range m.Deployments {
+		if dep.ID == "" {
+			t.Errorf("%s.deployment.%s: id is required", id, providerName)
+		}
+		if dep.Limit != nil {
+			if dep.Limit.Context <= 0 {
+				t.Errorf("%s.deployment.%s: limit.context must be positive", id, providerName)
 			}
-			if dep.Limit != nil {
-				if dep.Limit.Context <= 0 {
-					t.Errorf("%s.deployment.%s: limit.context must be positive", id, providerName)
-				}
-				if dep.Limit.Output <= 0 {
-					t.Errorf("%s.deployment.%s: limit.output must be positive", id, providerName)
-				}
+			if dep.Limit.Output <= 0 {
+				t.Errorf("%s.deployment.%s: limit.output must be positive", id, providerName)
+			}
+		}
+		if dep.Cost != nil {
+			if dep.Cost.Input < 0 {
+				t.Errorf("%s.deployment.%s: cost.input must not be negative", id, providerName)
+			}
+			if dep.Cost.Output < 0 {
+				t.Errorf("%s.deployment.%s: cost.output must not be negative", id, providerName)
+			}
+			if dep.Cost.Cache < 0 {
+				t.Errorf("%s.deployment.%s: cost.cache must not be negative", id, providerName)
+			}
+			if dep.Cost.CacheWrite < 0 {
+				t.Errorf("%s.deployment.%s: cost.cache_write must not be negative", id, providerName)
 			}
 		}
 	}

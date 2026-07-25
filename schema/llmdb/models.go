@@ -6,25 +6,25 @@ package llmdb
 import "encoding/json"
 
 const (
-	CapabilityFunctionCall  = "function_call"
-	CapabilityReasoning     = "reasoning"
+	CapabilityFunctionCall   = "function_call"
+	CapabilityReasoning      = "reasoning"
 	CapabilityResponseFormat = "response_format"
-	CapabilityStructured    = "structured"
-	CapabilityTemperature   = "temperature"
-	CapabilityToolChoice    = "tool_choice"
-	CapabilityTools         = "tools"
-	CapabilityVision        = "vision"
+	CapabilityStructured     = "structured"
+	CapabilityTemperature    = "temperature"
+	CapabilityToolChoice     = "tool_choice"
+	CapabilityTools          = "tools"
+	CapabilityVision         = "vision"
 )
 
 var ValidCapabilities = map[string]bool{
-	CapabilityFunctionCall:  true,
-	CapabilityReasoning:     true,
+	CapabilityFunctionCall:   true,
+	CapabilityReasoning:      true,
 	CapabilityResponseFormat: true,
-	CapabilityStructured:    true,
-	CapabilityTemperature:   true,
-	CapabilityToolChoice:    true,
-	CapabilityTools:         true,
-	CapabilityVision:        true,
+	CapabilityStructured:     true,
+	CapabilityTemperature:    true,
+	CapabilityToolChoice:     true,
+	CapabilityTools:          true,
+	CapabilityVision:         true,
 }
 
 const (
@@ -86,6 +86,7 @@ type Model struct {
 	Name         string                `json:"name"`
 	Home         string                `json:"home"`
 	OSS          string                `json:"oss,omitempty"`
+	Specs        string                `json:"specs,omitempty"`
 	Dev          string                `json:"dev,omitempty"`
 	Capabilities []string              `json:"capabilities"`
 	Cost         ModelCost             `json:"cost"`
@@ -95,8 +96,10 @@ type Model struct {
 }
 
 type ModelCost struct {
-	Input  float64 `json:"input"`
-	Output float64 `json:"output"`
+	Input      float64 `json:"input"`
+	Output     float64 `json:"output"`
+	Cache      float64 `json:"cache,omitempty"`
+	CacheWrite float64 `json:"cache_write,omitempty"`
 }
 
 type ModelLimit struct {
@@ -112,6 +115,7 @@ type ModelModalities struct {
 type Deployment struct {
 	ID           string      `json:"id"`
 	Limit        *ModelLimit `json:"limit,omitempty"`
+	Cost         *ModelCost  `json:"cost,omitempty"`
 	Capabilities []string    `json:"capabilities,omitempty"`
 }
 

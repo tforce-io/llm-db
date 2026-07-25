@@ -84,16 +84,8 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 				key = deployKey + "/" + deployment.ID
 			}
 
-			maxInput := model.Limit.Context
-			maxOutput := model.Limit.Output
-			if deployment.Limit != nil {
-				if deployment.Limit.Context > 0 {
-					maxInput = deployment.Limit.Context
-				}
-				if deployment.Limit.Output > 0 {
-					maxOutput = deployment.Limit.Output
-				}
-			}
+			cost := m.resolveCost(model.Cost, deployment.Cost)
+			limit := m.resolveLimit(model.Limit, deployment.Limit)
 
 			mode := "chat"
 			if len(model.Capabilities) == 0 {
@@ -101,14 +93,16 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 			}
 
 			bModel := bifrost.Model{
-				Provider:        deployKey,
-				BaseModel:       deployment.ID,
-				Mode:            mode,
-				InputCost:       bifrost.Float64(divMillionth(model.Cost.Input)),
-				OutputCost:      bifrost.Float64(divMillionth(model.Cost.Output)),
-				MaxInputTokens:  maxInput,
-				MaxOutputTokens: maxOutput,
-				MaxTokens:       maxInput,
+				Provider:                    deployKey,
+				BaseModel:                   deployment.ID,
+				Mode:                        mode,
+				InputCost:                   bifrost.Float64(divMillionth(cost.Input)),
+				OutputCost:                  bifrost.Float64(divMillionth(cost.Output)),
+				CacheReadInputTokenCost:     bifrost.Float64(divMillionth(cost.Cache)),
+				CacheCreationInputTokenCost: bifrost.Float64(divMillionth(cost.CacheWrite)),
+				MaxInputTokens:              limit.Context,
+				MaxOutputTokens:             limit.Output,
+				MaxTokens:                   limit.Context,
 			}
 
 			if containsString(model.Capabilities, llmdb.CapabilityFunctionCall) ||
@@ -260,11 +254,14 @@ func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.De
 	temperature := containsString(model.Capabilities, llmdb.CapabilityTemperature)
 	toolCall := containsString(model.Capabilities, llmdb.CapabilityTools) || containsString(model.Capabilities, llmdb.CapabilityFunctionCall)
 
+	cost := m.resolveCost(model.Cost, deployment.Cost)
+	limit := m.resolveLimit(model.Limit, deployment.Limit)
+
 	mc := opencode.ModelConfig{
 		ID:                   deployment.ID,
 		Name:                 model.Name,
-		Cost:                 &opencode.ModelCost{Input: model.Cost.Input, Output: model.Cost.Output},
-		Limit:                m.resolveLimit(model.Limit, deployment.Limit),
+		Cost:                 &opencode.ModelCost{Input: cost.Input, Output: cost.Output, CacheRead: cost.Cache, CacheWrite: cost.CacheWrite},
+		Limit:                &opencode.ModelLimit{Context: limit.Context, Output: limit.Output},
 		Modalities:           &opencode.ModelModalities{Input: model.Modalities.Input, Output: model.Modalities.Output},
 		SupportReasoning:     &reasoning,
 		SupportTemperature:   &temperature,
@@ -274,20 +271,18 @@ func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.De
 	return mc
 }
 
-func (m *ExportModule) resolveLimit(base llmdb.ModelLimit, override *llmdb.ModelLimit) *opencode.ModelLimit {
+func (m *ExportModule) resolveCost(base llmdb.ModelCost, override *llmdb.ModelCost) llmdb.ModelCost {
 	if override != nil {
-		return &opencode.ModelLimit{Context: override.Context, Output: override.Output}
+		return *override
 	}
-	return &opencode.ModelLimit{Context: base.Context, Output: base.Output}
+	return base
 }
 
-func containsString(slice []string, item string) bool {
-	for _, s := range slice {
-		if s == item {
-			return true
-		}
+func (m *ExportModule) resolveLimit(base llmdb.ModelLimit, override *llmdb.ModelLimit) *llmdb.ModelLimit {
+	if override != nil {
+		return override
 	}
-	return false
+	return &base
 }
 
 // Decorator to log error occurred when calling handlers.
@@ -335,10 +330,19 @@ func boolPtr(b bool) *bool {
 	return &b
 }
 
-// divMillionth divides f by 1,000,000 and strips floating-point artifacts by
+func containsString(slice []string, item string) bool {
+	for _, s := range slice {
+		if s == item {
+			return true
+		}
+	}
+	return false
+}
+
+// Divides f by 1,000,000 and strips floating-point artifacts by
 // parsing the result through a 10-significant-figure string representation.
 func divMillionth(f float64) float64 {
-	s := strconv.FormatFloat(f/1_000_000, 'g', 10, 64)
+	s := strconv.FormatFloat(f/1_000_000, 'g', 12, 64)
 	v, _ := strconv.ParseFloat(s, 64)
 	return v
 }
