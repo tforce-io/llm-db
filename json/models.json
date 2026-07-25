@@ -309,6 +309,82 @@
       }
     }
   },
+  "glm-5-744b-a40b": {
+    "name": "GLM 5 744B A40B",
+    "home": "https://docs.z.ai/guides/llm/glm-5",
+    "oss": "https://huggingface.co/zai-org/GLM-5",
+    "dev": "https://github.com/zai-org/GLM-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.000,
+      "output": 3.200
+    },
+    "limit": {
+      "context": 202752,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "glm-5.1-744b-a40b": {
+    "name": "GLM 5.1 744B A40B",
+    "home": "https://docs.z.ai/guides/llm/glm-5.1",
+    "oss": "https://huggingface.co/zai-org/GLM-5.1",
+    "dev": "https://github.com/zai-org/GLM-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.400,
+      "output": 4.400
+    },
+    "limit": {
+      "context": 202752,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "glm-5.1",
+        "limit": {
+          "context": 202752,
+          "output": 32768
+        }
+      }
+    }
+  },
+  "glm-5.2-744b-a40b": {
+    "name": "GLM 5.2 744B A40B",
+    "home": "https://docs.z.ai/guides/llm/glm-5.2",
+    "oss": "https://huggingface.co/zai-org/GLM-5.2",
+    "dev": "https://github.com/zai-org/GLM-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.400,
+      "output": 4.400
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "glm-5.2",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      }
+    }
+  },
   "gpt-4o": {
     "name": "GPT-4o",
     "home": "https://openai.com/index/hello-gpt-4o",
