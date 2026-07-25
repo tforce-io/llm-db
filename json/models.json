@@ -817,6 +817,13 @@
           "context": 256000,
           "output": 32000
         }
+      },
+      "openrouter": {
+        "id": "poolside/laguna-s-2.1:free",
+        "limit": {
+          "context": 262144,
+          "output": 32768
+        }
       }
     }
   },
@@ -839,6 +846,13 @@
     "deployments": {
       "opencode-zen": {
         "id": "ling-3.0-flash-free",
+        "limit": {
+          "context": 262144,
+          "output": 32768
+        }
+      },
+      "openrouter": {
+        "id": "inclusionai/ling-3.0-flash:free",
         "limit": {
           "context": 262144,
           "output": 32768
@@ -996,9 +1010,94 @@
       }
     }
   },
+  "nemotron-3-nano-30b-a3b": {
+    "name": "Nemotron 3 Nano 30B A3B",
+    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3",
+    "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "specs": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.050,
+      "output": 0.200
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 256000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "openrouter": {
+        "id": "nvidia/nemotron-3-nano-30b-a3b:free",
+        "limit": {
+          "context": 262144,
+          "output": 262144
+        }
+      }
+    }
+  },
+  "nemotron-3-nano-omni-30b-a3b": {
+    "name": "Nemotron 3 Nano Omni 30B A3B",
+    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3",
+    "oss": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
+    "specs": "https://artificialanalysis.ai/models/nemotron-3-nano-omni-30b-a3b",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.075,
+      "output": 0.300
+    },
+    "limit": {
+      "context": 256000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "openrouter": {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "nemotron-3-super-120b-a12b": {
+    "name": "Nemotron 3 Super 120B A12B",
+    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Super",
+    "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+    "specs": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.250,
+      "output": 0.775,
+      "cache": 0.143
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 256000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "openrouter": {
+        "id": "nvidia/nemotron-3-super-120b-a12b:free",
+        "limit": {
+          "context": 262144,
+          "output": 262144
+        }
+      }
+    }
+  },
   "nemotron-3-ultra-550b-a55b": {
     "name": "Nemotron 3 Ultra 550B A55B",
-    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
+    "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra",
     "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
     "specs": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
     "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
@@ -1029,6 +1128,13 @@
           "context": 1000000,
           "output": 128000
         }
+      },
+      "openrouter": {
+        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "limit": {
+          "context": 1000000,
+          "output": 64000
+        }
       }
     }
   },
@@ -1056,6 +1162,13 @@
         "limit": {
           "context": 256000,
           "output": 64000
+        }
+      },
+      "openrouter": {
+        "id": "cohere/north-mini-code:free",
+        "limit": {
+          "context": 262144,
+          "output": 65536
         }
       }
     }
