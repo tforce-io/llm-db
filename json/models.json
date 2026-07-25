@@ -26,6 +26,168 @@
       }
     }
   },
+  "claude-haiku-4.5": {
+    "name": "Claude Haiku 4.5",
+    "home": "https://www.anthropic.com/news/claude-haiku-4-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 1.000,
+      "output": 5.000
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-4.1": {
+    "name": "Claude Opus 4.1",
+    "home": "https://www.anthropic.com/news/claude-4",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 15.000,
+      "output": 75.000
+    },
+    "limit": {
+      "context": 200000,
+      "output": 32000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-4.5": {
+    "name": "Claude Opus 4.5",
+    "home": "https://www.anthropic.com/news/claude-opus-4-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 5.000,
+      "output": 25.000
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-4.6": {
+    "name": "Claude Opus 4.6",
+    "home": "https://www.anthropic.com/news/claude-opus-4-6",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 5.000,
+      "output": 25.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-4.7": {
+    "name": "Claude Opus 4.7",
+    "home": "https://www.anthropic.com/news/claude-opus-4-7",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 5.000,
+      "output": 25.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-4.8": {
+    "name": "Claude Opus 4.8",
+    "home": "https://www.anthropic.com/news/claude-opus-4-8",
+    "capabilities": ["function_call", "reasoning", "structured", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 5.000,
+      "output": 25.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-sonnet-4.0": {
+    "name": "Claude Sonnet 4",
+    "home": "https://www.anthropic.com/news/claude-4",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 3.000,
+      "output": 15.000
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-sonnet-4.5": {
+    "name": "Claude Sonnet 4.5",
+    "home": "https://www.anthropic.com/news/claude-sonnet-4-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 3.000,
+      "output": 15.000
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-sonnet-4.6": {
+    "name": "Claude Sonnet 4.6",
+    "home": "https://www.anthropic.com/news/claude-sonnet-4-6",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "cost": {
+      "input": 3.000,
+      "output": 15.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "deepseek-v4-flash-284b-a13b": {
     "name": "DeepSeek V4 Flash 284B A13B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
