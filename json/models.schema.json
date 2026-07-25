@@ -14,15 +14,7 @@
       "home": { "type": "string", "format": "uri" },
       "oss": { "type": "string", "format": "uri" },
       "dev": { "type": "string", "format": "uri" },
-      "cost": {
-        "type": "object",
-        "required": ["input", "output"],
-        "properties": {
-          "input": { "type": "number", "minimum": 0 },
-          "output": { "type": "number", "minimum": 0 }
-        },
-        "additionalProperties": false
-      },
+      "cost": { "$ref": "#/definitions/cost" },
       "capabilities": { "$ref": "#/definitions/capabilities" },
       "limit": { "$ref": "#/definitions/limit" },
       "modalities": {
@@ -41,6 +33,7 @@
           "required": ["id"],
           "properties": {
             "id": { "type": "string" },
+            "cost": { "$ref": "#/definitions/cost" },
             "limit": { "$ref": "#/definitions/limit" },
             "capabilities": { "$ref": "#/definitions/capabilities" }
           },
@@ -55,9 +48,18 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"]
+        "enum": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"]
       },
       "uniqueItems": true
+    },
+    "cost": {
+      "type": "object",
+      "required": ["input", "output"],
+      "properties": {
+        "input": { "type": "number", "minimum": 0 },
+        "output": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
     },
     "limit": {
       "type": "object",

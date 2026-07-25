@@ -3,7 +3,7 @@
   "big-pickle": {
     "name": "Big Pickle",
     "home": "https://opencode.ai/docs/zen/",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.250,
       "output": 0.500
@@ -29,7 +29,7 @@
   "claude-haiku-4.5": {
     "name": "Claude Haiku 4.5",
     "home": "https://www.anthropic.com/news/claude-haiku-4-5",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 1.000,
       "output": 5.000
@@ -47,7 +47,7 @@
   "claude-opus-4.1": {
     "name": "Claude Opus 4.1",
     "home": "https://www.anthropic.com/news/claude-4",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 15.000,
       "output": 75.000
@@ -65,7 +65,7 @@
   "claude-opus-4.5": {
     "name": "Claude Opus 4.5",
     "home": "https://www.anthropic.com/news/claude-opus-4-5",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 5.000,
       "output": 25.000
@@ -83,7 +83,7 @@
   "claude-opus-4.6": {
     "name": "Claude Opus 4.6",
     "home": "https://www.anthropic.com/news/claude-opus-4-6",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 5.000,
       "output": 25.000
@@ -101,7 +101,7 @@
   "claude-opus-4.7": {
     "name": "Claude Opus 4.7",
     "home": "https://www.anthropic.com/news/claude-opus-4-7",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 5.000,
       "output": 25.000
@@ -119,7 +119,7 @@
   "claude-opus-4.8": {
     "name": "Claude Opus 4.8",
     "home": "https://www.anthropic.com/news/claude-opus-4-8",
-    "capabilities": ["function_call", "reasoning", "structured", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "tool_choice", "vision"],
     "cost": {
       "input": 5.000,
       "output": 25.000
@@ -137,7 +137,7 @@
   "claude-sonnet-4.0": {
     "name": "Claude Sonnet 4",
     "home": "https://www.anthropic.com/news/claude-4",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 3.000,
       "output": 15.000
@@ -155,7 +155,7 @@
   "claude-sonnet-4.5": {
     "name": "Claude Sonnet 4.5",
     "home": "https://www.anthropic.com/news/claude-sonnet-4-5",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 3.000,
       "output": 15.000
@@ -173,7 +173,7 @@
   "claude-sonnet-4.6": {
     "name": "Claude Sonnet 4.6",
     "home": "https://www.anthropic.com/news/claude-sonnet-4-6",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 3.000,
       "output": 15.000
@@ -192,7 +192,7 @@
     "name": "DeepSeek V4 Flash 284B A13B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
     "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.140,
       "output": 0.280
@@ -226,7 +226,7 @@
     "name": "DeepSeek V4 Pro 1.6T A49B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
     "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 1.740,
       "output": 3.480
@@ -258,7 +258,7 @@
     "home": "https://docs.z.ai/guides/llm/glm-4.7#glm-4-7-flash",
     "oss": "https://huggingface.co/zai-org/GLM-4.7-Flash",
     "dev": "https://github.com/zai-org/GLM-4.5",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.060,
       "output": 0.300
@@ -286,7 +286,7 @@
     "home": "https://docs.z.ai/guides/llm/glm-4.7",
     "oss": "https://huggingface.co/zai-org/GLM-4.7",
     "dev": "https://github.com/zai-org/GLM-4.5",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.600,
       "output": 2.200
@@ -312,7 +312,7 @@
   "gpt-4o": {
     "name": "GPT-4o",
     "home": "https://openai.com/index/hello-gpt-4o",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 2.500,
       "output": 10.000
@@ -330,7 +330,7 @@
   "gpt-4.1": {
     "name": "GPT-4.1",
     "home": "https://openai.com/index/gpt-4-1",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 2.000,
       "output": 8.000
@@ -350,7 +350,7 @@
     "home": "https://openai.com/index/introducing-gpt-oss",
     "oss": "https://huggingface.co/openai/gpt-oss-20b",
     "dev": "https://github.com/openai/gpt-oss",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.050,
       "output": 0.200
@@ -399,7 +399,7 @@
     "home": "https://openai.com/index/introducing-gpt-oss",
     "oss": "https://huggingface.co/openai/gpt-oss-120b",
     "dev": "https://github.com/openai/gpt-oss",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.150,
       "output": 0.600
@@ -447,7 +447,7 @@
     "name": "Laguna S 2.1 118B A8B",
     "home": "https://docs.poolside.ai/release-notes/models#laguna-s-2-1",
     "oss": "https://huggingface.co/poolside/Laguna-S-2.1",
-    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
     "cost": {
       "input": 0.100,
       "output": 0.200
@@ -473,7 +473,7 @@
   "ling-3.0-flash-124b-a5b": {
     "name": "Ling 3.0 Flash 124B A5B",
     "home": "https://www.inclusion-ai.org/model",
-    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
     "cost": {
       "input": 0.100,
       "output": 0.200
@@ -500,7 +500,7 @@
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
     "oss": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
-    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 0.140,
       "output": 0.280
@@ -527,7 +527,7 @@
     "name": "Nemotron 3 Ultra 550B A55B",
     "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/",
     "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
-    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
     "cost": {
       "input": 0.500,
       "output": 2.500
@@ -561,7 +561,7 @@
     "name": "North Mini Code 1.0 30B A3B",
     "home": "https://cohere.com/blog/north-mini-code",
     "oss": "https://huggingface.co/CohereLabs/North-Mini-Code-1.0",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "tools"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
     "cost": {
       "input": 0.060,
       "output": 0.300
@@ -589,7 +589,7 @@
     "home": "https://qwen.ai/home",
     "oss": "https://huggingface.co/Qwen/Qwen3.6-27B",
     "dev": "https://github.com/QwenLM/Qwen3.6",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 0.500,
       "output": 3.000
@@ -617,7 +617,7 @@
     "home": "https://qwen.ai/home",
     "oss": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
     "dev": "https://github.com/QwenLM/Qwen3.6",
-    "capabilities": ["function_call", "reasoning", "response_format", "structured", "temperature", "tool_choice", "tools", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 0.250,
       "output": 1.500
