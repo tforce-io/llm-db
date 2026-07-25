@@ -8,11 +8,17 @@
   "cerebras": {
     "name": "Cerebras"
   },
+  "gemini": {
+    "name": "Google Gemini"
+  },
   "github-copilot": {
     "name": "Github Copilot"
   },
   "groq": {
     "name": "Groq"
+  },
+  "kilo": {
+    "name": "Kilo Gateway"
   },
   "nvidia": {
     "name": "Nvidia"
