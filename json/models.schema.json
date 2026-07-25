@@ -13,6 +13,7 @@
       "name": { "type": "string" },
       "home": { "type": "string", "format": "uri" },
       "oss": { "type": "string", "format": "uri" },
+      "specs": { "type": "string", "format": "uri" },
       "dev": { "type": "string", "format": "uri" },
       "cost": { "$ref": "#/definitions/cost" },
       "capabilities": { "$ref": "#/definitions/capabilities" },
@@ -57,7 +58,10 @@
       "required": ["input", "output"],
       "properties": {
         "input": { "type": "number", "minimum": 0 },
-        "output": { "type": "number", "minimum": 0 }
+        "output": { "type": "number", "minimum": 0 },
+        "cache": { "type": "number", "minimum": 0 },
+        "cache_write": { "type": "number", "minimum": 0 }
+
       },
       "additionalProperties": false
     },
