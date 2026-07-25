@@ -590,6 +590,39 @@
       "output": ["text"]
     },
     "deployments": {
+      "opencode-go": {
+        "id": "mimo-v2.5"
+      },
+      "opencode-zen": {
+        "id": "mimo-v2.5-free",
+        "limit": {
+          "context": 200000,
+          "output": 32000
+        }
+      }
+    }
+  },
+  "mimo-v2.5-pro-1.02t-a42b": {
+    "name": "MiMo V2.5 Pro 1.02TB A42B",
+    "home": "https://mimo.xiaomi.com/mimo-v2-5-pro",
+    "oss": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.430,
+      "output": 0.870
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "mimo-v2.5-pro"
+      },
       "opencode-zen": {
         "id": "mimo-v2.5-free",
         "limit": {
