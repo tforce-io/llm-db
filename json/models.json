@@ -519,6 +519,88 @@
       }
     }
   },
+  "kimi-k2.5-1t-a32b": {
+    "name": "Kimi K2.5 1T A32B",
+    "home": "https://www.kimi.com/ai-models/kimi-k2-5",
+    "oss": "https://huggingface.co/moonshotai/Kimi-K2.5",
+    "dev": "https://github.com/MoonshotAI/Kimi-K2.5",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.600,
+      "output": 3.000
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "kimi-k2.5",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "kimi-k2.6-1t-a32b": {
+    "name": "Kimi K2.6 1T A32B",
+    "home": "https://www.kimi.com/ai-models/kimi-k2-6",
+    "oss": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.950,
+      "output": 4.000
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "kimi-k2.6",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "kimi-k2.7-code-1t-a32b": {
+    "name": "Kimi K2.7 Code 1T A32B",
+    "home": "https://www.kimi.com/resources/kimi-k2-7-code",
+    "oss": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.950,
+      "output": 4.000
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "kimi-k2.7-code",
+        "limit": {
+          "context": 262144,
+          "output": 262144
+        }
+      }
+    }
+  },
   "laguna-s-2.1-118b-a8b": {
     "name": "Laguna S 2.1 118B A8B",
     "home": "https://docs.poolside.ai/release-notes/models#laguna-s-2-1",
