@@ -384,6 +384,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "gemini": {
+        "id": "gemma-4-26b-a4b-it",
+        "limit": {
+          "context": 262144,
+          "output": 32768
+        }
+      },
       "ollama": {
         "id": "gemma-4:26b-a4b-instruct",
         "limit": {
@@ -413,6 +420,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "gemini": {
+        "id": "gemma-4-31b-it",
+        "limit": {
+          "context": 262144,
+          "output": 32768
+        }
+      },
       "ollama": {
         "id": "gemma-4:31b-instruct",
         "limit": {
