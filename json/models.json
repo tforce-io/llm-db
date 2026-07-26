@@ -994,6 +994,34 @@
     },
     "deployments": {}
   },
+  "llama-3.3-nemotron-super-v1.5-49b": {
+    "name": "Llama 3.3 Nemotron Super v1.5 49B",
+    "home": "https://build.nvidia.com/nvidia/llama-3_3-nemotron-super-49b-v1_5/modelcard",
+    "oss": "https://huggingface.co/nvidia/Llama-3_3-Nemotron-Super-49B-v1_5",
+    "specs": "https://artificialanalysis.ai/models/llama-nemotron-super-49b-v1-5-reasoning",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.400,
+      "output": 0.400
+    },
+    "limit": {
+      "context": 131072,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "llama-3.3-nemotron-super-1.5:49b",
+        "limit": {
+          "context": 65536,
+          "output": 65536
+        }
+      }
+    }
+  },
   "mimo-v2.5-310b-a15b": {
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
