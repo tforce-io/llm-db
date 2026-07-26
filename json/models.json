@@ -1271,6 +1271,62 @@
       }
     }
   },
+  "qwen3-next-80b-a3b-instruct": {
+    "name": "Qwen3 Next 80B A3B Instruct",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/qwen3-next-80b-a3b-instruct",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.500,
+      "output": 2.000
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-next:80b-a3b-instruct",
+        "limit": {
+          "context": 196608,
+          "output": 32768
+        }
+      }
+    }
+  },
+  "qwen3-next-80b-a3b-thinking": {
+    "name": "Qwen3 Next 80B A3B Thinking",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
+    "specs": "https://artificialanalysis.ai/models/qwen3-next-80b-a3b-reasoning",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.500,
+      "output": 2.000
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-next:80b-a3b-thinking",
+        "limit": {
+          "context": 196608,
+          "output": 32768
+        }
+      }
+    }
+  },
   "qwen3.5-2b": {
     "name": "Qwen3.5 2B",
     "home": "https://qwen.ai/home",
