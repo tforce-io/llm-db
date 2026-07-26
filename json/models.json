@@ -748,6 +748,35 @@
       }
     }
   },
+  "kimi-linear-48b-a3b-instruct": {
+    "name": "Kimi Linear 48B A3B Instruct",
+    "home": "https://www.kimi.com/",
+    "oss": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/kimi-linear-48b-a3b-instruct",
+    "dev": "https://github.com/MoonshotAI/Kimi-Linear",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.200,
+      "output": 0.200
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "kimi-linear:48b-a3b-instruct",
+        "limit": {
+          "context": 327680,
+          "output": 65536
+        }
+      }
+    }
+  },
   "kimi-k2.5-1000b-a32b": {
     "name": "Kimi K2.5 1000B A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-5",
