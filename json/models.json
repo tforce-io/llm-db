@@ -973,6 +973,27 @@
       }
     }
   },
+  "llama-3.3-70b-instruct": {
+    "name": "Llama 3.3 70B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama3_3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.590,
+      "output": 0.720,
+      "cache": 0.590
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "mimo-v2.5-310b-a15b": {
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
