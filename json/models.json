@@ -1321,6 +1321,36 @@
     },
     "deployments": {}
   },
+  "qwen3-coder-next-80b-a3b": {
+    "name": "Qwen3 Coder Next 80B A3B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-Coder-Next",
+    "specs": "https://artificialanalysis.ai/models/qwen3-coder-next",
+    "dev": "https://github.com/QwenLM/Qwen3-Coder",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.350,
+      "output": 1.200,
+      "cache": 0.350
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-coder-next:80b-a3b",
+        "limit": {
+          "context": 196608,
+          "output": 32768
+        }
+      }
+    }
+  },
   "qwen3-next-80b-a3b-instruct": {
     "name": "Qwen3 Next 80B A3B Instruct",
     "home": "https://qwen.ai/home",
