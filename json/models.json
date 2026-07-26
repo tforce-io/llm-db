@@ -1485,6 +1485,64 @@
       }
     }
   },
+  "qwen3-vl-32b-instruct": {
+    "name": "Qwen3 VL 32B Instruct",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/qwen3-vl-32b-instruct",
+    "dev": "https://github.com/QwenLM/Qwen3-VL",
+    "capabilities": ["function_call", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.700,
+      "output": 2.800
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-vl:32b-instruct",
+        "limit": {
+          "context": 49152,
+          "output": 32768
+        }
+      }
+    }
+  },
+  "qwen3-vl-32b-thinking": {
+    "name": "Qwen3 VL 32B Thinking",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-VL-32B-Thinking",
+    "specs": "https://artificialanalysis.ai/models/qwen3-vl-32b-reasoning",
+    "dev": "https://github.com/QwenLM/Qwen3-VL",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.700,
+      "output": 8.400
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-vl:32b-thinking",
+        "limit": {
+          "context": 49152,
+          "output": 32768
+        }
+      }
+    }
+  },
   "qwen3.5-2b": {
     "name": "Qwen3.5 2B",
     "home": "https://qwen.ai/home",
