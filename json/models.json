@@ -1172,6 +1172,34 @@
       }
     }
   },
+  "nemotron-cascase-2-30b-a3b": {
+    "name": "Nemotron Cascade 2 30B A3B",
+    "home": "https://research.nvidia.com/labs/nemotron/nemotron-cascade-2",
+    "oss": "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B",
+    "specs": "https://artificialanalysis.ai/models/nemotron-cascade-2-30b-a3b",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.050,
+      "output": 0.200
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 256000
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "nemotron-cascade-2:30b-a3b",
+        "limit": {
+          "context": 524288,
+          "output": 131072
+        }
+      }
+    }
+  },
   "nemotron-3-nano-30b-a3b": {
     "name": "Nemotron 3 Nano 30B A3B",
     "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3",
@@ -1191,6 +1219,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "ollama": {
+        "id": "nemotron-3-nano:30b-a3b",
+        "limit": {
+          "context": 524288,
+          "output": 131072
+        }
+      },
       "openrouter": {
         "id": "nvidia/nemotron-3-nano-30b-a3b:free",
         "limit": {
@@ -1221,6 +1256,13 @@
     "deployments": {
       "kilo": {
         "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
+      "ollama": {
+        "id": "nemotron-3-nano-omni:30b-a3b-reasoning",
         "limit": {
           "context": 262144,
           "output": 65536
