@@ -1271,6 +1271,56 @@
       }
     }
   },
+  "qwen3-coder-30b-a3b-instruct": {
+    "name": "Qwen3 Coder 30B A3B Instruct",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/qwen3-coder-30b-a3b-instruct",
+    "dev": "https://github.com/QwenLM/Qwen3-Coder",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.450,
+      "output": 2.250
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3-coder:30b-a3b-instruct",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
+  "qwen3-coder-480b-a35b-instruct": {
+    "name": "Qwen3 Next 480B A35B Instruct",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+    "dev": "https://github.com/QwenLM/Qwen3-Coder",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.500,
+      "output": 7.500
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "qwen3-next-80b-a3b-instruct": {
     "name": "Qwen3 Next 80B A3B Instruct",
     "home": "https://qwen.ai/home",
