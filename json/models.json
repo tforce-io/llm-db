@@ -638,6 +638,86 @@
     },
     "deployments": {}
   },
+  "gpt-5-nano": {
+    "name": "GPT 5 Nano",
+    "home": "https://openai.com/index/introducing-gpt-5",
+    "specs": "https://artificialanalysis.ai/models/gpt-5-nano",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.050,
+      "output": 0.400,
+      "cache": 0.005
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "gpt-5-mini": {
+    "name": "GPT 5 Mini",
+    "home": "https://openai.com/index/introducing-gpt-5",
+    "specs": "https://artificialanalysis.ai/models/gpt-5-mini",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.250,
+      "output": 2.000,
+      "cache": 0.025
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "gpt-5": {
+    "name": "GPT 5",
+    "home": "https://openai.com/index/introducing-gpt-5",
+    "specs": "https://artificialanalysis.ai/models/gpt-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 1.250,
+      "output": 10.000,
+      "cache": 0.125
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "gpt-5-codex": {
+    "name": "GPT 5 Codex",
+    "home": "https://openai.com/index/introducing-gpt-5",
+    "specs": "https://artificialanalysis.ai/models/gpt-5-codex",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 1.250,
+      "output": 10.000,
+      "cache": 0.125
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "gpt-oss-20-21b-a3b": {
     "name": "GPT OSS 20 21B A3B",
     "home": "https://openai.com/index/introducing-gpt-oss",
