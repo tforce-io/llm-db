@@ -340,6 +340,47 @@
     },
     "deployments": {}
   },
+  "gemini-3-flash-preview": {
+    "name": "Gemini 3 Flash Preview",
+    "home": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-flash",
+    "specs": "https://artificialanalysis.ai/models/gemini-3-flash-reasoning",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.500,
+      "output": 3.000,
+      "cache": 0.050
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "gemini-3-pro-preview": {
+    "name": "Gemini 3 Pro Preview",
+    "home": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-pro",
+    "specs": "https://artificialanalysis.ai/models/gemini-3-pro",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 2.000,
+      "output": 12.000,
+      "cache": 0.225,
+      "cache_write": 2.500
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "audio"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "gemma-4-e2b-5b-a2b-instruct": {
     "name": "Gemma 4 E2B 5B A2B",
     "home": "https://deepmind.google/models/gemma",
