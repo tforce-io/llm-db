@@ -579,10 +579,10 @@
     }
   },
   "gpt-4o": {
-    "name": "GPT-4o",
+    "name": "GPT 4o",
     "home": "https://openai.com/index/hello-gpt-4o",
     "specs": "https://artificialanalysis.ai/models/gpt-4o",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "capabilities": ["function_call", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 2.500,
       "output": 10.000,
@@ -598,11 +598,31 @@
     },
     "deployments": {}
   },
+  "gpt-4.1-mini": {
+    "name": "GPT 4.1 Mini",
+    "home": "https://openai.com/index/gpt-4-1",
+    "specs": "https://artificialanalysis.ai/models/gpt-4-1-mini",
+    "capabilities": ["function_call", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.400,
+      "output": 1.600,
+      "cache": 0.100
+    },
+    "limit": {
+      "context": 1047576,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "gpt-4.1": {
-    "name": "GPT-4.1",
+    "name": "GPT 4.1",
     "home": "https://openai.com/index/gpt-4-1",
     "specs": "https://artificialanalysis.ai/models/gpt-4-1",
-    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "capabilities": ["function_call", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 2.000,
       "output": 8.000,
