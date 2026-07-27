@@ -776,6 +776,46 @@
     },
     "deployments": {}
   },
+  "gpt-5.2": {
+    "name": "GPT 5.2",
+    "home": "https://openai.com/index/introducing-gpt-5-2",
+    "specs": "https://artificialanalysis.ai/models/gpt-5-2",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 1.750,
+      "output": 14.000,
+      "cache": 0.175
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "gpt-5.2-codex": {
+    "name": "GPT 5.2 Codex",
+    "home": "https://openai.com/index/introducing-gpt-5-2",
+    "specs": "https://artificialanalysis.ai/models/gpt-5-2-codex",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 1.750,
+      "output": 14.000,
+      "cache": 0.175
+    },
+    "limit": {
+      "context": 400000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "gpt-oss-20-21b-a3b": {
     "name": "GPT OSS 20 21B A3B",
     "home": "https://openai.com/index/introducing-gpt-oss",
