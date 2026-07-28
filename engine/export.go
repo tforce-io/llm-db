@@ -129,7 +129,7 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 }
 
 // Export LLMDB models into OpenCode config.
-func (m *ExportModule) OpenCode(apiKey string) error {
+func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string, updateGlobalConfig bool) error {
 	m.logger.Info().Msg("Loading models...")
 	modelsData, err := os.ReadFile(modelsPath)
 	if err != nil {
@@ -156,7 +156,7 @@ func (m *ExportModule) OpenCode(apiKey string) error {
 
 	m.logger.Info().Int("count", len(providers.Providers)).Msg("Loaded providers.")
 
-	cfg := m.buildOpenCodeConfig(models, providers, apiKey)
+	cfg := m.buildOpenCodeConfig(models, providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey)
 
 	m.logger.Info().Str("dir", outputDir).Msg("Creating output directory...")
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
@@ -175,10 +175,33 @@ func (m *ExportModule) OpenCode(apiKey string) error {
 
 	absPath, _ := filepath.Abs(openCodeOutputPath)
 	m.logger.Info().Str("path", absPath).Msg("Export complete.")
+
+	if updateGlobalConfig {
+		home, err := os.UserHomeDir()
+		if err != nil {
+			return fmt.Errorf("failed to get user home dir: %w", err)
+		}
+
+		configDir := filepath.Join(home, ".config", "opencode")
+		globalConfigPath := filepath.Join(configDir, "opencode.json")
+
+		m.logger.Info().Str("dir", configDir).Msg("Creating global config directory...")
+		if err := os.MkdirAll(configDir, 0755); err != nil {
+			return fmt.Errorf("failed to create %s: %w", configDir, err)
+		}
+
+		m.logger.Info().Str("path", globalConfigPath).Msg("Writing global opencode config...")
+		if err := os.WriteFile(globalConfigPath, outputData, 0644); err != nil {
+			return fmt.Errorf("failed to write %s: %w", globalConfigPath, err)
+		}
+
+		m.logger.Info().Str("path", globalConfigPath).Msg("Global config written.")
+	}
+
 	return nil
 }
 
-func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, apiKey string) *opencode.RootConfig {
+func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string) *opencode.RootConfig {
 	cfg := &opencode.RootConfig{
 		Schema:       "https://opencode.ai/config.json",
 		SmallModel:   "opencode/deepseek-v4-flash-free",
@@ -220,8 +243,11 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 		if ollamaP.URI != "" {
 			opts.BaseUrl = ollamaP.URI
 		}
-		if apiKey != "" {
-			opts.ApiKey = apiKey
+		if ollamaURL != "" {
+			opts.BaseUrl = ollamaURL
+		}
+		if ollamaApiKey != "" {
+			opts.ApiKey = ollamaApiKey
 		}
 		if opts.BaseUrl != "" || opts.ApiKey != "" {
 			ollamaProvider.Options = opts
@@ -235,8 +261,11 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 		if bifrostP.URI != "" {
 			opts.BaseUrl = bifrostP.URI
 		}
-		if apiKey != "" {
-			opts.ApiKey = apiKey
+		if bifrostURL != "" {
+			opts.BaseUrl = bifrostURL
+		}
+		if bifrostApiKey != "" {
+			opts.ApiKey = bifrostApiKey
 		}
 		if opts.BaseUrl != "" || opts.ApiKey != "" {
 			bifrostProvider.Options = opts
@@ -297,8 +326,6 @@ func ExportCmd() *cobra.Command {
 		Short: "Export models to different formats.",
 	}
 
-	var apiKey string
-
 	bifrostCmd := &cobra.Command{
 		Use:   "bifrost",
 		Short: "Export LLMDB models into Bifrost models JSON.",
@@ -310,17 +337,24 @@ func ExportCmd() *cobra.Command {
 	}
 	rootCmd.AddCommand(bifrostCmd)
 
+	var bifrostApiKey, bifrostURL, ollamaApiKey, ollamaURL string
+	var updateConfig bool
+
 	opencodeCmd := &cobra.Command{
 		Use:   "opencode",
 		Short: "Export LLMDB models into OpenCode config.",
 		Run: func(cmd *cobra.Command, args []string) {
 			logger := InitApp()
 			m := NewExportModule(logger, "opencode")
-			m.logError(m.OpenCode(apiKey))
+			m.logError(m.OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey, updateConfig))
 		},
 	}
 
-	opencodeCmd.Flags().StringVarP(&apiKey, "api-key", "k", "", "API key for ollama and bifrost providers")
+	opencodeCmd.Flags().StringVar(&bifrostApiKey, "bifrost-api-key", "", "API key for Bifrost provider")
+	opencodeCmd.Flags().StringVar(&bifrostURL, "bifrost-url", "", "Override Bifrost provider base URL")
+	opencodeCmd.Flags().StringVar(&ollamaApiKey, "ollama-api-key", "", "API key for Ollama provider")
+	opencodeCmd.Flags().StringVar(&ollamaURL, "ollama-url", "", "Override Ollama provider base URL")
+	opencodeCmd.Flags().BoolVarP(&updateConfig, "deploy", "u", false, "Update global OpenCode config file")
 
 	rootCmd.AddCommand(opencodeCmd)
 	return rootCmd
