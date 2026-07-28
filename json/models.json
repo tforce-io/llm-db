@@ -2730,6 +2730,35 @@
       }
     }
   },
+  "qwen3.7-max": {
+    "name": "Qwen3.7 Max",
+    "home": "https://qwen.ai/home",
+    "specs": "https://artificialanalysis.ai/models/qwen3-7-max",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 2.500,
+      "output": 7.500,
+      "cache": 0.250,
+      "cache_write": 3.125
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "qwen3.7-max",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
+      }
+    }
+  },
   "seed-oss-36b-instruct": {
     "name": "Seed OSS 36B Instruct",
     "home": "https://seed.bytedance.com/en/blog/seed-oss-open-source-models-release",
