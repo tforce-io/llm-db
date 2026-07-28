@@ -1185,6 +1185,7 @@
   },
   "hermes-4-14b": {
     "name": "Hermes 4 14B",
+    "base": "qwen3-14b",
     "home": "https://nousresearch.com/releases",
     "oss": "https://huggingface.co/NousResearch/Hermes-4-14B",
     "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
@@ -1204,6 +1205,7 @@
   },
   "hermes-4-70b": {
     "name": "Hermes 4 70B",
+    "base": "llama-3.1-70b-instruct",
     "home": "https://nousresearch.com/releases",
     "oss": "https://huggingface.co/NousResearch/Hermes-4-70B",
     "specs": "https://artificialanalysis.ai/models/hermes-4-llama-3-1-70b-reasoning",
@@ -1224,6 +1226,7 @@
   },
   "hermes-4-405b": {
     "name": "Hermes 4 405B",
+    "base": "llama-3.1-405b-instruct",
     "home": "https://nousresearch.com/releases",
     "oss": "https://huggingface.co/NousResearch/Hermes-4-405B",
     "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
@@ -1234,6 +1237,26 @@
     "limit": {
       "context": 131072,
       "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "hermes-4.3-36b": {
+    "name": "Hermes 4.3 36B",
+    "base": "seed-oss-36b-instruct",
+    "home": "https://nousresearch.com/releases",
+    "oss": "https://huggingface.co/NousResearch/Hermes-4.3-36B",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.210,
+      "output": 0.570
+    },
+    "limit": {
+      "context": 524288,
+      "output": 65536
     },
     "modalities": {
       "input": ["text"],
