@@ -1183,6 +1183,64 @@
       }
     }
   },
+  "hermes-4-14b": {
+    "name": "Hermes 4 14B",
+    "home": "https://nousresearch.com/releases",
+    "oss": "https://huggingface.co/NousResearch/Hermes-4-14B",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.026,
+      "output": 0.050
+    },
+    "limit": {
+      "context": 32768,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "hermes-4-70b": {
+    "name": "Hermes 4 70B",
+    "home": "https://nousresearch.com/releases",
+    "oss": "https://huggingface.co/NousResearch/Hermes-4-70B",
+    "specs": "https://artificialanalysis.ai/models/hermes-4-llama-3-1-70b-reasoning",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.130,
+      "output": 0.400
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "hermes-4-405b": {
+    "name": "Hermes 4 405B",
+    "home": "https://nousresearch.com/releases",
+    "oss": "https://huggingface.co/NousResearch/Hermes-4-405B",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.570,
+      "output": 2.750
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "hy3-295b-a21b": {
     "name": "Hy3 295B A21B",
     "home": "https://hy.tencent.com/research/hy3",
