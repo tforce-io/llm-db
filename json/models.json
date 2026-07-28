@@ -215,6 +215,28 @@
     },
     "deployments": {}
   },
+  "deepseek-r1-671b-a37b": {
+    "name": "DeepSeek R1 671B A37B",
+    "home": "https://www.deepseek.com/",
+    "oss": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+    "specs": "https://artificialanalysis.ai/models/deepseek-r1",
+    "dev": "https://github.com/deepseek-ai/deepseek-r1",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.350,
+      "output": 4.200,
+      "cache": 1.350
+    },
+    "limit": {
+      "context": 131072,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "deepseek-v4-flash-284b-a13b": {
     "name": "DeepSeek V4 Flash 284B A13B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
