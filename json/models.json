@@ -2709,5 +2709,26 @@
         "id": "qwen3.7-plus"
       }
     }
+  },
+  "seed-oss-36b-instruct": {
+    "name": "Seed OSS 36B Instruct",
+    "home": "https://seed.bytedance.com/en/blog/seed-oss-open-source-models-release",
+    "oss": "https://huggingface.co/ByteDance-Seed/Seed-OSS-36B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/seed-oss-36b-instruct",
+    "dev": "https://github.com/ByteDance-Seed/seed-oss",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.210,
+      "output": 0.570
+    },
+    "limit": {
+      "context": 524288,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
   }
 }
