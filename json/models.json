@@ -2663,7 +2663,6 @@
     "name": "Qwen3.6 Plus",
     "home": "https://qwen.ai/home",
     "specs": "https://artificialanalysis.ai/models/qwen3-6-plus",
-    "dev": "https://github.com/QwenLM/Qwen3.6",
     "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 0.500,
@@ -2684,6 +2683,27 @@
         "id": "qwen3.6-plus"
       }
     }
+  },
+  "qwen3.6-max": {
+    "name": "Qwen3.6 Max",
+    "home": "https://qwen.ai/home",
+    "specs": "https://artificialanalysis.ai/models/qwen3-6-max",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.300,
+      "output": 7.800,
+      "cache": 0.130,
+      "cache_write": 1.625
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
   },
   "qwen3.7-plus": {
     "name": "Qwen3.7 Plus",
