@@ -1452,6 +1452,86 @@
     },
     "deployments": {}
   },
+  "llama-3.2-1b-instruct": {
+    "name": "Llama 3.2 1B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.010,
+      "output": 0.010
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-3.2-3b-instruct": {
+    "name": "Llama 3.2 3B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.030,
+      "output": 0.030
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-3.2-11b-vision-instruct": {
+    "name": "Llama 3.2 11B Vision Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-2-instruct-11b-vision",
+    "capabilities": ["function_call", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.358,
+      "output": 0.358
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text" , "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-3.2-90b-vision-instruct": {
+    "name": "Llama 3.2 90B Vision Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-2-instruct-90b-vision",
+    "capabilities": ["function_call", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 2.040,
+      "output": 2.040
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "llama-3.3-70b-instruct": {
     "name": "Llama 3.3 70B Instruct",
     "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama3_3",
