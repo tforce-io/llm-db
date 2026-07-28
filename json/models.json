@@ -1392,6 +1392,66 @@
     },
     "deployments": {}
   },
+  "llama-3.1-8b-instruct": {
+    "name": "Llama 3.1 8B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-1-instruct-8b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.075,
+      "output": 0.090
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-3.1-70b-instruct": {
+    "name": "Llama 3.1 70B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-1-instruct-70b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.560,
+      "output": 0.560
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-3.1-405b-instruct": {
+    "name": "Llama 3.1 405B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/other-models/#meta-llama-3",
+    "oss": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-3-1-instruct-405b",
+    "capabilities": ["function_call", "temperature", "tool_choice"],
+    "cost": {
+      "input": 2.500,
+      "output": 10.000
+    },
+    "limit": {
+      "context": 131072,
+      "output": 4096
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "llama-3.3-70b-instruct": {
     "name": "Llama 3.3 70B Instruct",
     "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama3_3",
