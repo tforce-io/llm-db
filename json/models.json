@@ -2520,6 +2520,46 @@
     },
     "deployments": {}
   },
+  "qwen3.5-122b-a10b": {
+    "name": "Qwen3.5 122B A10B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B",
+    "specs": "https://artificialanalysis.ai/models/qwen3-5-122b-a10b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.400,
+      "output": 3.200
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "qwen3.5-397b-a17b": {
+    "name": "Qwen3.5 397B A17B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B",
+    "specs": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.600,
+      "output": 3.600
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "qwen3.6-27b": {
     "name": "Qwen3.6 27B",
     "home": "https://qwen.ai/home",
