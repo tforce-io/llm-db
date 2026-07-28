@@ -1581,6 +1581,47 @@
       }
     }
   },
+  "llama-4-scout-109b-a17b-instruct": {
+    "name": "Llama 4 Scout 109B A17B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama4",
+    "oss": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "specs": "https://artificialanalysis.ai/models/llama-4-scout",
+    "capabilities": ["function_call", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.180,
+      "output": 0.660
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 16384
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "llama-4-maverick-400b-a17b-instruct": {
+    "name": "Llama 4 Maverick 400B A17B Instruct",
+    "home": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama4",
+    "oss": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "capabilities": ["function_call", "temperature", "tool_choice", "vision"],
+    "specs": "https://artificialanalysis.ai/models/llama-4-maverick",
+    "cost": {
+      "input": 0.270,
+      "output": 0.850,
+      "cache": 0.260
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 16384
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "mimo-v2.5-310b-a15b": {
     "name": "MiMo V2.5 310B A15B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5",
