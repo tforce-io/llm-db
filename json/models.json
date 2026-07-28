@@ -252,7 +252,7 @@
     }
   },
   "deepseek-v4-pro-1600b-a49b": {
-    "name": "DeepSeek V4 Pro 1600B A49B",
+    "name": "DeepSeek V4 Pro 1.6T A49B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
     "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
     "specs": "https://artificialanalysis.ai/models/deepseek-v4-pro",
@@ -1220,7 +1220,7 @@
     }
   },
   "kimi-k2.5-1000b-a32b": {
-    "name": "Kimi K2.5 1000B A32B",
+    "name": "Kimi K2.5 1T A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-5",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.5",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-5",
@@ -1250,7 +1250,7 @@
     }
   },
   "kimi-k2.6-1000b-a32b": {
-    "name": "Kimi K2.6 1000B A32B",
+    "name": "Kimi K2.6 1T A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-6",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.6",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-6",
@@ -1279,7 +1279,7 @@
     }
   },
   "kimi-k2.7-code-1000b-a32b": {
-    "name": "Kimi K2.7 Code 1000B A32B",
+    "name": "Kimi K2.7 Code 1T A32B",
     "home": "https://www.kimi.com/resources/kimi-k2-7-code",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-7-code",
@@ -1303,6 +1303,36 @@
         "limit": {
           "context": 262144,
           "output": 262144
+        }
+      }
+    }
+  },
+  "kimi-k3-2800b-A104b": {
+    "name": "Kimi K3 2.8T A104B",
+    "home": "https://www.kimi.com/blog/kimi-k3",
+    "oss": "https://huggingface.co/moonshotai/Kimi-K3",
+    "specs": "https://artificialanalysis.ai/models/kimi-k3",
+    "dev": "https://github.com/MoonshotAI/Kimi-K3",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 3.000,
+      "output": 15.000,
+      "cache": 0.300
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "kimi-k3",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
         }
       }
     }
