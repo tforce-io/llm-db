@@ -280,6 +280,69 @@
       }
     }
   },
+  "exaone-4-1b": {
+    "name": "EXAONE 4.0 1.2B",
+    "home": "https://www.lgresearch.ai/exaone",
+    "oss": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-1.2B",
+    "specs": "https://artificialanalysis.ai/models/exaone-4-0-1-2b-reasoning",
+    "dev": "https://github.com/LG-AI-EXAONE/EXAONE-4.0",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.010,
+      "output": 0.010
+    },
+    "limit": {
+      "context": 65536,
+      "output": 16384
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "exaone-4-32b": {
+    "name": "EXAONE 4.0 32B",
+    "home": "https://www.lgresearch.ai/exaone",
+    "oss": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-32B",
+    "specs": "https://artificialanalysis.ai/models/exaone-4-0-32b-reasoning",
+    "dev": "https://github.com/LG-AI-EXAONE/EXAONE-4.0",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.300,
+      "output": 1.200
+    },
+    "limit": {
+      "context": 131072,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "exaone-4.5-33b": {
+    "name": "EXAONE 4.5 33B",
+    "home": "https://www.lgresearch.ai/exaone",
+    "oss": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+    "specs": "https://artificialanalysis.ai/models/exaone-4-5-33b",
+    "dev": "https://github.com/LG-AI-EXAONE/EXAONE-4.5",
+    "capabilities": ["function_call", "reasoning", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.300,
+      "output": 1.500
+    },
+    "limit": {
+      "context": 262144,
+      "output": 32768
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "gemini-2.5-flash-lite": {
     "name": "Gemini 2.5 Flash Lite",
     "home": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/2-5-flash-lite",
