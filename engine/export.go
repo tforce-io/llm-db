@@ -337,27 +337,62 @@ func ExportCmd() *cobra.Command {
 	}
 	rootCmd.AddCommand(bifrostCmd)
 
-	var bifrostApiKey, bifrostURL, ollamaApiKey, ollamaURL string
-	var updateConfig bool
-
 	opencodeCmd := &cobra.Command{
 		Use:   "opencode",
 		Short: "Export LLMDB models into OpenCode config.",
 		Run: func(cmd *cobra.Command, args []string) {
 			logger := InitApp()
+			flags := ParseExportFlags(cmd, args)
 			m := NewExportModule(logger, "opencode")
-			m.logError(m.OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey, updateConfig))
+			m.logError(m.OpenCode(flags.OllamaURL, flags.OllamaApiKey, flags.BifrostURL, flags.BifrostApiKey, flags.UpdateConfig))
 		},
 	}
 
-	opencodeCmd.Flags().StringVar(&bifrostApiKey, "bifrost-api-key", "", "API key for Bifrost provider")
-	opencodeCmd.Flags().StringVar(&bifrostURL, "bifrost-url", "", "Override Bifrost provider base URL")
-	opencodeCmd.Flags().StringVar(&ollamaApiKey, "ollama-api-key", "", "API key for Ollama provider")
-	opencodeCmd.Flags().StringVar(&ollamaURL, "ollama-url", "", "Override Ollama provider base URL")
-	opencodeCmd.Flags().BoolVarP(&updateConfig, "deploy", "u", false, "Update global OpenCode config file")
+	opencodeCmd.Flags().String("bifrost-api-key", "", "API key for Bifrost provider (envvar: BIFROST_API_KEY)")
+	opencodeCmd.Flags().String("bifrost-url", "", "Override Bifrost provider base URL (envvar: BIFROST_URL)")
+	opencodeCmd.Flags().String("env-file", "", "Path to .env file")
+	opencodeCmd.Flags().String("ollama-api-key", "", "API key for Ollama provider (envvar: OLLAMA_API_KEY)")
+	opencodeCmd.Flags().String("ollama-url", "", "Override Ollama provider base URL (envvar: OLLAMA_URL)")
+	opencodeCmd.Flags().BoolP("deploy", "u", false, "Update global OpenCode config file")
 
 	rootCmd.AddCommand(opencodeCmd)
 	return rootCmd
+}
+
+// ExportFlags contains all flags used by ExportModule.
+type ExportFlags struct {
+	BifrostApiKey string
+	BifrostURL    string
+	EnvFile       string
+	OllamaApiKey  string
+	OllamaURL     string
+	UpdateConfig  bool
+}
+
+// Extract all flags from a Cobra Command.
+func ParseExportFlags(cmd *cobra.Command, args []string) *ExportFlags {
+	bifrostApiKey, _ := cmd.Flags().GetString("bifrost-api-key")
+	bifrostURL, _ := cmd.Flags().GetString("bifrost-url")
+	envFile, _ := cmd.Flags().GetString("env-file")
+	ollamaApiKey, _ := cmd.Flags().GetString("ollama-api-key")
+	ollamaURL, _ := cmd.Flags().GetString("ollama-url")
+	updateConfig, _ := cmd.Flags().GetBool("deploy")
+
+	if hasEnv := loadEnvFile(envFile, true); hasEnv {
+		resolveEnvVar("BIFROST_API_KEY", &bifrostApiKey)
+		resolveEnvVar("BIFROST_URL", &bifrostURL)
+		resolveEnvVar("OLLAMA_API_KEY", &ollamaApiKey)
+		resolveEnvVar("OLLAMA_URL", &ollamaURL)
+	}
+
+	return &ExportFlags{
+		BifrostApiKey: bifrostApiKey,
+		BifrostURL:    bifrostURL,
+		EnvFile:       envFile,
+		OllamaApiKey:  ollamaApiKey,
+		OllamaURL:     ollamaURL,
+		UpdateConfig:  updateConfig,
+	}
 }
 
 func boolPtr(b bool) *bool {

@@ -10,6 +10,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
 	"github.com/tforceaio/llm-db/config"
+	"github.com/tforceaio/llm-db/schema/dotenv"
 )
 
 var version = "0.1.0"
@@ -43,5 +44,31 @@ func Execute() {
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
+	}
+}
+
+// Load environement variables from envFile, or from .env file in current directory.
+// Return a boolean indicating whether the environment variables were successfully loaded.
+func loadEnvFile(envFile string, override bool) bool {
+	if envFile == "" {
+		if _, err := os.Stat(".env"); err != nil {
+			return false
+		}
+		if err := dotenv.LoadDotEnv(".env", override); err != nil {
+			return false
+		}
+	} else {
+		if err := dotenv.LoadDotEnv(envFile, override); err != nil {
+			return false
+		}
+	}
+	return true
+}
+
+// Update variable with the value of the environment variable if it exists.
+func resolveEnvVar(envKey string, variable *string) {
+	envVar := os.Getenv(envKey)
+	if envVar != "" {
+		*variable = envVar
 	}
 }

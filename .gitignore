@@ -1,2 +1,9 @@
+# Generated artifacts
 exported/
 node_modules/
+llm-db
+llm-db.exe
+
+# Local configurations
+.vscode/
+.env
