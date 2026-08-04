@@ -26,6 +26,27 @@
       }
     }
   },
+  "claude-fable-5": {
+    "name": "Claude Fable 5",
+    "home": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+    "specs": "https://artificialanalysis.ai/models/claude-fable-5",
+    "capabilities": ["function_call", "reasoning", "structured", "tool_choice", "vision"],
+    "cost": {
+      "input": 10.000,
+      "output": 50.000,
+      "cache": 1.000,
+      "cache_write": 12.500
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
   "claude-haiku-4.5": {
     "name": "Claude Haiku 4.5",
     "home": "https://www.anthropic.com/news/claude-haiku-4-5",
@@ -135,7 +156,28 @@
     "name": "Claude Opus 4.8",
     "home": "https://www.anthropic.com/news/claude-opus-4-8",
     "specs": "https://artificialanalysis.ai/models/claude-opus-4-8",
-    "capabilities": ["function_call", "reasoning", "structured", "tool_choice", "vision"],
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 5.000,
+      "output": 25.000,
+      "cache": 0.500,
+      "cache_write": 6.250
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-opus-5": {
+    "name": "Claude Opus 5",
+    "home": "https://www.anthropic.com/news/claude-opus-5",
+    "specs": "https://artificialanalysis.ai/models/claude-opus-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
     "cost": {
       "input": 5.000,
       "output": 25.000,
@@ -208,6 +250,27 @@
     "limit": {
       "context": 1000000,
       "output": 64000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "claude-sonnet-5": {
+    "name": "Claude Sonnet 5",
+    "home": "https://www.anthropic.com/news/claude-sonnet-5",
+    "specs": "https://artificialanalysis.ai/models/claude-sonnet-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 2.000,
+      "output": 10.000,
+      "cache": 0.200,
+      "cache_write": 2.500
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
     },
     "modalities": {
       "input": ["text", "image"],
