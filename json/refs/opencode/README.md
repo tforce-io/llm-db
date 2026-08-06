@@ -1,1 +1,4 @@
-Source: https://models.dev/api.json
+Sources:
+
+- https://models.dev/api.json
+- https://models.dev/models.json
