@@ -41,6 +41,7 @@ func Execute() {
 	}
 
 	rootCmd.AddCommand(ExportCmd())
+	rootCmd.AddCommand(FormatCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
