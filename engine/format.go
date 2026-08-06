@@ -16,6 +16,7 @@ import (
 
 const (
 	opencodeModelsPath = "json/refs/opencode/models.json"
+	opencodeAPIPath    = "json/refs/opencode/api.json"
 )
 
 // FormatModule handles reformatting of refs JSON files.
@@ -28,6 +29,36 @@ func NewFormatModule(logger zerolog.Logger, cmdName string) *FormatModule {
 	return &FormatModule{
 		logger: logger.With().Str("module", "format").Str("cmd", cmdName).Logger(),
 	}
+}
+
+// Reformat opencode api JSON file (sort keys alphabetically, pretty-print with 2-space indent).
+func (m *FormatModule) OpenCodeAPI(inputPath, outputPath string) error {
+	m.logger.Info().Str("path", inputPath).Msg("Loading API...")
+	apiData, err := os.ReadFile(inputPath)
+	if err != nil {
+		return fmt.Errorf("failed to read %s: %w", inputPath, err)
+	}
+
+	api, err := opencode_cloud.LoadAPI(apiData)
+	if err != nil {
+		return fmt.Errorf("failed to parse API: %w", err)
+	}
+
+	m.logger.Info().Int("count", len(api)).Msg("Loaded API.")
+
+	m.logger.Info().Str("path", outputPath).Msg("Writing formatted API...")
+	outputData, err := json.MarshalIndent(api, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal API: %w", err)
+	}
+
+	if err := os.WriteFile(outputPath, outputData, 0644); err != nil {
+		return fmt.Errorf("failed to write %s: %w", outputPath, err)
+	}
+
+	absPath, _ := filepath.Abs(outputPath)
+	m.logger.Info().Str("path", absPath).Msg("Format complete.")
+	return nil
 }
 
 // Reformat opencode models JSON file (sort keys alphabetically, pretty-print with 2-space indent).
@@ -86,7 +117,22 @@ func FormatCmd() *cobra.Command {
 	opencodeModelsCmd.Flags().String("input", opencodeModelsPath, "Input JSON file path")
 	opencodeModelsCmd.Flags().String("output", opencodeModelsPath, "Output JSON file path")
 
+	opencodeAPICmd := &cobra.Command{
+		Use:   "opencode-api",
+		Short: "Reformat opencode api.json (sort keys, pretty-print).",
+		Run: func(cmd *cobra.Command, args []string) {
+			logger := InitApp()
+			flags := ParseFormatFlags(cmd, args)
+			m := NewFormatModule(logger, "opencode-api")
+			m.logError(m.OpenCodeAPI(flags.Input, flags.Output))
+		},
+	}
+
+	opencodeAPICmd.Flags().String("input", opencodeAPIPath, "Input JSON file path")
+	opencodeAPICmd.Flags().String("output", opencodeAPIPath, "Output JSON file path")
+
 	rootCmd.AddCommand(opencodeModelsCmd)
+	rootCmd.AddCommand(opencodeAPICmd)
 	return rootCmd
 }
 
