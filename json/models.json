@@ -3116,6 +3116,34 @@
       }
     }
   },
+  "qwen3.8-27b": {
+    "name": "Qwen3.8 27B",
+    "home": "https://qwen.ai/home",
+    "oss": "https://huggingface.co/Qwen/Qwen3.8-27B",
+    "specs": "https://artificialanalysis.ai/models/qwen3-8-27b",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.450,
+      "output": 3.200
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "ollama": {
+        "id": "qwen3.8:27b",
+        "limit": {
+          "context": 196608,
+          "output": 65536
+        }
+      }
+    }
+  },
   "qwen3.8-max": {
     "name": "Qwen3.8 Max",
     "home": "https://qwen.ai/home",
