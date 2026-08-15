@@ -23,8 +23,8 @@
         "type": "object",
         "required": ["input", "output"],
         "properties": {
-          "input": { "type": "array", "items": { "type": "string", "enum": ["text", "image", "video", "audio"] } },
-          "output": { "type": "array", "items": { "type": "string", "enum": ["text", "image", "video", "audio"] } }
+          "input": { "type": "array", "items": { "type": "string", "enum": ["text", "pdf", "image", "video", "audio"] } },
+          "output": { "type": "array", "items": { "type": "string", "enum": ["text", "pdf", "image", "video", "audio"] } }
         },
         "additionalProperties": false
       },
@@ -50,7 +50,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"]
+        "enum": ["attachment", "function_call", "reasoning", "response_format", "structured", "stt", "temperature", "tool_choice", "tools", "tts", "vision"]
       },
       "uniqueItems": true
     },
