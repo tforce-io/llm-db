@@ -629,7 +629,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "gemma-4:5b-a2b-instruct",
+        "id": "gemma-4-5b-a2b-instruct",
         "limit": {
           "context": 131072,
           "output": 16384
@@ -657,7 +657,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "gemma-4:8b-a4b-instruct",
+        "id": "gemma-4-8b-a4b-instruct",
         "limit": {
           "context": 131072,
           "output": 16384
@@ -685,7 +685,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "gemma-4:8b-a4b-instruct",
+        "id": "gemma-4-8b-a4b-instruct",
         "limit": {
           "context": 262144,
           "output": 65536
@@ -721,7 +721,7 @@
         }
       },
       "ollama": {
-        "id": "gemma-4:26b-a4b-instruct",
+        "id": "gemma-4-26b-a4b-instruct",
         "limit": {
           "context": 262144,
           "output": 65536
@@ -757,7 +757,7 @@
         }
       },
       "ollama": {
-        "id": "gemma-4:31b-instruct",
+        "id": "gemma-4-31b-instruct",
         "limit": {
           "context": 131072,
           "output": 65536
@@ -787,7 +787,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "glm-4.7-flash:30b-a3b",
+        "id": "glm-4.7-flash-30b-a3b",
         "limit": {
           "context": 202752,
           "output": 131072
@@ -1378,7 +1378,7 @@
         }
       },
       "ollama": {
-        "id": "gpt-oss:20b",
+        "id": "gpt-oss-20b",
         "limit": {
           "context": 131072,
           "output": 32768
@@ -1429,7 +1429,7 @@
         }
       },
       "ollama": {
-        "id": "gpt-oss:120b",
+        "id": "gpt-oss-120b",
         "limit": {
           "context": 131072,
           "output": 32768
@@ -1568,7 +1568,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "kimi-linear:48b-a3b-instruct",
+        "id": "kimi-linear-48b-a3b-instruct",
         "limit": {
           "context": 327680,
           "output": 65536
@@ -2023,7 +2023,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "llama-3.3-nemotron-super-1.5:49b",
+        "id": "llama-3.3-nemotron-super-1.5-49b",
         "limit": {
           "context": 65536,
           "output": 65536
@@ -2242,7 +2242,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "nemotron-cascade-2:30b-a3b",
+        "id": "nemotron-cascade-2-30b-a3b",
         "limit": {
           "context": 524288,
           "output": 131072
@@ -2270,7 +2270,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "nemotron-3-nano:30b-a3b",
+        "id": "nemotron-3-nano-30b-a3b",
         "limit": {
           "context": 524288,
           "output": 131072
@@ -2312,7 +2312,7 @@
         }
       },
       "ollama": {
-        "id": "nemotron-3-nano-omni:30b-a3b-reasoning",
+        "id": "nemotron-3-nano-omni-30b-a3b-reasoning",
         "limit": {
           "context": 262144,
           "output": 65536
@@ -2462,7 +2462,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-coder:30b-a3b-instruct",
+        "id": "qwen3-coder-30b-a3b-instruct",
         "limit": {
           "context": 262144,
           "output": 65536
@@ -2513,7 +2513,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-coder-next:80b-a3b",
+        "id": "qwen3-coder-next-80b-a3b",
         "limit": {
           "context": 196608,
           "output": 32768
@@ -2541,7 +2541,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-next:80b-a3b-instruct",
+        "id": "qwen3-next-80b-a3b-instruct",
         "limit": {
           "context": 196608,
           "output": 32768
@@ -2569,7 +2569,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-next:80b-a3b-thinking",
+        "id": "qwen3-next-80b-a3b-thinking",
         "limit": {
           "context": 196608,
           "output": 32768
@@ -2682,7 +2682,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-vl:30b-a3b-instruct",
+        "id": "qwen3-vl-30b-a3b-instruct",
         "limit": {
           "context": 98304,
           "output": 32768
@@ -2711,7 +2711,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-vl:30b-a3b-thinking",
+        "id": "qwen3-vl-30b-a3b-thinking",
         "limit": {
           "context": 98304,
           "output": 32768
@@ -2740,7 +2740,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-vl:32b-instruct",
+        "id": "qwen3-vl-32b-instruct",
         "limit": {
           "context": 49152,
           "output": 32768
@@ -2769,7 +2769,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3-vl:32b-thinking",
+        "id": "qwen3-vl-32b-thinking",
         "limit": {
           "context": 49152,
           "output": 32768
@@ -2979,7 +2979,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3.6:27b",
+        "id": "qwen3.6-27b",
         "limit": {
           "context": 196608,
           "output": 65536
@@ -3008,7 +3008,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3.6:35b-a3b",
+        "id": "qwen3.6-35b-a3b",
         "limit": {
           "context": 196608,
           "output": 65536
@@ -3136,7 +3136,7 @@
     },
     "deployments": {
       "ollama": {
-        "id": "qwen3.8:27b",
+        "id": "qwen3.8-27b",
         "limit": {
           "context": 196608,
           "output": 65536
