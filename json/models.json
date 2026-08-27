@@ -907,6 +907,65 @@
       }
     }
   },
+  "glm-5.3-flash-320b-a18b": {
+    "name": "GLM 5.3 Flash 320B A18B",
+    "home": "https://z.ai/blog/glm-5.3-flash",
+    "oss": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+    "specs": "https://artificialanalysis.ai/models/glm-5-3-flash",
+    "dev": "https://github.com/zai-org/GLM-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.150,
+      "output": 0.500,
+      "cache": 0.090
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video", "pdf"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "glm-5.3-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      }
+    }
+  },
+  "glm-5.3-744b-a40b": {
+    "name": "GLM 5.3 744B A40B",
+    "home": "https://z.ai/blog/glm-5.3",
+    "specs": "https://artificialanalysis.ai/models/glm-5-3",
+    "dev": "https://github.com/zai-org/GLM-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 1.400,
+      "output": 4.400,
+      "cache": 0.260
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "glm-5.3",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      }
+    }
+  },
   "gpt-4o": {
     "name": "GPT 4o",
     "home": "https://openai.com/index/hello-gpt-4o",
