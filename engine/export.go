@@ -204,7 +204,7 @@ func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiK
 func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string) *opencode.RootConfig {
 	cfg := &opencode.RootConfig{
 		Schema:       "https://opencode.ai/config.json",
-		SmallModel:   "opencode/deepseek-v4-flash-free",
+		SmallModel:   "opencode/big-pickle",
 		DefaultAgent: "plan",
 		Agents: map[string]opencode.AgentConfigs{
 			"build": {Color: "primary"},
