@@ -3203,6 +3203,56 @@
       }
     }
   },
+  "qwen3.8-flash-next-180b-a6b": {
+    "name": "Qwen3.8 Flash Next 180B A6B",
+    "home": "https://qwen.ai/blog?id=qwen3.8-flash-next",
+    "oss": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+    "specs": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+    "dev": "https://github.com/QwenLM/Qwen3.8-Flash-Next",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.150,
+      "output": 0.470,
+      "cache": 0.016
+    },
+    "limit": {
+      "context": 262144,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {}
+  },
+  "qwen3.8-flash": {
+    "name": "Qwen3.8 Flash",
+    "home": "https://qwen.ai/blog?id=qwen3.8-flash",
+    "specs": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.150,
+      "output": 0.470,
+      "cache": 0.016
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 131072
+    },
+    "modalities": {
+      "input": ["text", "image", "video"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "opencode-go": {
+        "id": "qwen3.8-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      }
+    }
+  },
   "qwen3.8-max": {
     "name": "Qwen3.8 Max",
     "home": "https://qwen.ai/home",
