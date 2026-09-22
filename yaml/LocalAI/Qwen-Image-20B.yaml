@@ -1,0 +1,22 @@
+backend: stablediffusion-ggml
+cfg_scale: 2.5
+known_input_modalities:
+  - text
+known_output_modalities:
+  - image
+known_usecases:
+  - image
+name: qwen-image-20b
+parameters:
+  model: Qwen-Image-20B/QuantStack-Qwen-Image-20B-Q8_0.gguf
+options:
+  - diffusion_model
+  - llm_path:Qwen2.5-VL-7B-Instruct/unsloth-Qwen2.5-VL-7B-Instruct-Q8_0.gguf
+  - vae_path:Qwen-Image-VAE/ComfyOrg-Qwen-Image-vae.safetensors
+  - lora_dir:Qwen-Image-20B/LoRA
+  - sampler:euler
+  - flow_shift:3
+  - diffusion_flash_attn:true
+  - backend:diffusion=cuda1&cuda0,te=cuda0,vae=cuda0
+  - params_backend:te=diffusion=cuda1,te=cuda0,vae=cuda0
+step: 30
