@@ -108,7 +108,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-4-5",
+        "limit": {
+          "context": 200000,
+          "output": 64000
+        }
+      }
+    }
   },
   "claude-opus-4.6": {
     "name": "Claude Opus 4.6",
@@ -129,7 +137,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-4-6",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
   },
   "claude-opus-4.7": {
     "name": "Claude Opus 4.7",
@@ -150,7 +166,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-4-7",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
   },
   "claude-opus-4.8": {
     "name": "Claude Opus 4.8",
@@ -171,7 +195,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-4-8",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
   },
   "claude-opus-5": {
     "name": "Claude Opus 5",
@@ -192,7 +224,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-5",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
   },
   "claude-sonnet-4.0": {
     "name": "Claude Sonnet 4",
@@ -234,7 +274,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-sonnet-4-5",
+        "limit": {
+          "context": 200000,
+          "output": 64000
+        }
+      }
+    }
   },
   "claude-sonnet-4.6": {
     "name": "Claude Sonnet 4.6",
@@ -255,7 +303,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-sonnet-4-6",
+        "limit": {
+          "context": 1000000,
+          "output": 64000
+        }
+      }
+    }
   },
   "claude-sonnet-5": {
     "name": "Claude Sonnet 5",
@@ -276,7 +332,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "claude-sonnet-5",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
   },
   "deepseek-r1-671b-a37b": {
     "name": "DeepSeek R1 671B A37B",
@@ -786,6 +850,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "glm-4-7-flash",
+        "limit": {
+          "context": 202752,
+          "output": 131072
+        }
+      },
       "localai": {
         "id": "glm-4.7-flash-30b-a3b",
         "limit": {
@@ -816,6 +887,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "glm-4-7",
+        "limit": {
+          "context": 202752,
+          "output": 131072
+        }
+      },
       "cerebras": {
         "id": "zai-glm-4.7",
         "limit": {
@@ -868,6 +946,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "glm-5-1",
+        "limit": {
+          "context": 202752,
+          "output": 32768
+        }
+      },
       "opencode-go": {
         "id": "glm-5.1",
         "limit": {
@@ -898,6 +983,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "glm-5-2",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "glm-5.2",
         "limit": {
@@ -928,6 +1020,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "glm-5-3-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "glm-5.3-flash",
         "limit": {
@@ -1322,7 +1421,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "gpt-5-5",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }
+    }
   },
   "gpt-5.6-luna": {
     "name": "GPT 5.6 Luna",
@@ -1344,8 +1451,8 @@
       "output": ["text"]
     },
     "deployments": {
-      "opencode-go": {
-        "id": "gpt-5.6-luna",
+      "avis": {
+        "id": "gpt-5-6-luna",
         "limit": {
           "context": 1050000,
           "output": 128000
@@ -1372,7 +1479,14 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "gpt-5-6-terra",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }}
   },
   "gpt-5.6-sol": {
     "name": "GPT 5.6 Sol",
@@ -1393,7 +1507,15 @@
       "input": ["text", "image"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "gpt-5-6-sol",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }
+    }
   },
   "gpt-oss-20-21b-a3.6b": {
     "name": "GPT OSS 20 21B A3.6B",
@@ -1415,6 +1537,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "gpt-oss-20b",
+        "limit": {
+          "context": 131072,
+          "output": 65536
+        }
+      },
       "groq": {
         "id": "openai/gpt-oss-20b",
         "limit": {
@@ -1466,6 +1595,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "gpt-oss-120b",
+        "limit": {
+          "context": 131072,
+          "output": 65536
+        }
+      },
       "cerebras": {
         "id": "gpt-oss-120b",
         "limit": {
@@ -1625,15 +1761,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployments": {
-      "ollama": {
-        "id": "kimi-linear-48b-a3b-instruct",
-        "limit": {
-          "context": 327680,
-          "output": 65536
-        }
-      }
-    }
+    "deployments": {}
   },
   "kimi-k2.5-1000b-a32b": {
     "name": "Kimi K2.5 1000B A32B",
@@ -1656,6 +1784,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "kimi-k2-5",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
       "opencode-go": {
         "id": "kimi-k2.5",
         "limit": {
@@ -1685,6 +1820,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "kimi-k2-6",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
       "opencode-go": {
         "id": "kimi-k2.6",
         "limit": {
@@ -1714,6 +1856,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "kimi-k2-7-code",
+        "limit": {
+          "context": 262144,
+          "output": 262144
+        }
+      },
       "opencode-go": {
         "id": "kimi-k2.7-code",
         "limit": {
@@ -1744,6 +1893,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "kimi-k3",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "kimi-k3",
         "limit": {
@@ -2060,7 +2216,15 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "llama-3-3-70b-instruct",
+        "limit": {
+          "context": 131072,
+          "output": 16384
+        }
+      }
+    }
   },
   "llama-3.3-nemotron-super-v1.5-49b": {
     "name": "Llama 3.3 Nemotron Super v1.5 49B",
@@ -2406,6 +2570,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "nemotron-3-super-120b-a12b",
+        "limit": {
+          "context": 262144,
+          "output": 262144
+        }
+      },
       "kilo": {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
         "limit": {
@@ -2442,8 +2613,8 @@
       "output": ["text"]
     },
     "deployments": {
-      "ollama": {
-        "id": "nemotron-3-ultra",
+      "avis": {
+        "id": "nemotron-3-ultra-550b-a55b",
         "limit": {
           "context": 262144,
           "output": 128000
@@ -2570,7 +2741,15 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "qwen3-coder-next",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
   },
   "qwen3-next-80b-a3b-instruct": {
     "name": "Qwen3 Next 80B A3B Instruct",
@@ -3039,8 +3218,19 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "qwen3-6-plus",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
+      },
       "opencode-go": {
-        "id": "qwen3.6-plus"
+        "id": "qwen3.6-plus",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
       }
     }
   },
@@ -3085,8 +3275,19 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "qwen3-7-plus",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
+      },
       "opencode-go": {
-        "id": "qwen3.7-plus"
+        "id": "qwen3.7-plus",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
       }
     }
   },
@@ -3110,6 +3311,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "qwen3-7-max",
+        "limit": {
+          "context": 1000000,
+          "output": 65536
+        }
+      },
       "opencode-go": {
         "id": "qwen3.7-max",
         "limit": {
@@ -3167,7 +3375,15 @@
       "input": ["text", "image", "video"],
       "output": ["text"]
     },
-    "deployments": {}
+    "deployments": {
+      "avis": {
+        "id": "qwen3-8-flash-next",
+        "limit": {
+          "context": 262144,
+          "output": 131072
+        }
+      }
+    }
   },
   "qwen3.8-flash": {
     "name": "Qwen3.8 Flash",
@@ -3188,6 +3404,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "qwen3-8-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "qwen3.8-flash",
         "limit": {

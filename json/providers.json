@@ -5,6 +5,11 @@
     "npm": "@ai-sdk/openai-compatible",
     "uri": "http://localhost:8080/v1"
   },
+  "avis": {
+    "name": "Avis",
+    "npm": "@ai-sdk/openai-compatible",
+    "uri": "https://api.avis.xyz/api/openai/v1"
+  },
   "cerebras": {
     "name": "Cerebras"
   },
