@@ -81,7 +81,7 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 	for _, model := range models.Models {
 		for deployKey, deployment := range model.Deployments {
 			key := deployment.ID
-			if deployKey != "ollama" {
+			if deployKey != "localai" {
 				key = deployKey + "/" + deployment.ID
 			}
 
@@ -222,14 +222,14 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 		Providers: make(map[string]opencode.ProviderConfigs),
 	}
 
-	ollamaProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
+	localProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 	bifrostProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 
 	for _, model := range models.Models {
 		for deployKey, deployment := range model.Deployments {
 			mc := m.buildOpenCodeModel(model, deployment)
-			if deployKey == "ollama" {
-				ollamaProvider.Models[deployment.ID] = mc
+			if deployKey == "localai" {
+				localProvider.Models[deployment.ID] = mc
 			} else {
 				modelID := fmt.Sprintf("%s/%s", deployKey, deployment.ID)
 
@@ -245,9 +245,9 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 		}
 	}
 
-	if ollamaP, ok := providers.Providers["ollama"]; ok {
-		ollamaProvider.Name = ollamaP.Name
-		ollamaProvider.NPM = ollamaP.NPM
+	if ollamaP, ok := providers.Providers["localai"]; ok {
+		localProvider.Name = ollamaP.Name
+		localProvider.NPM = ollamaP.NPM
 		opts := &opencode.ProviderOptions{}
 		if ollamaP.URI != "" {
 			opts.BaseUrl = ollamaP.URI
@@ -259,7 +259,7 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 			opts.ApiKey = ollamaApiKey
 		}
 		if opts.BaseUrl != "" || opts.ApiKey != "" {
-			ollamaProvider.Options = opts
+			localProvider.Options = opts
 		}
 	}
 
@@ -281,7 +281,7 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 		}
 	}
 
-	cfg.Providers["ollama"] = ollamaProvider
+	cfg.Providers["localai"] = localProvider
 	cfg.Providers["bifrost"] = bifrostProvider
 
 	return cfg

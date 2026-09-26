@@ -20,6 +20,11 @@
   "kilo": {
     "name": "Kilo Gateway"
   },
+  "localai": {
+    "name": "LocalAI",
+    "npm": "@ai-sdk/openai-compatible",
+    "uri": "http://localhost:11434/v1"
+  },
   "nvidia": {
     "name": "Nvidia"
   },
