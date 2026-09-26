@@ -34,7 +34,7 @@
     "cost": {
       "input": 10.000,
       "output": 50.000,
-      "cache": 1.000,
+      "cache_read": 1.000,
       "cache_write": 12.500
     },
     "limit": {
@@ -55,7 +55,7 @@
     "cost": {
       "input": 1.000,
       "output": 5.000,
-      "cache": 0.100,
+      "cache_read": 0.100,
       "cache_write": 1.250
     },
     "limit": {
@@ -76,7 +76,7 @@
     "cost": {
       "input": 15.000,
       "output": 75.000,
-      "cache": 1.500,
+      "cache_read": 1.500,
       "cache_write": 18.750
     },
     "limit": {
@@ -97,7 +97,7 @@
     "cost": {
       "input": 5.000,
       "output": 25.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -118,7 +118,7 @@
     "cost": {
       "input": 5.000,
       "output": 25.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -139,7 +139,7 @@
     "cost": {
       "input": 5.000,
       "output": 25.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -160,7 +160,7 @@
     "cost": {
       "input": 5.000,
       "output": 25.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -181,7 +181,7 @@
     "cost": {
       "input": 5.000,
       "output": 25.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -202,7 +202,7 @@
     "cost": {
       "input": 3.000,
       "output": 15.000,
-      "cache": 0.300,
+      "cache_read": 0.300,
       "cache_write": 3.750
     },
     "limit": {
@@ -223,7 +223,7 @@
     "cost": {
       "input": 3.000,
       "output": 15.000,
-      "cache": 0.300,
+      "cache_read": 0.300,
       "cache_write": 3.750
     },
     "limit": {
@@ -244,7 +244,7 @@
     "cost": {
       "input": 3.000,
       "output": 15.000,
-      "cache": 0.300,
+      "cache_read": 0.300,
       "cache_write": 3.750
     },
     "limit": {
@@ -265,7 +265,7 @@
     "cost": {
       "input": 2.000,
       "output": 10.000,
-      "cache": 0.200,
+      "cache_read": 0.200,
       "cache_write": 2.500
     },
     "limit": {
@@ -288,7 +288,7 @@
     "cost": {
       "input": 1.350,
       "output": 4.200,
-      "cache": 1.350
+      "cache_read": 1.350
     },
     "limit": {
       "context": 131072,
@@ -309,7 +309,7 @@
     "cost": {
       "input": 0.140,
       "output": 0.280,
-      "cache": 0.003
+      "cache_read": 0.003
     },
     "limit": {
       "context": 1000000,
@@ -345,7 +345,7 @@
     "cost": {
       "input": 0.435,
       "output": 0.870,
-      "cache": 0.004
+      "cache_read": 0.004
     },
     "limit": {
       "context": 1000000,
@@ -436,7 +436,7 @@
     "cost": {
       "input": 0.100,
       "output": 0.400,
-      "cache": 0.010
+      "cache_read": 0.010
     },
     "limit": {
       "context": 1048576,
@@ -456,7 +456,7 @@
     "cost": {
       "input": 0.300,
       "output": 2.500,
-      "cache": 0.030
+      "cache_read": 0.030
     },
     "limit": {
       "context": 1048576,
@@ -476,7 +476,7 @@
     "cost": {
       "input": 1.250,
       "output": 10.000,
-      "cache": 0.125
+      "cache_read": 0.125
     },
     "limit": {
       "context": 1048576,
@@ -496,7 +496,7 @@
     "cost": {
       "input": 0.500,
       "output": 3.000,
-      "cache": 0.050
+      "cache_read": 0.050
     },
     "limit": {
       "context": 1048576,
@@ -516,7 +516,7 @@
     "cost": {
       "input": 2.000,
       "output": 12.000,
-      "cache": 0.225,
+      "cache_read": 0.225,
       "cache_write": 2.500
     },
     "limit": {
@@ -537,7 +537,7 @@
     "cost": {
       "input": 0.250,
       "output": 1.500,
-      "cache": 0.025
+      "cache_read": 0.025
     },
     "limit": {
       "context": 1048576,
@@ -557,7 +557,7 @@
     "cost": {
       "input": 2.000,
       "output": 12.000,
-      "cache": 0.200
+      "cache_read": 0.200
     },
     "limit": {
       "context": 1048576,
@@ -577,7 +577,7 @@
     "cost": {
       "input": 0.300,
       "output": 2.500,
-      "cache": 0.030
+      "cache_read": 0.030
     },
     "limit": {
       "context": 1048576,
@@ -597,7 +597,7 @@
     "cost": {
       "input": 1.500,
       "output": 9.000,
-      "cache": 0.150
+      "cache_read": 0.150
     },
     "limit": {
       "context": 1048576,
@@ -702,7 +702,7 @@
     "cost": {
       "input": 0.130,
       "output": 0.400,
-      "cache": 0.085
+      "cache_read": 0.085
     },
     "limit": {
       "context": 262144,
@@ -738,7 +738,7 @@
     "cost": {
       "input": 0.140,
       "output": 0.400,
-      "cache": 0.085
+      "cache_read": 0.085
     },
     "limit": {
       "context": 262144,
@@ -775,7 +775,7 @@
     "cost": {
       "input": 0.070,
       "output": 0.400,
-      "cache": 0.070
+      "cache_read": 0.070
     },
     "limit": {
       "context": 202752,
@@ -805,7 +805,7 @@
     "cost": {
       "input": 0.600,
       "output": 2.200,
-      "cache": 0.600
+      "cache_read": 0.600
     },
     "limit": {
       "context": 202752,
@@ -835,7 +835,7 @@
     "cost": {
       "input": 1.000,
       "output": 3.200,
-      "cache": 0.200
+      "cache_read": 0.200
     },
     "limit": {
       "context": 202752,
@@ -857,7 +857,7 @@
     "cost": {
       "input": 1.400,
       "output": 4.400,
-      "cache": 0.260
+      "cache_read": 0.260
     },
     "limit": {
       "context": 202752,
@@ -887,7 +887,7 @@
     "cost": {
       "input": 1.400,
       "output": 4.400,
-      "cache": 0.260
+      "cache_read": 0.260
     },
     "limit": {
       "context": 1000000,
@@ -917,7 +917,7 @@
     "cost": {
       "input": 0.150,
       "output": 0.500,
-      "cache": 0.090
+      "cache_read": 0.090
     },
     "limit": {
       "context": 1000000,
@@ -946,7 +946,7 @@
     "cost": {
       "input": 1.400,
       "output": 4.400,
-      "cache": 0.260
+      "cache_read": 0.260
     },
     "limit": {
       "context": 1000000,
@@ -974,7 +974,7 @@
     "cost": {
       "input": 2.500,
       "output": 10.000,
-      "cache": 1.500
+      "cache_read": 1.500
     },
     "limit": {
       "context": 128000,
@@ -994,7 +994,7 @@
     "cost": {
       "input": 0.400,
       "output": 1.600,
-      "cache": 0.100
+      "cache_read": 0.100
     },
     "limit": {
       "context": 1047576,
@@ -1014,7 +1014,7 @@
     "cost": {
       "input": 2.000,
       "output": 8.000,
-      "cache": 0.500
+      "cache_read": 0.500
     },
     "limit": {
       "context": 1047576,
@@ -1034,7 +1034,7 @@
     "cost": {
       "input": 0.050,
       "output": 0.400,
-      "cache": 0.005
+      "cache_read": 0.005
     },
     "limit": {
       "context": 400000,
@@ -1054,7 +1054,7 @@
     "cost": {
       "input": 0.250,
       "output": 2.000,
-      "cache": 0.025
+      "cache_read": 0.025
     },
     "limit": {
       "context": 400000,
@@ -1074,7 +1074,7 @@
     "cost": {
       "input": 1.250,
       "output": 10.000,
-      "cache": 0.125
+      "cache_read": 0.125
     },
     "limit": {
       "context": 400000,
@@ -1094,7 +1094,7 @@
     "cost": {
       "input": 1.250,
       "output": 10.000,
-      "cache": 0.125
+      "cache_read": 0.125
     },
     "limit": {
       "context": 400000,
@@ -1114,7 +1114,7 @@
     "cost": {
       "input": 1.250,
       "output": 10.000,
-      "cache": 0.125
+      "cache_read": 0.125
     },
     "limit": {
       "context": 400000,
@@ -1172,7 +1172,7 @@
     "cost": {
       "input": 1.750,
       "output": 14.000,
-      "cache": 0.175
+      "cache_read": 0.175
     },
     "limit": {
       "context": 400000,
@@ -1192,7 +1192,7 @@
     "cost": {
       "input": 1.750,
       "output": 14.000,
-      "cache": 0.175
+      "cache_read": 0.175
     },
     "limit": {
       "context": 400000,
@@ -1212,7 +1212,7 @@
     "cost": {
       "input": 1.750,
       "output": 14.000,
-      "cache": 0.175
+      "cache_read": 0.175
     },
     "limit": {
       "context": 400000,
@@ -1232,7 +1232,7 @@
     "cost": {
       "input": 0.200,
       "output": 1.250,
-      "cache": 0.020
+      "cache_read": 0.020
     },
     "limit": {
       "context": 400000,
@@ -1252,7 +1252,7 @@
     "cost": {
       "input": 0.750,
       "output": 4.500,
-      "cache": 0.075
+      "cache_read": 0.075
     },
     "limit": {
       "context": 400000,
@@ -1272,7 +1272,7 @@
     "cost": {
       "input": 2.500,
       "output": 15.000,
-      "cache": 0.250
+      "cache_read": 0.250
     },
     "limit": {
       "context": 1050000,
@@ -1292,7 +1292,7 @@
     "cost": {
       "input": 30.000,
       "output": 180.000,
-      "cache": 0.250
+      "cache_read": 0.250
     },
     "limit": {
       "context": 1050000,
@@ -1312,7 +1312,7 @@
     "cost": {
       "input": 5.000,
       "output": 30.000,
-      "cache": 0.500
+      "cache_read": 0.500
     },
     "limit": {
       "context": 1050000,
@@ -1332,7 +1332,7 @@
     "cost": {
       "input": 0.200,
       "output": 1.200,
-      "cache": 0.020,
+      "cache_read": 0.020,
       "cache_write": 0.250
     },
     "limit": {
@@ -1361,7 +1361,7 @@
     "cost": {
       "input": 2.000,
       "output": 12.000,
-      "cache": 0.200,
+      "cache_read": 0.200,
       "cache_write": 2.500
     },
     "limit": {
@@ -1382,7 +1382,7 @@
     "cost": {
       "input": 5.000,
       "output": 30.000,
-      "cache": 0.500,
+      "cache_read": 0.500,
       "cache_write": 6.250
     },
     "limit": {
@@ -1455,7 +1455,7 @@
     "cost": {
       "input": 0.150,
       "output": 0.600,
-      "cache": 0.150
+      "cache_read": 0.150
     },
     "limit": {
       "context": 131072,
@@ -1586,7 +1586,7 @@
     "cost": {
       "input": 0.140,
       "output": 0.580,
-      "cache": 0.035
+      "cache_read": 0.035
     },
     "limit": {
       "context": 262144,
@@ -1645,7 +1645,7 @@
     "cost": {
       "input": 0.600,
       "output": 3.000,
-      "cache": 0.100
+      "cache_read": 0.100
     },
     "limit": {
       "context": 262144,
@@ -1674,7 +1674,7 @@
     "cost": {
       "input": 0.950,
       "output": 4.000,
-      "cache": 0.160
+      "cache_read": 0.160
     },
     "limit": {
       "context": 262144,
@@ -1703,7 +1703,7 @@
     "cost": {
       "input": 0.950,
       "output": 4.000,
-      "cache": 0.190
+      "cache_read": 0.190
     },
     "limit": {
       "context": 262144,
@@ -1733,7 +1733,7 @@
     "cost": {
       "input": 3.000,
       "output": 15.000,
-      "cache": 0.300
+      "cache_read": 0.300
     },
     "limit": {
       "context": 1048576,
@@ -2050,7 +2050,7 @@
     "cost": {
       "input": 0.590,
       "output": 0.720,
-      "cache": 0.590
+      "cache_read": 0.590
     },
     "limit": {
       "context": 131072,
@@ -2119,7 +2119,7 @@
     "cost": {
       "input": 0.270,
       "output": 0.850,
-      "cache": 0.260
+      "cache_read": 0.260
     },
     "limit": {
       "context": 1048576,
@@ -2140,7 +2140,7 @@
     "cost": {
       "input": 0.140,
       "output": 0.280,
-      "cache": 0.003
+      "cache_read": 0.003
     },
     "limit": {
       "context": 1048576,
@@ -2172,7 +2172,7 @@
     "cost": {
       "input": 0.435,
       "output": 0.870,
-      "cache": 0.004
+      "cache_read": 0.004
     },
     "limit": {
       "context": 1048576,
@@ -2198,7 +2198,7 @@
     "cost": {
       "input": 0.300,
       "output": 1.200,
-      "cache": 0.030,
+      "cache_read": 0.030,
       "cache_write": 0.375
     },
     "limit": {
@@ -2229,7 +2229,7 @@
     "cost": {
       "input": 0.300,
       "output": 1.200,
-      "cache": 0.060,
+      "cache_read": 0.060,
       "cache_write": 0.375
     },
     "limit": {
@@ -2260,7 +2260,7 @@
     "cost": {
       "input": 0.300,
       "output": 1.200,
-      "cache": 0.060,
+      "cache_read": 0.060,
       "cache_write": 0.375
     },
     "limit": {
@@ -2395,7 +2395,7 @@
     "cost": {
       "input": 0.250,
       "output": 0.775,
-      "cache": 0.143
+      "cache_read": 0.143
     },
     "limit": {
       "context": 1000000,
@@ -2431,7 +2431,7 @@
     "cost": {
       "input": 0.675,
       "output": 2.675,
-      "cache": 0.250
+      "cache_read": 0.250
     },
     "limit": {
       "context": 1000000,
@@ -2560,7 +2560,7 @@
     "cost": {
       "input": 0.350,
       "output": 1.200,
-      "cache": 0.350
+      "cache_read": 0.350
     },
     "limit": {
       "context": 262144,
@@ -3083,7 +3083,7 @@
     "cost": {
       "input": 0.500,
       "output": 3.000,
-      "cache": 0.050,
+      "cache_read": 0.050,
       "cache_write": 0.625
     },
     "limit": {
@@ -3108,7 +3108,7 @@
     "cost": {
       "input": 1.300,
       "output": 7.800,
-      "cache": 0.130,
+      "cache_read": 0.130,
       "cache_write": 1.625
     },
     "limit": {
@@ -3129,7 +3129,7 @@
     "cost": {
       "input": 0.400,
       "output": 1.600,
-      "cache": 0.040,
+      "cache_read": 0.040,
       "cache_write": 0.500
     },
     "limit": {
@@ -3154,7 +3154,7 @@
     "cost": {
       "input": 2.500,
       "output": 7.500,
-      "cache": 0.250,
+      "cache_read": 0.250,
       "cache_write": 3.125
     },
     "limit": {
@@ -3213,7 +3213,7 @@
     "cost": {
       "input": 0.150,
       "output": 0.470,
-      "cache": 0.016
+      "cache_read": 0.016
     },
     "limit": {
       "context": 262144,
@@ -3233,7 +3233,7 @@
     "cost": {
       "input": 0.150,
       "output": 0.470,
-      "cache": 0.016
+      "cache_read": 0.016
     },
     "limit": {
       "context": 1000000,
@@ -3261,7 +3261,7 @@
     "cost": {
       "input": 2.000,
       "output": 6.000,
-      "cache": 0.200,
+      "cache_read": 0.200,
       "cache_write": 2.500
     },
     "limit": {

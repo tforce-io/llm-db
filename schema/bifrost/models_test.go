@@ -37,17 +37,17 @@ func TestLoadModels(t *testing.T) {
 	if glm.Mode != "chat" {
 		t.Errorf("expected mode 'chat', got '%s'", glm.Mode)
 	}
-	if glm.InputCost != 0.000000060 {
-		t.Errorf("expected input_cost_per_token 0.000000060, got %f", glm.InputCost)
+	if glm.TextInputCost == nil || *glm.TextInputCost != 0.000000060 {
+		t.Errorf("expected input_cost_per_token 0.000000060, got %v", glm.TextInputCost)
 	}
-	if glm.OutputCost != 0.000000400 {
-		t.Errorf("expected output_cost_per_token 0.000000400, got %f", glm.OutputCost)
+	if glm.TextOutputCost == nil || *glm.TextOutputCost != 0.000000400 {
+		t.Errorf("expected output_cost_per_token 0.000000400, got %v", glm.TextOutputCost)
 	}
-	if glm.MaxInputTokens != 202752 {
-		t.Errorf("expected max_input_tokens 202752, got %d", glm.MaxInputTokens)
+	if glm.MaxInputTokens == nil || *glm.MaxInputTokens != 202752 {
+		t.Errorf("expected max_input_tokens 202752, got %v", glm.MaxInputTokens)
 	}
-	if glm.MaxOutputTokens != 131072 {
-		t.Errorf("expected max_output_tokens 131072, got %d", glm.MaxOutputTokens)
+	if glm.MaxOutputTokens == nil || *glm.MaxOutputTokens != 131072 {
+		t.Errorf("expected max_output_tokens 131072, got %v", glm.MaxOutputTokens)
 	}
 	if glm.SupportsFunctionCall == nil || !*glm.SupportsFunctionCall {
 		t.Error("expected supports_function_calling to be true")
@@ -57,11 +57,11 @@ func TestLoadModels(t *testing.T) {
 	if qwen.SupportsVision == nil || !*qwen.SupportsVision {
 		t.Error("expected qwen3.6:27b supports_vision to be true")
 	}
-	if qwen.CacheReadInputTokenCost != 0.000000250 {
-		t.Errorf("expected cache_read_input_token_cost 0.000000250, got %f", qwen.CacheReadInputTokenCost)
+	if qwen.CacheReadCost == nil || *qwen.CacheReadCost != 0.000000250 {
+		t.Errorf("expected cache_read_input_token_cost 0.000000250, got %v", qwen.CacheReadCost)
 	}
-	if qwen.CacheCreationInputTokenCost != 0.000004000 {
-		t.Errorf("expected cache_creation_input_token_cost 0.000004000, got %f", qwen.CacheCreationInputTokenCost)
+	if qwen.CacheWriteCost == nil || *qwen.CacheWriteCost != 0.000004000 {
+		t.Errorf("expected cache_creation_input_token_cost 0.000004000, got %v", qwen.CacheWriteCost)
 	}
 
 	pickle := models["opencode-zen/big-pickle"]

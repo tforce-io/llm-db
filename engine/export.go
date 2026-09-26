@@ -12,6 +12,7 @@ import (
 
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
+	"github.com/tforceaio/llm-db/common"
 	"github.com/tforceaio/llm-db/schema/bifrost"
 	"github.com/tforceaio/llm-db/schema/llmdb"
 	"github.com/tforceaio/llm-db/schema/opencode"
@@ -93,16 +94,18 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 			}
 
 			bModel := bifrost.Model{
-				Provider:                    deployKey,
-				BaseModel:                   deployment.ID,
-				Mode:                        mode,
-				InputCost:                   bifrost.Float64(divMillionth(cost.Input)),
-				OutputCost:                  bifrost.Float64(divMillionth(cost.Output)),
-				CacheReadInputTokenCost:     bifrost.Float64(divMillionth(cost.Cache)),
-				CacheCreationInputTokenCost: bifrost.Float64(divMillionth(cost.CacheWrite)),
-				MaxInputTokens:              limit.Context,
-				MaxOutputTokens:             limit.Output,
-				MaxTokens:                   limit.Context,
+				Provider:  deployKey,
+				BaseModel: deployment.ID,
+				Mode:      mode,
+
+				TextInputCost:  divMillionth(cost.TextInput),
+				TextOutputCost: divMillionth(cost.TextOutput),
+				CacheReadCost:  divMillionth(cost.CacheRead),
+				CacheWriteCost: divMillionth(cost.CacheWrite),
+
+				MaxInputTokens:  limit.Context,
+				MaxOutputTokens: limit.Output,
+				MaxTokens:       limit.Context,
 			}
 
 			if containsString(model.Capabilities, llmdb.CapabilityFunctionCall) ||
@@ -287,11 +290,13 @@ func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.De
 	limit := m.resolveLimit(model.Limit, deployment.Limit)
 
 	mc := opencode.ModelConfig{
-		ID:                   deployment.ID,
-		Name:                 model.Name,
-		Cost:                 &opencode.ModelCost{Input: cost.Input, Output: cost.Output, CacheRead: cost.Cache, CacheWrite: cost.CacheWrite},
-		Limit:                &opencode.ModelLimit{Context: limit.Context, Output: limit.Output},
-		Modalities:           &opencode.ModelModalities{Input: model.Modalities.Input, Output: model.Modalities.Output},
+		ID:   deployment.ID,
+		Name: model.Name,
+
+		Cost:       &opencode.ModelCost{TextInput: cost.TextInput, TextOutput: cost.TextOutput, CacheRead: cost.CacheRead, CacheWrite: cost.CacheWrite},
+		Limit:      &opencode.ModelLimit{Context: limit.Context, Output: limit.Output},
+		Modalities: &opencode.ModelModalities{Input: model.Modalities.Input, Output: model.Modalities.Output},
+
 		SupportReasoning:     &reasoning,
 		SupportTemperature:   &temperature,
 		SupportsFunctionCall: &toolCall,
@@ -409,9 +414,13 @@ func containsString(slice []string, item string) bool {
 }
 
 // Divides f by 1,000,000 and strips floating-point artifacts by
-// parsing the result through a 10-significant-figure string representation.
-func divMillionth(f float64) float64 {
-	s := strconv.FormatFloat(f/1_000_000, 'g', 12, 64)
+// parsing the result through a 12-significant-figure string representation.
+func divMillionth(f *common.Float64) *common.Float64 {
+	if f == nil {
+		return nil
+	}
+	s := strconv.FormatFloat(float64(*f)/1_000_000, 'g', 12, 64)
 	v, _ := strconv.ParseFloat(s, 64)
-	return v
+	r := common.Float64(v)
+	return &r
 }

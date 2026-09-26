@@ -3,7 +3,11 @@
 
 package llmdb
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/tforceaio/llm-db/common"
+)
 
 const (
 	CapabilityFunctionCall   = "function_call"
@@ -29,6 +33,7 @@ var ValidCapabilities = map[string]bool{
 
 const (
 	ModalityText  = "text"
+	ModalityPdf   = "pdf"
 	ModalityImage = "image"
 	ModalityVideo = "video"
 	ModalityAudio = "audio"
@@ -36,6 +41,7 @@ const (
 
 var ValidModalities = map[string]bool{
 	ModalityText:  true,
+	ModalityPdf:   true,
 	ModalityImage: true,
 	ModalityVideo: true,
 	ModalityAudio: true,
@@ -96,15 +102,15 @@ type Model struct {
 }
 
 type ModelCost struct {
-	Input      float64 `json:"input"`
-	Output     float64 `json:"output"`
-	Cache      float64 `json:"cache,omitempty"`
-	CacheWrite float64 `json:"cache_write,omitempty"`
+	TextInput  *common.Float64 `json:"input"`
+	TextOutput *common.Float64 `json:"output"`
+	CacheRead  *common.Float64 `json:"cache_read,omitempty"`
+	CacheWrite *common.Float64 `json:"cache_write,omitempty"`
 }
 
 type ModelLimit struct {
-	Context int `json:"context"`
-	Output  int `json:"output"`
+	Context *int `json:"context"`
+	Output  *int `json:"output"`
 }
 
 type ModelModalities struct {

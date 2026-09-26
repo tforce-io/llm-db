@@ -3,7 +3,11 @@
 
 package opencode
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/tforceaio/llm-db/common"
+)
 
 type RootConfig struct {
 	Schema       string                     `json:"$schema,omitempty"`
@@ -50,15 +54,15 @@ type ModelConfig struct {
 }
 
 type ModelCost struct {
-	Input      float64 `json:"input"`
-	Output     float64 `json:"output"`
-	CacheRead  float64 `json:"cache_read,omitempty"`
-	CacheWrite float64 `json:"cache_write,omitempty"`
+	TextInput  *common.Float64 `json:"input"`
+	TextOutput *common.Float64 `json:"output"`
+	CacheRead  *common.Float64 `json:"cache_read,omitempty"`
+	CacheWrite *common.Float64 `json:"cache_write,omitempty"`
 }
 
 type ModelLimit struct {
-	Context int `json:"context"`
-	Output  int `json:"output"`
+	Context *int `json:"context"`
+	Output  *int `json:"output"`
 }
 
 type ModelModalities struct {

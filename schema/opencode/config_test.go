@@ -74,19 +74,19 @@ func TestLoadConfig(t *testing.T) {
 		t.Errorf("expected model id 'gemma-4:31b-instruct', got '%s'", gemma.ID)
 	}
 
-	if gemma.Cost == nil || gemma.Cost.Input != 0.140 {
+	if gemma.Cost == nil || gemma.Cost.TextInput == nil || *gemma.Cost.TextInput != 0.140 {
 		t.Errorf("expected cost input 0.140, got %v", gemma.Cost)
 	}
 
-	if gemma.Cost == nil || gemma.Cost.CacheRead != 0.070 {
+	if gemma.Cost == nil || gemma.Cost.CacheRead == nil || *gemma.Cost.CacheRead != 0.070 {
 		t.Errorf("expected cost cache_read 0.070, got %v", gemma.Cost)
 	}
 
-	if gemma.Cost == nil || gemma.Cost.CacheWrite != 0.560 {
+	if gemma.Cost == nil || gemma.Cost.CacheWrite == nil || *gemma.Cost.CacheWrite != 0.560 {
 		t.Errorf("expected cost cache_write 0.560, got %v", gemma.Cost)
 	}
 
-	if gemma.Limit == nil || gemma.Limit.Context != 98304 {
+	if gemma.Limit == nil || gemma.Limit.Context == nil || *gemma.Limit.Context != 98304 {
 		t.Errorf("expected limit context 98304, got %v", gemma.Limit)
 	}
 
