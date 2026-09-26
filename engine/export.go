@@ -98,10 +98,16 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 				BaseModel: deployment.ID,
 				Mode:      mode,
 
-				TextInputCost:  divMillionth(cost.TextInput),
-				TextOutputCost: divMillionth(cost.TextOutput),
-				CacheReadCost:  divMillionth(cost.CacheRead),
-				CacheWriteCost: divMillionth(cost.CacheWrite),
+				TextInputCost:    divMillionth(cost.TextInput),
+				TextOutputCost:   divMillionth(cost.TextOutput),
+				CacheReadCost:    divMillionth(cost.CacheRead),
+				CacheWriteCost:   divMillionth(cost.CacheWrite),
+				VisionInputCost:  divMillionth(cost.VisionInput),
+				VisionOutputCost: divMillionth(cost.VisionOutput),
+				ImageInputCost:   divThousandth(cost.ImageInput),
+				ImageOutputCost:  divThousandth(cost.ImageOutput),
+				PixelInputCost:   divMillionth(cost.PixelInput),
+				PixelOutputCost:  divMillionth(cost.PixelOutput),
 
 				MaxInputTokens:  limit.Context,
 				MaxOutputTokens: limit.Output,
@@ -420,6 +426,18 @@ func divMillionth(f *common.Float64) *common.Float64 {
 		return nil
 	}
 	s := strconv.FormatFloat(float64(*f)/1_000_000, 'g', 12, 64)
+	v, _ := strconv.ParseFloat(s, 64)
+	r := common.Float64(v)
+	return &r
+}
+
+// Divides f by 1,000 and strips floating-point artifacts by
+// parsing the result through a 12-significant-figure string representation.
+func divThousandth(f *common.Float64) *common.Float64 {
+	if f == nil {
+		return nil
+	}
+	s := strconv.FormatFloat(float64(*f)/1_000, 'g', 12, 64)
 	v, _ := strconv.ParseFloat(s, 64)
 	r := common.Float64(v)
 	return &r

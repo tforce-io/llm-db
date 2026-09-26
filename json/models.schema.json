@@ -56,19 +56,23 @@
     },
     "cost": {
       "type": "object",
-      "required": ["input", "output"],
+      "description": "Costs in USD: input/output/cache_read/cache_write/vision_input/vision_output per 1M tokens; image_input/image_output per 1K images; pixel_input/pixel_output per megapixel.",
       "properties": {
         "input": { "type": "number", "minimum": 0 },
         "output": { "type": "number", "minimum": 0 },
         "cache_read": { "type": "number", "minimum": 0 },
-        "cache_write": { "type": "number", "minimum": 0 }
-
+        "cache_write": { "type": "number", "minimum": 0 },
+        "vision_input": { "type": "number", "minimum": 0 },
+        "vision_output": { "type": "number", "minimum": 0 },
+        "image_input": { "type": "number", "minimum": 0 },
+        "image_output": { "type": "number", "minimum": 0 },
+        "pixel_input": { "type": "number", "minimum": 0 },
+        "pixel_output": { "type": "number", "minimum": 0 }
       },
       "additionalProperties": false
     },
     "limit": {
       "type": "object",
-      "required": ["context", "output"],
       "properties": {
         "context": { "type": "integer", "minimum": 1 },
         "output": { "type": "integer", "minimum": 1 }

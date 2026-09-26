@@ -75,6 +75,30 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 		t.Errorf("%s: cost.cache_write must not be negative", id)
 	}
 
+	if m.Cost.VisionInput != nil && *m.Cost.VisionInput < 0 {
+		t.Errorf("%s: cost.vision_input must not be negative", id)
+	}
+
+	if m.Cost.VisionOutput != nil && *m.Cost.VisionOutput < 0 {
+		t.Errorf("%s: cost.vision_output must not be negative", id)
+	}
+
+	if m.Cost.ImageInput != nil && *m.Cost.ImageInput < 0 {
+		t.Errorf("%s: cost.image_input must not be negative", id)
+	}
+
+	if m.Cost.ImageOutput != nil && *m.Cost.ImageOutput < 0 {
+		t.Errorf("%s: cost.image_output must not be negative", id)
+	}
+
+	if m.Cost.PixelInput != nil && *m.Cost.PixelInput < 0 {
+		t.Errorf("%s: cost.pixel_input must not be negative", id)
+	}
+
+	if m.Cost.PixelOutput != nil && *m.Cost.PixelOutput < 0 {
+		t.Errorf("%s: cost.pixel_output must not be negative", id)
+	}
+
 	if m.Limit.Context == nil {
 		t.Errorf("%s: limit.context is required", id)
 	} else if *m.Limit.Context <= 0 {
@@ -139,6 +163,24 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 			}
 			if dep.Cost.CacheWrite != nil && *dep.Cost.CacheWrite < 0 {
 				t.Errorf("%s.deployment.%s: cost.cache_write must not be negative", id, providerName)
+			}
+			if dep.Cost.VisionInput != nil && *dep.Cost.VisionInput < 0 {
+				t.Errorf("%s.deployment.%s: cost.vision_input must not be negative", id, providerName)
+			}
+			if dep.Cost.VisionOutput != nil && *dep.Cost.VisionOutput < 0 {
+				t.Errorf("%s.deployment.%s: cost.vision_output must not be negative", id, providerName)
+			}
+			if dep.Cost.ImageInput != nil && *dep.Cost.ImageInput < 0 {
+				t.Errorf("%s.deployment.%s: cost.image_input must not be negative", id, providerName)
+			}
+			if dep.Cost.ImageOutput != nil && *dep.Cost.ImageOutput < 0 {
+				t.Errorf("%s.deployment.%s: cost.image_output must not be negative", id, providerName)
+			}
+			if dep.Cost.PixelInput != nil && *dep.Cost.PixelInput < 0 {
+				t.Errorf("%s.deployment.%s: cost.pixel_input must not be negative", id, providerName)
+			}
+			if dep.Cost.PixelOutput != nil && *dep.Cost.PixelOutput < 0 {
+				t.Errorf("%s.deployment.%s: cost.pixel_output must not be negative", id, providerName)
 			}
 		}
 	}

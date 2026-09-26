@@ -73,6 +73,54 @@ func TestLoadModels(t *testing.T) {
 	}
 }
 
+func TestLoadImageModels(t *testing.T) {
+	data, err := os.ReadFile("../../json/refs/bifrost/datasheet.json")
+	if err != nil {
+		t.Fatalf("failed to read datasheet file: %v", err)
+	}
+
+	models, err := bifrost.LoadModels(data)
+	if err != nil {
+		t.Fatalf("LoadModels failed: %v", err)
+	}
+
+	flux := models["aiml/flux/schnell"]
+	if flux.Mode != "image_generation" {
+		t.Errorf("expected mode 'image_generation', got '%s'", flux.Mode)
+	}
+	if flux.ImageOutputCost == nil || *flux.ImageOutputCost != 0.004 {
+		t.Errorf("expected output_cost_per_image 0.004, got %v", flux.ImageOutputCost)
+	}
+	if flux.TextInputCost != nil {
+		t.Error("expected input_cost_per_token to be absent")
+	}
+	if flux.MaxInputTokens != nil {
+		t.Error("expected max_input_tokens to be absent")
+	}
+
+	dalle := models["256-x-256/dall-e-2"]
+	if dalle.PixelInputCost == nil || *dalle.PixelInputCost != 2.4414e-7 {
+		t.Errorf("expected input_cost_per_pixel 2.4414e-7, got %v", dalle.PixelInputCost)
+	}
+	if dalle.PixelOutputCost == nil || *dalle.PixelOutputCost != 0 {
+		t.Errorf("expected output_cost_per_pixel 0, got %v", dalle.PixelOutputCost)
+	}
+	if dalle.ImageOutputCost != nil {
+		t.Error("expected output_cost_per_image to be absent")
+	}
+
+	canvas := models["1024-x-1024/50-steps/bedrock/amazon.nova-canvas-v1:0"]
+	if canvas.Provider != "bedrock" {
+		t.Errorf("expected provider 'bedrock', got '%s'", canvas.Provider)
+	}
+	if canvas.ImageOutputCost == nil || *canvas.ImageOutputCost != 0.06 {
+		t.Errorf("expected output_cost_per_image 0.06, got %v", canvas.ImageOutputCost)
+	}
+	if canvas.MaxInputTokens == nil || *canvas.MaxInputTokens != 2600 {
+		t.Errorf("expected max_input_tokens 2600, got %v", canvas.MaxInputTokens)
+	}
+}
+
 func TestRoundTrip(t *testing.T) {
 	data, err := os.ReadFile("../../json/samples/bifrost.json")
 	if err != nil {
@@ -151,6 +199,85 @@ func assertJSONEqual(t *testing.T, expected, actual interface{}, expName, actNam
 	case bool:
 		if expected != actual {
 			t.Errorf("mismatch at %s vs %s: expected %v, got %v", expName, actName, expected, actual)
+		}
+	}
+}
+
+func TestImageModelsRoundTrip(t *testing.T) {
+	data, err := os.ReadFile("../../json/refs/bifrost/datasheet.json")
+	if err != nil {
+		t.Fatalf("failed to read datasheet file: %v", err)
+	}
+
+	models, err := bifrost.LoadModels(data)
+	if err != nil {
+		t.Fatalf("LoadModels failed: %v", err)
+	}
+
+	modeledKeys := map[string]bool{
+		"provider":   true,
+		"base_model": true,
+		"mode":       true,
+
+		"input_cost_per_token":            true,
+		"output_cost_per_token":           true,
+		"cache_read_input_token_cost":     true,
+		"cache_creation_input_token_cost": true,
+		"input_cost_per_image_token":      true,
+		"output_cost_per_image_token":     true,
+		"input_cost_per_image":            true,
+		"output_cost_per_image":           true,
+		"input_cost_per_pixel":            true,
+		"output_cost_per_pixel":           true,
+
+		"max_input_tokens":  true,
+		"max_output_tokens": true,
+		"max_tokens":        true,
+
+		"supports_function_calling": true,
+		"supports_reasoning":        true,
+		"supports_response_schema":  true,
+		"supports_tool_choice":      true,
+		"supports_vision":           true,
+	}
+
+	var original map[string]map[string]interface{}
+	if err := json.Unmarshal(data, &original); err != nil {
+		t.Fatalf("failed to unmarshal original: %v", err)
+	}
+
+	for key, model := range models {
+		marshaled, err := json.Marshal(model)
+		if err != nil {
+			t.Fatalf("failed to marshal %s: %v", key, err)
+		}
+
+		var roundtripped map[string]interface{}
+		if err := json.Unmarshal(marshaled, &roundtripped); err != nil {
+			t.Fatalf("failed to unmarshal roundtripped %s: %v", key, err)
+		}
+
+		for field := range roundtripped {
+			if !modeledKeys[field] {
+				t.Errorf("unexpected key '%s' in roundtripped %s", field, key)
+			}
+			if _, exists := original[key][field]; !exists {
+				t.Errorf("key '%s' present in roundtripped %s but absent in original", field, key)
+			}
+		}
+		for field, value := range original[key] {
+			if !modeledKeys[field] {
+				continue
+			}
+			// Explicit empty strings normalize to absent on marshal (omitempty).
+			if s, ok := value.(string); ok && s == "" {
+				continue
+			}
+			if _, exists := roundtripped[field]; !exists {
+				t.Errorf("modeled key '%s' present in original %s but missing in roundtripped", field, key)
+				continue
+			}
+			assertJSONEqual(t, map[string]interface{}{field: value}, map[string]interface{}{field: roundtripped[field]}, key, key)
 		}
 	}
 }

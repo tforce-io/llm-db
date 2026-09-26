@@ -16,10 +16,16 @@ type Model struct {
 	BaseModel string `json:"base_model,omitempty"`
 	Mode      string `json:"mode,omitempty"`
 
-	TextInputCost  *common.Float64 `json:"input_cost_per_token,omitempty"`
-	TextOutputCost *common.Float64 `json:"output_cost_per_token,omitempty"`
-	CacheReadCost  *common.Float64 `json:"cache_read_input_token_cost,omitempty"`
-	CacheWriteCost *common.Float64 `json:"cache_creation_input_token_cost,omitempty"`
+	TextInputCost    *common.Float64 `json:"input_cost_per_token,omitempty"`
+	TextOutputCost   *common.Float64 `json:"output_cost_per_token,omitempty"`
+	CacheReadCost    *common.Float64 `json:"cache_read_input_token_cost,omitempty"`
+	CacheWriteCost   *common.Float64 `json:"cache_creation_input_token_cost,omitempty"`
+	VisionInputCost  *common.Float64 `json:"input_cost_per_image_token,omitempty"`
+	VisionOutputCost *common.Float64 `json:"output_cost_per_image_token,omitempty"`
+	ImageInputCost   *common.Float64 `json:"input_cost_per_image,omitempty"`
+	ImageOutputCost  *common.Float64 `json:"output_cost_per_image,omitempty"`
+	PixelInputCost   *common.Float64 `json:"input_cost_per_pixel,omitempty"`
+	PixelOutputCost  *common.Float64 `json:"output_cost_per_pixel,omitempty"`
 
 	MaxInputTokens  *int `json:"max_input_tokens,omitempty"`
 	MaxOutputTokens *int `json:"max_output_tokens,omitempty"`

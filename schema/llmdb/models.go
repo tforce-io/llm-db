@@ -102,10 +102,16 @@ type Model struct {
 }
 
 type ModelCost struct {
-	TextInput  *common.Float64 `json:"input"`
-	TextOutput *common.Float64 `json:"output"`
-	CacheRead  *common.Float64 `json:"cache_read,omitempty"`
-	CacheWrite *common.Float64 `json:"cache_write,omitempty"`
+	TextInput    *common.Float64 `json:"input"`
+	TextOutput   *common.Float64 `json:"output"`
+	CacheRead    *common.Float64 `json:"cache_read,omitempty"`
+	CacheWrite   *common.Float64 `json:"cache_write,omitempty"`
+	VisionInput  *common.Float64 `json:"vision_input,omitempty"`
+	VisionOutput *common.Float64 `json:"vision_output,omitempty"`
+	ImageInput   *common.Float64 `json:"image_input,omitempty"`
+	ImageOutput  *common.Float64 `json:"image_output,omitempty"`
+	PixelInput   *common.Float64 `json:"pixel_input,omitempty"`
+	PixelOutput  *common.Float64 `json:"pixel_output,omitempty"`
 }
 
 type ModelLimit struct {
