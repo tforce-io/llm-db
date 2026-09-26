@@ -88,10 +88,7 @@ func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 			cost := m.resolveCost(model.Cost, deployment.Cost)
 			limit := m.resolveLimit(model.Limit, deployment.Limit)
 
-			mode := "chat"
-			if len(model.Capabilities) == 0 {
-				mode = "embedding"
-			}
+			mode := modelMode(model.Capabilities)
 
 			bModel := bifrost.Model{
 				Provider:  deployKey,
@@ -226,6 +223,9 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 	bifrostProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 
 	for _, model := range models.Models {
+		if modelMode(model.Capabilities) != "chat" {
+			continue
+		}
 		for deployKey, deployment := range model.Deployments {
 			mc := m.buildOpenCodeModel(model, deployment)
 			if deployKey == "localai" {
@@ -441,4 +441,18 @@ func divThousandth(f *common.Float64) *common.Float64 {
 	v, _ := strconv.ParseFloat(s, 64)
 	r := common.Float64(v)
 	return &r
+}
+
+// Determine the mode of a model based on its capabilities.
+func modelMode(capabilities []string) string {
+	if containsString(capabilities, llmdb.CapabilityEmbedding) {
+		return "embedding"
+	}
+	if containsString(capabilities, llmdb.CapabilityImageGeneration) {
+		return "image_generation"
+	}
+	if containsString(capabilities, llmdb.CapabilityImageEdit) {
+		return "image_edit"
+	}
+	return "chat"
 }

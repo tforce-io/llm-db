@@ -10,25 +10,31 @@ import (
 )
 
 const (
-	CapabilityFunctionCall   = "function_call"
-	CapabilityReasoning      = "reasoning"
-	CapabilityResponseFormat = "response_format"
-	CapabilityStructured     = "structured"
-	CapabilityTemperature    = "temperature"
-	CapabilityToolChoice     = "tool_choice"
-	CapabilityTools          = "tools"
-	CapabilityVision         = "vision"
+	CapabilityEmbedding       = "embedding"
+	CapabilityFunctionCall    = "function_call"
+	CapabilityImageEdit       = "image_edit"
+	CapabilityImageGeneration = "image_generation"
+	CapabilityReasoning       = "reasoning"
+	CapabilityResponseFormat  = "response_format"
+	CapabilityStructured      = "structured"
+	CapabilityTemperature     = "temperature"
+	CapabilityToolChoice      = "tool_choice"
+	CapabilityTools           = "tools"
+	CapabilityVision          = "vision"
 )
 
 var ValidCapabilities = map[string]bool{
-	CapabilityFunctionCall:   true,
-	CapabilityReasoning:      true,
-	CapabilityResponseFormat: true,
-	CapabilityStructured:     true,
-	CapabilityTemperature:    true,
-	CapabilityToolChoice:     true,
-	CapabilityTools:          true,
-	CapabilityVision:         true,
+	CapabilityEmbedding:       true,
+	CapabilityFunctionCall:    true,
+	CapabilityImageEdit:       true,
+	CapabilityImageGeneration: true,
+	CapabilityReasoning:       true,
+	CapabilityResponseFormat:  true,
+	CapabilityStructured:      true,
+	CapabilityTemperature:     true,
+	CapabilityToolChoice:      true,
+	CapabilityTools:           true,
+	CapabilityVision:          true,
 }
 
 const (
@@ -90,6 +96,7 @@ func (m Models) MarshalJSON() ([]byte, error) {
 
 type Model struct {
 	Name         string                `json:"name"`
+	Base         string                `json:"base,omitempty"`
 	Home         string                `json:"home"`
 	OSS          string                `json:"oss,omitempty"`
 	Specs        string                `json:"specs,omitempty"`
@@ -102,8 +109,8 @@ type Model struct {
 }
 
 type ModelCost struct {
-	TextInput    *common.Float64 `json:"input"`
-	TextOutput   *common.Float64 `json:"output"`
+	TextInput    *common.Float64 `json:"input,omitempty"`
+	TextOutput   *common.Float64 `json:"output,omitempty"`
 	CacheRead    *common.Float64 `json:"cache_read,omitempty"`
 	CacheWrite   *common.Float64 `json:"cache_write,omitempty"`
 	VisionInput  *common.Float64 `json:"vision_input,omitempty"`
@@ -115,8 +122,8 @@ type ModelCost struct {
 }
 
 type ModelLimit struct {
-	Context *int `json:"context"`
-	Output  *int `json:"output"`
+	Context *int `json:"context,omitempty"`
+	Output  *int `json:"output,omitempty"`
 }
 
 type ModelModalities struct {

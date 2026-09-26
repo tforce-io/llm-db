@@ -55,15 +55,11 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 		}
 	}
 
-	if m.Cost.TextInput == nil {
-		t.Errorf("%s: cost.input is required", id)
-	} else if *m.Cost.TextInput < 0 {
+	if m.Cost.TextInput != nil && *m.Cost.TextInput < 0 {
 		t.Errorf("%s: cost.input must not be negative", id)
 	}
 
-	if m.Cost.TextOutput == nil {
-		t.Errorf("%s: cost.output is required", id)
-	} else if *m.Cost.TextOutput < 0 {
+	if m.Cost.TextOutput != nil && *m.Cost.TextOutput < 0 {
 		t.Errorf("%s: cost.output must not be negative", id)
 	}
 
@@ -99,15 +95,11 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 		t.Errorf("%s: cost.pixel_output must not be negative", id)
 	}
 
-	if m.Limit.Context == nil {
-		t.Errorf("%s: limit.context is required", id)
-	} else if *m.Limit.Context <= 0 {
+	if m.Limit.Context != nil && *m.Limit.Context <= 0 {
 		t.Errorf("%s: limit.context must be positive", id)
 	}
 
-	if m.Limit.Output == nil {
-		t.Errorf("%s: limit.output is required", id)
-	} else if *m.Limit.Output <= 0 {
+	if m.Limit.Output != nil && *m.Limit.Output <= 0 {
 		t.Errorf("%s: limit.output must be positive", id)
 	}
 
@@ -136,26 +128,18 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 			t.Errorf("%s.deployment.%s: id is required", id, providerName)
 		}
 		if dep.Limit != nil {
-			if dep.Limit.Context == nil {
-				t.Errorf("%s.deployment.%s: limit.context is required", id, providerName)
-			} else if *dep.Limit.Context <= 0 {
+			if dep.Limit.Context != nil && *dep.Limit.Context <= 0 {
 				t.Errorf("%s.deployment.%s: limit.context must be positive", id, providerName)
 			}
-			if dep.Limit.Output == nil {
-				t.Errorf("%s.deployment.%s: limit.output is required", id, providerName)
-			} else if *dep.Limit.Output <= 0 {
+			if dep.Limit.Output != nil && *dep.Limit.Output <= 0 {
 				t.Errorf("%s.deployment.%s: limit.output must be positive", id, providerName)
 			}
 		}
 		if dep.Cost != nil {
-			if dep.Cost.TextInput == nil {
-				t.Errorf("%s.deployment.%s: cost.input is required", id, providerName)
-			} else if *dep.Cost.TextInput < 0 {
+			if dep.Cost.TextInput != nil && *dep.Cost.TextInput < 0 {
 				t.Errorf("%s.deployment.%s: cost.input must not be negative", id, providerName)
 			}
-			if dep.Cost.TextOutput == nil {
-				t.Errorf("%s.deployment.%s: cost.output is required", id, providerName)
-			} else if *dep.Cost.TextOutput < 0 {
+			if dep.Cost.TextOutput != nil && *dep.Cost.TextOutput < 0 {
 				t.Errorf("%s.deployment.%s: cost.output must not be negative", id, providerName)
 			}
 			if dep.Cost.CacheRead != nil && *dep.Cost.CacheRead < 0 {
