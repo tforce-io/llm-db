@@ -384,6 +384,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "deepseek-v4-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      },
       "opencode-go": {
         "id": "deepseek-v4-flash",
         "limit": {
@@ -425,6 +432,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "aivs": {
+        "id": "deepseek-v4-pro",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      },
       "opencode-go": {
         "id": "deepseek-v4-pro",
         "limit": {
@@ -2360,8 +2374,19 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "mimo-v2-5",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
+      },
       "opencode-go": {
-        "id": "mimo-v2.5"
+        "id": "mimo-v2.5",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
       },
       "opencode-zen": {
         "variants": [
@@ -2397,8 +2422,19 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "mimo-v2-5-pro",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
+      },
       "opencode-go": {
-        "id": "mimo-v2.5-pro"
+        "id": "mimo-v2.5-pro",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
       }
     }
   },
@@ -2424,6 +2460,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "minimax-m2-5",
+        "limit": {
+          "context": 204800,
+          "output": 65536
+        }
+      },
       "opencode-go": {
         "id": "minimax-m2.5",
         "limit": {
@@ -2455,6 +2498,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "minimax-m2-7",
+        "limit": {
+          "context": 204800,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "minimax-m2.7",
         "limit": {
@@ -2486,6 +2536,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "minimax-m3",
+        "limit": {
+          "context": 1048576,
+          "output": 131072
+        }
+      },
       "opencode-go": {
         "id": "minimax-m3",
         "limit": {
@@ -2542,6 +2599,13 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "id": "nemotron-3-nano-30b-a3b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
       "localai": {
         "id": "nemotron-3-nano-30b-a3b",
         "limit": {
