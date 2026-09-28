@@ -26,6 +26,35 @@
       }
     }
   },
+  "bonsai-27b": {
+    "name": "Bonsai 27B",
+    "base": "qwen3.6-27b",
+    "home": "https://prismml.com/news/bonsai-27b",
+    "oss": "https://huggingface.co/prism-ml/Bonsai-27B-gguf",
+    "dev": "https://github.com/PrismML-Eng/Bonsai-demo",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.120,
+      "output": 0.720
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "localai": {
+        "id": "bonsai-27b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
+  },
   "claude-fable-5": {
     "name": "Claude Fable 5",
     "home": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
@@ -3925,5 +3954,34 @@
       "output": ["text"]
     },
     "deployments": {}
+  },
+  "ternary-bonsai-27b": {
+    "name": "Ternary Bonsai 27B",
+    "base": "qwen3.6-27b",
+    "home": "https://prismml.com/news/bonsai-27b",
+    "oss": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf",
+    "dev": "https://github.com/PrismML-Eng/Bonsai-demo",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.180,
+      "output": 1.080
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "localai": {
+        "id": "ternary-bonsai-27b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
   }
 }
