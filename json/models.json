@@ -2785,6 +2785,71 @@
       }
     }
   },
+  "nemotron-3.5-lightning-30b-a3b": {
+    "name": "Nemotron 3.5 Lightning 30B A3B",
+    "home": "https://research.nvidia.com/labs/nemotron/lilicorr",
+    "oss": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "specs": "https://artificialanalysis.ai/models/nemotron-3-5-lightning",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice"],
+    "cost": {
+      "input": 0.070,
+      "output": 0.220,
+      "cache_read": 0.156
+    },
+    "limit": {
+      "context": 262144,
+      "output": 262144
+    },
+    "modalities": {
+      "input": ["text"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "nemotron-3-5-lightning",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
+      "kilo": {
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3.5-lightning:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
+      },
+      "opencode-zen": {
+        "variants": [
+          {
+            "id": "nemotron-3.5-lightning-free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
+      },
+      "openrouter": {
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3.5-lightning:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
+      }
+    }
+  },
   "north-mini-code-1.0-30b-a3b": {
     "name": "North Mini Code 1.0 30B A3B",
     "home": "https://cohere.com/blog/north-mini-code",
