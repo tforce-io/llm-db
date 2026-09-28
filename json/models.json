@@ -3983,5 +3983,34 @@
         }
       }
     }
+  },
+  "ternary-bonsai-2-27b": {
+    "name": "Ternary Bonsai 2 27B",
+    "base": "qwen3.8-27b",
+    "home": "https://prismml.com/news/bonsai-2-27b",
+    "oss": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
+    "dev": "https://github.com/PrismML-Eng/Bonsai-demo",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.135,
+      "output": 0.960
+    },
+    "limit": {
+      "context": 262144,
+      "output": 65536
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "localai": {
+        "id": "ternary-bonsai-2-27b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      }
+    }
   }
 }
