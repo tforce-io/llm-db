@@ -432,7 +432,7 @@
       "output": ["text"]
     },
     "deployments": {
-      "aivs": {
+      "avis": {
         "id": "deepseek-v4-pro",
         "limit": {
           "context": 1000000,
@@ -441,6 +441,49 @@
       },
       "opencode-go": {
         "id": "deepseek-v4-pro",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      }
+    }
+  },
+  "deepseek-v4.1-flash-552b-a16b": {
+    "name": "DeepSeek V4.1 Flash 552B A16B",
+    "home": "https://www.deepseek.com/en/news/deepseek-v4-1-flash/",
+    "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "specs": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.300,
+      "output": 1.200,
+      "cache_read": 0.024
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 384000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "deepseek-v4-1-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      },
+      "opencode-go": {
+        "id": "deepseek-v4.1-flash",
+        "limit": {
+          "context": 1000000,
+          "output": 384000
+        }
+      },
+      "opencode-zen": {
+        "id": "deepseek-v4.1-flash",
         "limit": {
           "context": 1000000,
           "output": 384000
