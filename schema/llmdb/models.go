@@ -109,6 +109,8 @@ type Model struct {
 }
 
 type ModelCost struct {
+	Factor *common.Float64 `json:"factor,omitempty"`
+
 	TextInput    *common.Float64 `json:"input,omitempty"`
 	TextOutput   *common.Float64 `json:"output,omitempty"`
 	CacheRead    *common.Float64 `json:"cache_read,omitempty"`
@@ -132,10 +134,12 @@ type ModelModalities struct {
 }
 
 type Deployment struct {
-	ID           string      `json:"id"`
-	Limit        *ModelLimit `json:"limit,omitempty"`
-	Cost         *ModelCost  `json:"cost,omitempty"`
-	Capabilities []string    `json:"capabilities,omitempty"`
+	ID           string        `json:"id,omitempty"`
+	Name         string        `json:"name,omitempty"`
+	Limit        *ModelLimit   `json:"limit,omitempty"`
+	Cost         *ModelCost    `json:"cost,omitempty"`
+	Capabilities []string      `json:"capabilities,omitempty"`
+	Variants     []*Deployment `json:"variants,omitempty"`
 }
 
 func LoadModels(data []byte) (*Models, error) {

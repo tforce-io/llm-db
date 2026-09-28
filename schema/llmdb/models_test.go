@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"testing"
 
 	"github.com/tforceaio/llm-db/schema/llmdb"
@@ -53,6 +54,10 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 				t.Errorf("%s: unknown capability %q", id, cap)
 			}
 		}
+	}
+
+	if m.Cost.Factor != nil {
+		t.Errorf("%s: cost.factor is only valid on deployment costs", id)
 	}
 
 	if m.Cost.TextInput != nil && *m.Cost.TextInput < 0 {
@@ -124,49 +129,88 @@ func assertModelValid(t *testing.T, id string, m llmdb.Model) {
 	}
 
 	for providerName, dep := range m.Deployments {
-		if dep.ID == "" {
-			t.Errorf("%s.deployment.%s: id is required", id, providerName)
+		validateDeployment(t, id, providerName, dep)
+		for variantIdx, variant := range dep.Variants {
+			if variant == nil {
+				t.Errorf("%s.deployment.%s.variants.%d: must not be null", id, providerName, variantIdx)
+				continue
+			}
+			validateDeployment(t, id, providerName+"/variants/"+strconv.Itoa(variantIdx), *variant)
 		}
-		if dep.Limit != nil {
-			if dep.Limit.Context != nil && *dep.Limit.Context <= 0 {
-				t.Errorf("%s.deployment.%s: limit.context must be positive", id, providerName)
-			}
-			if dep.Limit.Output != nil && *dep.Limit.Output <= 0 {
-				t.Errorf("%s.deployment.%s: limit.output must be positive", id, providerName)
-			}
+	}
+}
+
+func validateDeployment(t *testing.T, id, location string, dep llmdb.Deployment) {
+	t.Helper()
+
+	if dep.ID == "" && len(dep.Variants) == 0 {
+		t.Errorf("%s.deployment.%s: id is required when variants is empty", id, location)
+	}
+
+	if dep.Limit != nil {
+		if dep.Limit.Context != nil && *dep.Limit.Context <= 0 {
+			t.Errorf("%s.deployment.%s: limit.context must be positive", id, location)
 		}
-		if dep.Cost != nil {
-			if dep.Cost.TextInput != nil && *dep.Cost.TextInput < 0 {
-				t.Errorf("%s.deployment.%s: cost.input must not be negative", id, providerName)
-			}
-			if dep.Cost.TextOutput != nil && *dep.Cost.TextOutput < 0 {
-				t.Errorf("%s.deployment.%s: cost.output must not be negative", id, providerName)
-			}
-			if dep.Cost.CacheRead != nil && *dep.Cost.CacheRead < 0 {
-				t.Errorf("%s.deployment.%s: cost.cache_read must not be negative", id, providerName)
-			}
-			if dep.Cost.CacheWrite != nil && *dep.Cost.CacheWrite < 0 {
-				t.Errorf("%s.deployment.%s: cost.cache_write must not be negative", id, providerName)
-			}
-			if dep.Cost.VisionInput != nil && *dep.Cost.VisionInput < 0 {
-				t.Errorf("%s.deployment.%s: cost.vision_input must not be negative", id, providerName)
-			}
-			if dep.Cost.VisionOutput != nil && *dep.Cost.VisionOutput < 0 {
-				t.Errorf("%s.deployment.%s: cost.vision_output must not be negative", id, providerName)
-			}
-			if dep.Cost.ImageInput != nil && *dep.Cost.ImageInput < 0 {
-				t.Errorf("%s.deployment.%s: cost.image_input must not be negative", id, providerName)
-			}
-			if dep.Cost.ImageOutput != nil && *dep.Cost.ImageOutput < 0 {
-				t.Errorf("%s.deployment.%s: cost.image_output must not be negative", id, providerName)
-			}
-			if dep.Cost.PixelInput != nil && *dep.Cost.PixelInput < 0 {
-				t.Errorf("%s.deployment.%s: cost.pixel_input must not be negative", id, providerName)
-			}
-			if dep.Cost.PixelOutput != nil && *dep.Cost.PixelOutput < 0 {
-				t.Errorf("%s.deployment.%s: cost.pixel_output must not be negative", id, providerName)
+		if dep.Limit.Output != nil && *dep.Limit.Output <= 0 {
+			t.Errorf("%s.deployment.%s: limit.output must be positive", id, location)
+		}
+	}
+	if dep.Cost != nil {
+		validateCost(t, id, location, *dep.Cost)
+	}
+	if dep.Capabilities != nil {
+		for _, cap := range dep.Capabilities {
+			if !llmdb.ValidCapabilities[cap] {
+				t.Errorf("%s.deployment.%s: unknown capability %q", id, location, cap)
 			}
 		}
+	}
+}
+
+func validateCost(t *testing.T, id, location string, cost llmdb.ModelCost) {
+	t.Helper()
+
+	if cost.Factor != nil {
+		if *cost.Factor <= 0 {
+			t.Errorf("%s.deployment.%s: cost.factor must be positive", id, location)
+		}
+		if cost.TextInput != nil || cost.TextOutput != nil || cost.CacheRead != nil || cost.CacheWrite != nil ||
+			cost.VisionInput != nil || cost.VisionOutput != nil || cost.ImageInput != nil || cost.ImageOutput != nil ||
+			cost.PixelInput != nil || cost.PixelOutput != nil {
+			t.Errorf("%s.deployment.%s: cost.factor and explicit cost fields must not both be set", id, location)
+		}
+		return
+	}
+
+	if cost.TextInput != nil && *cost.TextInput < 0 {
+		t.Errorf("%s.deployment.%s: cost.input must not be negative", id, location)
+	}
+	if cost.TextOutput != nil && *cost.TextOutput < 0 {
+		t.Errorf("%s.deployment.%s: cost.output must not be negative", id, location)
+	}
+	if cost.CacheRead != nil && *cost.CacheRead < 0 {
+		t.Errorf("%s.deployment.%s: cost.cache_read must not be negative", id, location)
+	}
+	if cost.CacheWrite != nil && *cost.CacheWrite < 0 {
+		t.Errorf("%s.deployment.%s: cost.cache_write must not be negative", id, location)
+	}
+	if cost.VisionInput != nil && *cost.VisionInput < 0 {
+		t.Errorf("%s.deployment.%s: cost.vision_input must not be negative", id, location)
+	}
+	if cost.VisionOutput != nil && *cost.VisionOutput < 0 {
+		t.Errorf("%s.deployment.%s: cost.vision_output must not be negative", id, location)
+	}
+	if cost.ImageInput != nil && *cost.ImageInput < 0 {
+		t.Errorf("%s.deployment.%s: cost.image_input must not be negative", id, location)
+	}
+	if cost.ImageOutput != nil && *cost.ImageOutput < 0 {
+		t.Errorf("%s.deployment.%s: cost.image_output must not be negative", id, location)
+	}
+	if cost.PixelInput != nil && *cost.PixelInput < 0 {
+		t.Errorf("%s.deployment.%s: cost.pixel_input must not be negative", id, location)
+	}
+	if cost.PixelOutput != nil && *cost.PixelOutput < 0 {
+		t.Errorf("%s.deployment.%s: cost.pixel_output must not be negative", id, location)
 	}
 }
 

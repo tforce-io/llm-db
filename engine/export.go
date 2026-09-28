@@ -75,63 +75,82 @@ func (m *ExportModule) Bifrost() error {
 	return nil
 }
 
+// Return whole configuration for given Bifrost.
 func (m *ExportModule) buildBifrostModels(models *llmdb.Models) bifrost.Models {
 	result := make(bifrost.Models)
 
+	export := func(model llmdb.Model, deployKey string, deployment *llmdb.Deployment) {
+		if deployment == nil || deployment.ID == "" {
+			return
+		}
+		key := deployment.ID
+		if deployKey != "localai" {
+			key = deployKey + "/" + deployment.ID
+		}
+		result[key] = m.buildBifrostModel(model, deployKey, deployment)
+	}
 	for _, model := range models.Models {
 		for deployKey, deployment := range model.Deployments {
-			key := deployment.ID
-			if deployKey != "localai" {
-				key = deployKey + "/" + deployment.ID
+			export(model, deployKey, &deployment)
+			for _, variant := range deployment.Variants {
+				export(model, deployKey, variant)
 			}
-
-			cost := m.resolveCost(model.Cost, deployment.Cost)
-			limit := m.resolveLimit(model.Limit, deployment.Limit)
-
-			mode := modelMode(model.Capabilities)
-
-			bModel := bifrost.Model{
-				Provider:  deployKey,
-				BaseModel: deployment.ID,
-				Mode:      mode,
-
-				TextInputCost:    divMillionth(cost.TextInput),
-				TextOutputCost:   divMillionth(cost.TextOutput),
-				CacheReadCost:    divMillionth(cost.CacheRead),
-				CacheWriteCost:   divMillionth(cost.CacheWrite),
-				VisionInputCost:  divMillionth(cost.VisionInput),
-				VisionOutputCost: divMillionth(cost.VisionOutput),
-				ImageInputCost:   divThousandth(cost.ImageInput),
-				ImageOutputCost:  divThousandth(cost.ImageOutput),
-				PixelInputCost:   divMillionth(cost.PixelInput),
-				PixelOutputCost:  divMillionth(cost.PixelOutput),
-
-				MaxInputTokens:  limit.Context,
-				MaxOutputTokens: limit.Output,
-				MaxTokens:       limit.Context,
-			}
-
-			if containsString(model.Capabilities, llmdb.CapabilityFunctionCall) ||
-				containsString(model.Capabilities, llmdb.CapabilityTools) {
-				bModel.SupportsFunctionCall = boolPtr(true)
-			}
-			if containsString(model.Capabilities, llmdb.CapabilityReasoning) {
-				bModel.SupportsReasoning = boolPtr(true)
-			}
-			if containsString(model.Capabilities, llmdb.CapabilityStructured) {
-				bModel.SupportsStructured = boolPtr(true)
-			}
-			if containsString(model.Capabilities, llmdb.CapabilityToolChoice) {
-				bModel.SupportsToolChoice = boolPtr(true)
-			}
-			if containsString(model.Capabilities, llmdb.CapabilityVision) {
-				bModel.SupportsVision = boolPtr(true)
-			}
-
-			result[key] = bModel
 		}
 	}
 	return result
+}
+
+// Return configuration for given Bifrost model.
+func (m *ExportModule) buildBifrostModel(model llmdb.Model, deployKey string, deployment *llmdb.Deployment) bifrost.Model {
+	cost := m.resolveCost(model.Cost, deployment.Cost)
+	limit := m.resolveLimit(model.Limit, deployment.Limit)
+
+	capabilities := model.Capabilities
+	if len(deployment.Capabilities) > 0 {
+		capabilities = deployment.Capabilities
+	}
+
+	mode := modelMode(capabilities)
+
+	bModel := bifrost.Model{
+		Provider:  deployKey,
+		BaseModel: deployment.ID,
+		Mode:      mode,
+
+		TextInputCost:    divMillionth(cost.TextInput),
+		TextOutputCost:   divMillionth(cost.TextOutput),
+		CacheReadCost:    divMillionth(cost.CacheRead),
+		CacheWriteCost:   divMillionth(cost.CacheWrite),
+		VisionInputCost:  divMillionth(cost.VisionInput),
+		VisionOutputCost: divMillionth(cost.VisionOutput),
+		ImageInputCost:   divThousandth(cost.ImageInput),
+		ImageOutputCost:  divThousandth(cost.ImageOutput),
+		PixelInputCost:   divMillionth(cost.PixelInput),
+		PixelOutputCost:  divMillionth(cost.PixelOutput),
+
+		MaxInputTokens:  limit.Context,
+		MaxOutputTokens: limit.Output,
+		MaxTokens:       limit.Context,
+	}
+
+	if containsString(capabilities, llmdb.CapabilityFunctionCall) ||
+		containsString(capabilities, llmdb.CapabilityTools) {
+		bModel.SupportsFunctionCall = boolPtr(true)
+	}
+	if containsString(capabilities, llmdb.CapabilityReasoning) {
+		bModel.SupportsReasoning = boolPtr(true)
+	}
+	if containsString(capabilities, llmdb.CapabilityStructured) {
+		bModel.SupportsStructured = boolPtr(true)
+	}
+	if containsString(capabilities, llmdb.CapabilityToolChoice) {
+		bModel.SupportsToolChoice = boolPtr(true)
+	}
+	if containsString(capabilities, llmdb.CapabilityVision) {
+		bModel.SupportsVision = boolPtr(true)
+	}
+
+	return bModel
 }
 
 // Export LLMDB models into OpenCode config.
@@ -207,6 +226,7 @@ func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiK
 	return nil
 }
 
+// Return whole configuration for given OpenCode.
 func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmdb.Providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string) *opencode.RootConfig {
 	cfg := &opencode.RootConfig{
 		Schema:       "https://opencode.ai/config.json",
@@ -222,25 +242,31 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 	localProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 	bifrostProvider := opencode.ProviderConfigs{Models: make(map[string]opencode.ModelConfig)}
 
+	export := func(model llmdb.Model, deployKey string, deployment *llmdb.Deployment) {
+		if deployment == nil || deployment.ID == "" {
+			return
+		}
+		mc := m.buildOpenCodeModel(model, deployment)
+		if deployKey == "localai" {
+			localProvider.Models[deployment.ID] = mc
+			return
+		}
+		providerName := ""
+		if p, ok := providers.Providers[deployKey]; ok {
+			providerName = p.Name
+		}
+		mc.ID = fmt.Sprintf("%s/%s", deployKey, deployment.ID)
+		mc.Name = fmt.Sprintf("%s (%s)", mc.Name, providerName)
+		bifrostProvider.Models[mc.ID] = mc
+	}
 	for _, model := range models.Models {
 		if modelMode(model.Capabilities) != "chat" {
 			continue
 		}
 		for deployKey, deployment := range model.Deployments {
-			mc := m.buildOpenCodeModel(model, deployment)
-			if deployKey == "localai" {
-				localProvider.Models[deployment.ID] = mc
-			} else {
-				modelID := fmt.Sprintf("%s/%s", deployKey, deployment.ID)
-
-				providerName := ""
-				if p, ok := providers.Providers[deployKey]; ok {
-					providerName = p.Name
-				}
-				mc.ID = modelID
-				mc.Name = fmt.Sprintf("%s (%s)", model.Name, providerName)
-
-				bifrostProvider.Models[modelID] = mc
+			export(model, deployKey, &deployment)
+			for _, variant := range deployment.Variants {
+				export(model, deployKey, variant)
 			}
 		}
 	}
@@ -287,17 +313,28 @@ func (m *ExportModule) buildOpenCodeConfig(models *llmdb.Models, providers *llmd
 	return cfg
 }
 
-func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.Deployment) opencode.ModelConfig {
-	reasoning := containsString(model.Capabilities, llmdb.CapabilityReasoning)
-	temperature := containsString(model.Capabilities, llmdb.CapabilityTemperature)
-	toolCall := containsString(model.Capabilities, llmdb.CapabilityTools) || containsString(model.Capabilities, llmdb.CapabilityFunctionCall)
+// Return configuration for given OpenCode model.
+func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment *llmdb.Deployment) opencode.ModelConfig {
+	capabilities := model.Capabilities
+	if len(deployment.Capabilities) > 0 {
+		capabilities = deployment.Capabilities
+	}
+
+	reasoning := containsString(capabilities, llmdb.CapabilityReasoning)
+	temperature := containsString(capabilities, llmdb.CapabilityTemperature)
+	toolCall := containsString(capabilities, llmdb.CapabilityTools) || containsString(capabilities, llmdb.CapabilityFunctionCall)
 
 	cost := m.resolveCost(model.Cost, deployment.Cost)
 	limit := m.resolveLimit(model.Limit, deployment.Limit)
 
+	name := model.Name
+	if deployment.Name != "" {
+		name = fmt.Sprintf("%s [%s]", model.Name, deployment.Name)
+	}
+
 	mc := opencode.ModelConfig{
 		ID:   deployment.ID,
-		Name: model.Name,
+		Name: name,
 
 		Cost:       &opencode.ModelCost{TextInput: cost.TextInput, TextOutput: cost.TextOutput, CacheRead: cost.CacheRead, CacheWrite: cost.CacheWrite},
 		Limit:      &opencode.ModelLimit{Context: limit.Context, Output: limit.Output},
@@ -311,13 +348,36 @@ func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment llmdb.De
 	return mc
 }
 
+// Return effective cost for deployment.
 func (m *ExportModule) resolveCost(base llmdb.ModelCost, override *llmdb.ModelCost) llmdb.ModelCost {
+	if override != nil && override.Factor != nil {
+		mul := func(v *common.Float64) *common.Float64 {
+			if v == nil {
+				return nil
+			}
+			r := common.Float64(float64(*v) * float64(*override.Factor))
+			return &r
+		}
+		return llmdb.ModelCost{
+			TextInput:    mul(base.TextInput),
+			TextOutput:   mul(base.TextOutput),
+			CacheRead:    mul(base.CacheRead),
+			CacheWrite:   mul(base.CacheWrite),
+			VisionInput:  mul(base.VisionInput),
+			VisionOutput: mul(base.VisionOutput),
+			ImageInput:   mul(base.ImageInput),
+			ImageOutput:  mul(base.ImageOutput),
+			PixelInput:   mul(base.PixelInput),
+			PixelOutput:  mul(base.PixelOutput),
+		}
+	}
 	if override != nil {
 		return *override
 	}
 	return base
 }
 
+// Return effective limit for deployment.
 func (m *ExportModule) resolveLimit(base llmdb.ModelLimit, override *llmdb.ModelLimit) *llmdb.ModelLimit {
 	if override != nil {
 		return override
