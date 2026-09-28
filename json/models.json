@@ -2688,28 +2688,16 @@
     },
     "deployments": {
       "localai": {
-        "id": "qwen-image-20b"
-      }
-    }
-  },
-  "qwen-image-20b-unrestricted": {
-    "name": "Qwen Image 20B Unrestricted",
-    "home": "https://qwen.ai/blog?id=qwen-image",
-    "oss": "https://huggingface.co/Qwen/Qwen-Image",
-    "dev": "https://github.com/QwenLM/Qwen-Image",
-    "capabilities": ["image_generation"],
-    "cost": {
-      "image_output": 7.200,
-      "pixel_output": 0.020610
-    },
-    "limit": {},
-    "modalities": {
-      "input": ["text"],
-      "output": ["image"]
-    },
-    "deployments": {
-      "localai": {
-        "id": "qwen-image-20b-unrestricted"
+        "id": "qwen-image-20b",
+        "variants": [
+          {
+            "id": "qwen-image-20b-unrestricted",
+            "name": "Unrestricted",
+            "cost": {
+              "factor": 2
+            }
+          }
+        ]
       }
     }
   },
@@ -2730,28 +2718,16 @@
     },
     "deployments": {
       "localai": {
-        "id": "qwen-image-2.1-7b"
-      }
-    }
-  },
-  "qwen-image-2.1-7b-unrestricted": {
-    "name": "Qwen Image 2.1 7B Unrestricted",
-    "home": "https://qwen.ai/blog?id=qwen-image-2.1",
-    "oss": "https://huggingface.co/Qwen/Qwen-Image",
-    "dev": "https://github.com/QwenLM/Qwen-Image",
-    "capabilities": ["image_generation"],
-    "cost": {
-      "image_output": 6.000,
-      "pixel_output": 0.017175
-    },
-    "limit": {},
-    "modalities": {
-      "input": ["text"],
-      "output": ["image"]
-    },
-    "deployments": {
-      "localai": {
-        "id": "qwen-image-2.1-7b-unrestricted"
+        "id": "qwen-image-2.1-7b",
+        "variants": [
+          {
+            "id": "qwen-image-2.1-7b-unrestricted",
+            "name": "Unrestricted",
+            "cost": {
+              "factor": 2
+            }
+          }
+        ]
       }
     }
   },

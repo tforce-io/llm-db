@@ -31,21 +31,28 @@
       "deployments": {
         "type": "object",
         "additionalProperties": {
-          "type": "object",
-          "required": ["id"],
-          "properties": {
-            "id": { "type": "string" },
-            "cost": { "$ref": "#/definitions/cost" },
-            "limit": { "$ref": "#/definitions/limit" },
-            "capabilities": { "$ref": "#/definitions/capabilities" }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/deployment"
         }
       }
     },
     "additionalProperties": false
   },
   "definitions": {
+    "deployment": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "cost": { "$ref": "#/definitions/cost" },
+        "limit": { "$ref": "#/definitions/limit" },
+        "capabilities": { "$ref": "#/definitions/capabilities" },
+        "variants": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/deployment" }
+        }
+      },
+      "additionalProperties": false
+    },
     "capabilities": {
       "type": "array",
       "items": {
@@ -56,8 +63,9 @@
     },
     "cost": {
       "type": "object",
-      "description": "Costs in USD: input/output/cache_read/cache_write/vision_input/vision_output per 1M tokens; image_input/image_output per 1K images; pixel_input/pixel_output per megapixel.",
+      "description": "Costs in USD: input/output/cache_read/cache_write/vision_input/vision_output per 1M tokens; image_input/image_output per 1K images; pixel_input/pixel_output per megapixel. On a deployment cost, factor (not valid at model level) scales every model-level cost field.",
       "properties": {
+        "factor": { "type": "number", "exclusiveMinimum": 0 },
         "input": { "type": "number", "minimum": 0 },
         "output": { "type": "number", "minimum": 0 },
         "cache_read": { "type": "number", "minimum": 0 },
