@@ -234,6 +234,35 @@
       }
     }
   },
+  "claude-opus-5.5": {
+    "name": "Claude Opus 5.5",
+    "home": "https://www.anthropic.com/claude-opus-5-5",
+    "specs": "https://artificialanalysis.ai/models/claude-opus-5-5",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 4.000,
+      "output": 20.000,
+      "cache_read": 0.200,
+      "cache_write": 5.000
+    },
+    "limit": {
+      "context": 1000000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "claude-opus-5-5",
+        "limit": {
+          "context": 1000000,
+          "output": 128000
+        }
+      }
+    }
+  },
   "claude-sonnet-4.0": {
     "name": "Claude Sonnet 4",
     "home": "https://www.anthropic.com/news/claude-4",
