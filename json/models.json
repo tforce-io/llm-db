@@ -392,11 +392,16 @@
         }
       },
       "opencode-zen": {
-        "id": "deepseek-v4-flash-free",
-        "limit": {
-          "context": 200000,
-          "output": 128000
-        }
+        "variants": [
+          {
+            "id": "deepseek-v4-flash-free",
+            "name": "Free",
+            "limit": {
+              "context": 200000,
+              "output": 128000
+            }
+          }
+        ]
       }
     }
   },
@@ -1552,11 +1557,16 @@
         }
       },
       "openrouter": {
-        "id": "openai/gpt-oss-20b:free",
-        "limit": {
-          "context": 131072,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "openai/gpt-oss-20b:free",
+            "name": "Free",
+            "limit": {
+              "context": 131072,
+              "output": 32768
+            }
+          }
+        ]
       },
       "nvidia": {
         "id": "openai/gpt-oss-20b",
@@ -1928,18 +1938,28 @@
     },
     "deployments": {
       "kilo": {
-        "id": "poolside/laguna-m.1:free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "poolside/laguna-m.1:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "poolside/laguna-m.1:free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "poolside/laguna-m.1:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       }
     }
   },
@@ -1962,25 +1982,40 @@
     },
     "deployments": {
       "kilo": {
-        "id": "poolside/laguna-s-2.1:free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "poolside/laguna-s-2.1:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       },
       "opencode-zen": {
-        "id": "laguna-s-2.1-free",
-        "limit": {
-          "context": 256000,
-          "output": 32000
-        }
+        "variants": [
+          {
+            "id": "laguna-s-2.1-free",
+            "name": "Free",
+            "limit": {
+              "context": 256000,
+              "output": 32000
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "poolside/laguna-s-2.1:free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "poolside/laguna-s-2.1:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       }
     }
   },
@@ -2002,18 +2037,28 @@
     },
     "deployments": {
       "opencode-zen": {
-        "id": "ling-3.0-flash-free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "ling-3.0-flash-free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "inclusionai/ling-3.0-flash:free",
-        "limit": {
-          "context": 262144,
-          "output": 32768
-        }
+        "variants": [
+          {
+            "id": "inclusionai/ling-3.0-flash:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 32768
+            }
+          }
+        ]
       }
     }
   },
@@ -2319,11 +2364,16 @@
         "id": "mimo-v2.5"
       },
       "opencode-zen": {
-        "id": "mimo-v2.5-free",
-        "limit": {
-          "context": 200000,
-          "output": 32000
-        }
+        "variants": [
+          {
+            "id": "mimo-v2.5-free",
+            "name": "Free",
+            "limit": {
+              "context": 200000,
+              "output": 32000
+            }
+          }
+        ]
       }
     }
   },
@@ -2500,11 +2550,16 @@
         }
       },
       "openrouter": {
-        "id": "nvidia/nemotron-3-nano-30b-a3b:free",
-        "limit": {
-          "context": 262144,
-          "output": 262144
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-nano-30b-a3b:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 262144
+            }
+          }
+        ]
       }
     }
   },
@@ -2528,11 +2583,16 @@
     },
     "deployments": {
       "kilo": {
-        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-        "limit": {
-          "context": 262144,
-          "output": 65536
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
       },
       "localai": {
         "id": "nemotron-3-nano-omni-30b-a3b-reasoning",
@@ -2542,11 +2602,16 @@
         }
       },
       "openrouter": {
-        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-        "limit": {
-          "context": 262144,
-          "output": 65536
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
       }
     }
   },
@@ -2578,18 +2643,28 @@
         }
       },
       "kilo": {
-        "id": "nvidia/nemotron-3-super-120b-a12b:free",
-        "limit": {
-          "context": 262144,
-          "output": 262144
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-super-120b-a12b:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 262144
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "nvidia/nemotron-3-super-120b-a12b:free",
-        "limit": {
-          "context": 262144,
-          "output": 262144
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-super-120b-a12b:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 262144
+            }
+          }
+        ]
       }
     }
   },
@@ -2621,18 +2696,28 @@
         }
       },
       "opencode-zen": {
-        "id": "nemotron-3-ultra-free",
-        "limit": {
-          "context": 1000000,
-          "output": 128000
-        }
+        "variants": [
+          {
+            "id": "nemotron-3-ultra-free",
+            "name": "Free",
+            "limit": {
+              "context": 1000000,
+              "output": 128000
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-        "limit": {
-          "context": 1000000,
-          "output": 64000
-        }
+        "variants": [
+          {
+            "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+            "name": "Free",
+            "limit": {
+              "context": 1000000,
+              "output": 64000
+            }
+          }
+        ]
       }
     }
   },
@@ -2655,19 +2740,41 @@
       "output": ["text"]
     },
     "deployments": {
+      "avis": {
+        "variants": [
+          {
+            "id": "north-mini-code",
+            "name": "Free",
+            "limit": {
+              "context": 256000,
+              "output": 64000
+            }
+          }
+        ]
+      },
       "opencode-zen": {
-        "id": "north-mini-code-free",
-        "limit": {
-          "context": 256000,
-          "output": 64000
-        }
+        "variants": [
+          {
+            "id": "north-mini-code-free",
+            "name": "Free",
+            "limit": {
+              "context": 256000,
+              "output": 64000
+            }
+          }
+        ]
       },
       "openrouter": {
-        "id": "cohere/north-mini-code:free",
-        "limit": {
-          "context": 262144,
-          "output": 65536
-        }
+        "variants": [
+          {
+            "id": "cohere/north-mini-code:free",
+            "name": "Free",
+            "limit": {
+              "context": 262144,
+              "output": 65536
+            }
+          }
+        ]
       }
     }
   },
