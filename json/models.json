@@ -1548,7 +1548,8 @@
           "context": 1050000,
           "output": 128000
         }
-      }}
+      }
+    }
   },
   "gpt-5.6-sol": {
     "name": "GPT 5.6 Sol",
@@ -1572,6 +1573,93 @@
     "deployments": {
       "avis": {
         "id": "gpt-5-6-sol",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }
+    }
+  },
+  "gpt-6-luna": {
+    "name": "GPT 6 Luna",
+    "home": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+    "specs": "https://artificialanalysis.ai/models/gpt-6-luna",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 0.100,
+      "output": 0.500,
+      "cache_read": 0.010,
+      "cache_write": 0.125
+    },
+    "limit": {
+      "context": 1050000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "gpt-6-luna",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }
+    }
+  },
+  "gpt-6-sol": {
+    "name": "GPT 6 Sol",
+    "home": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+    "specs": "https://artificialanalysis.ai/models/gpt-6-sol",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 2.000,
+      "output": 10.000,
+      "cache_read": 0.200,
+      "cache_write": 2.500
+    },
+    "limit": {
+      "context": 1050000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "gpt-6-sol",
+        "limit": {
+          "context": 1050000,
+          "output": 128000
+        }
+      }
+    }
+  },
+  "gpt-6-astra": {
+    "name": "GPT 6 Astra",
+    "home": "https://openai.com/index/gpt-5-6",
+    "specs": "https://artificialanalysis.ai/models/gpt-6-astra",
+    "capabilities": ["function_call", "reasoning", "structured", "temperature", "tool_choice", "vision"],
+    "cost": {
+      "input": 10.000,
+      "output": 50.000,
+      "cache_read": 1.000,
+      "cache_write": 12.500
+    },
+    "limit": {
+      "context": 1050000,
+      "output": 128000
+    },
+    "modalities": {
+      "input": ["text", "image"],
+      "output": ["text"]
+    },
+    "deployments": {
+      "avis": {
+        "id": "gpt-6-astra",
         "limit": {
           "context": 1050000,
           "output": 128000
