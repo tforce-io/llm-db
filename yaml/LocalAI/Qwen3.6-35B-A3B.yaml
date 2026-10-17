@@ -1,15 +1,13 @@
 backend: llama-cpp
-context_size: 204800
+context_size: 262144
 flash_attention: true
 function:
   automatic_tool_parsing_fallback: true
   grammar:
-    disable: true
+    disable: false
 known_usecases:
   - chat
-  - vision
 mmap: true
-mmproj: Qwen3.6-35B-A3B/unsloth-Qwen3.6-35B-A3B-mmproj-F16.gguf
 name: qwen3.6-35b-a3b
 parameters:
   model: Qwen3.6-35B-A3B/unsloth-Qwen3.6-35B-A3B-Q8_0.gguf
