@@ -528,7 +528,7 @@
       }
     }
   },
-  "deepseek-v4-pro-1600b-a49b": {
+  "deepseek-v4-pro-1.6t-a49b": {
     "name": "DeepSeek V4 Pro 1.6T A49B",
     "home": "https://api-docs.deepseek.com/news/news260424/",
     "oss": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
@@ -2034,8 +2034,8 @@
     },
     "deployments": {}
   },
-  "kimi-k2.5-1000b-a32b": {
-    "name": "Kimi K2.5 1000B A32B",
+  "kimi-k2.5-1t-a32b": {
+    "name": "Kimi K2.5 1T A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-5",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.5",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-5",
@@ -2071,8 +2071,8 @@
       }
     }
   },
-  "kimi-k2.6-1000b-a32b": {
-    "name": "Kimi K2.6 1000B A32B",
+  "kimi-k2.6-1t-a32b": {
+    "name": "Kimi K2.6 1T A32B",
     "home": "https://www.kimi.com/ai-models/kimi-k2-6",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.6",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-6",
@@ -2107,8 +2107,8 @@
       }
     }
   },
-  "kimi-k2.7-code-1000b-a32b": {
-    "name": "Kimi K2.7 Code 1000B A32B",
+  "kimi-k2.7-code-1t-a32b": {
+    "name": "Kimi K2.7 Code 1T A32B",
     "home": "https://www.kimi.com/resources/kimi-k2-7-code",
     "oss": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
     "specs": "https://artificialanalysis.ai/models/kimi-k2-7-code",
@@ -2143,8 +2143,8 @@
       }
     }
   },
-  "kimi-k3-2800b-A104b": {
-    "name": "Kimi K3 2800B A104B",
+  "kimi-k3-2.8t-a104b": {
+    "name": "Kimi K3 2.8T A104B",
     "home": "https://www.kimi.com/blog/kimi-k3",
     "oss": "https://huggingface.co/moonshotai/Kimi-K3",
     "specs": "https://artificialanalysis.ai/models/kimi-k3",
@@ -2649,8 +2649,8 @@
       }
     }
   },
-  "mimo-v2.5-pro-1023b-a42b": {
-    "name": "MiMo V2.5 Pro 1023B A42B",
+  "mimo-v2.5-pro-1.02t-a42b": {
+    "name": "MiMo V2.5 Pro 1.02T A42B",
     "home": "https://mimo.xiaomi.com/mimo-v2-5-pro",
     "oss": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro",
     "specs": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
