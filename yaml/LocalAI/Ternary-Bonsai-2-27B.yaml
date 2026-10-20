@@ -1,0 +1,19 @@
+backend: bonsai
+context_size: 262144
+flash_attention: true
+function:
+  automatic_tool_parsing_fallback: true
+  grammar:
+    disable: true
+known_usecases:
+  - chat
+mmap: true
+name: ternary-bonsai-2-27b
+parameters:
+  model: Ternary-Bonsai-2-27B/prismml-Ternary-Bonsai-2-27B-PQ2_0.gguf
+  temperature: 0.7
+  top_k: 20
+  top_p: 0.95
+reasoning_effort: xhigh
+template:
+  use_tokenizer_template: true
