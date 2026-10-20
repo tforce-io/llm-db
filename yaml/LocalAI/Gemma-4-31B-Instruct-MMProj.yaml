@@ -1,0 +1,26 @@
+backend: llama-cpp
+cache_type_k: q8_0
+cache_type_v: q8_0
+context_size: 102400
+flash_attention: true
+function:
+  automatic_tool_parsing_fallback: true
+  grammar:
+    disable: true
+known_usecases:
+  - chat
+  - vision
+mmap: true
+mmproj: Gemma-4-31B-Instruct/unsloth-Gemma-4-31B-it-mmproj-F16.gguf
+name: gemma-4-31b-it-mmproj
+parameters:
+  model: Gemma-4-31B-Instruct/unsloth-Gemma-4-31B-it-Q8_0.gguf
+  temperature: 1.0
+  top_k: 64
+  top_p: 0.95
+  min_p: 0
+  repeat_penalty: 1
+  presence_penalty: 0
+reasoning_effort: high
+template:
+  use_tokenizer_template: true
