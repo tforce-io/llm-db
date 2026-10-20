@@ -869,15 +869,7 @@
       "input": ["text", "image", "video", "audio"],
       "output": ["text"]
     },
-    "deployments": {
-      "localai": {
-        "id": "gemma-4-5.1b-a2.3b-instruct",
-        "limit": {
-          "context": 131072,
-          "output": 16384
-        }
-      }
-    }
+    "deployments": {}
   },
   "gemma-4-e4b-8b-a4.5b-instruct": {
     "name": "Gemma 4 E4B 8B A4.5B",
@@ -897,15 +889,7 @@
       "input": ["text", "image", "video", "audio"],
       "output": ["text"]
     },
-    "deployments": {
-      "localai": {
-        "id": "gemma-4-8b-a4.5b-instruct",
-        "limit": {
-          "context": 131072,
-          "output": 16384
-        }
-      }
-    }
+    "deployments": {}
   },
   "gemma-4-12b-instruct": {
     "name": "Gemma 4 12B Instruct",
@@ -1001,7 +985,7 @@
       "localai": {
         "id": "gemma-4-31b-instruct",
         "limit": {
-          "context": 102400,
+          "context": 131072,
           "output": 65536
         }
       }
@@ -2550,15 +2534,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployments": {
-      "localai": {
-        "id": "llama-3.3-nemotron-super-49b-v1.5",
-        "limit": {
-          "context": 65536,
-          "output": 65536
-        }
-      }
-    }
+    "deployments": {}
   },
   "llama-4-scout-109b-a17b-instruct": {
     "name": "Llama 4 Scout 109B A17B Instruct",
@@ -2799,7 +2775,7 @@
       }
     }
   },
-  "nemotron-cascase-2-30b-a3b": {
+  "nemotron-cascade-2-30b-a3b": {
     "name": "Nemotron Cascade 2 30B A3B",
     "home": "https://research.nvidia.com/labs/nemotron/nemotron-cascade-2",
     "oss": "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B",
@@ -2874,7 +2850,7 @@
       }
     }
   },
-  "nemotron-3-nano-omni-30b-a3b": {
+  "nemotron-3-nano-omni-30b-a3b-reasoning": {
     "name": "Nemotron 3 Nano Omni 30B A3B",
     "home": "https://research.nvidia.com/labs/nemotron/Nemotron-3",
     "oss": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
@@ -3071,6 +3047,13 @@
           }
         ]
       },
+      "localai": {
+        "id": "nemotron-3.5-lightning-30b-a3b",
+        "limit": {
+          "context": 262144,
+          "output": 65536
+        }
+      },
       "opencode-zen": {
         "variants": [
           {
@@ -3233,15 +3216,7 @@
       "input": ["text"],
       "output": ["text"]
     },
-    "deployments": {
-      "localai": {
-        "id": "qwen3-coder-30b-a3b-instruct",
-        "limit": {
-          "context": 262144,
-          "output": 65536
-        }
-      }
-    }
+    "deployments": {}
   },
   "qwen3-coder-480b-a35b-instruct": {
     "name": "Qwen3 Next 480B A35B Instruct",
@@ -3706,7 +3681,7 @@
       "localai": {
         "id": "qwen3.6-27b",
         "limit": {
-          "context": 163840,
+          "context": 204800,
           "output": 65536
         }
       }
@@ -3735,7 +3710,7 @@
       "localai": {
         "id": "qwen3.6-35b-a3b",
         "limit": {
-          "context": 204800,
+          "context": 262144,
           "output": 65536
         }
       }
@@ -3892,7 +3867,7 @@
       "localai": {
         "id": "qwen3.8-27b",
         "limit": {
-          "context": 102400,
+          "context": 163840,
           "output": 65536
         }
       }
