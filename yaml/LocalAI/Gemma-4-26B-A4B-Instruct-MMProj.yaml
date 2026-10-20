@@ -1,0 +1,24 @@
+backend: llama-cpp
+context_size: 204800
+flash_attention: true
+function:
+  automatic_tool_parsing_fallback: true
+  grammar:
+    disable: true
+known_usecases:
+  - chat
+  - vision
+mmap: true
+mmproj: Gemma-4-26B-A4B-Instruct/unsloth-Gemma-4-26B-A4B-it-mmproj-F16.gguf
+name: gemma-4-26b-a4b-it-mmproj
+parameters:
+  model: Gemma-4-26B-A4B-Instruct/unsloth-Gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf
+  temperature: 1.0
+  top_k: 64
+  top_p: 0.95
+  min_p: 0
+  repeat_penalty: 1
+  presence_penalty: 0
+reasoning_effort: high
+template:
+  use_tokenizer_template: true
