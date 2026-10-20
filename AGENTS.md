@@ -18,6 +18,7 @@ Project-specific rules supplement the template rules; put them below the `<!-- P
 | [.attunic/context.md](.attunic/context.md) | Project memory attuned specifically for this project: technical specifications, file layout, layer dependencies, tool usage; read before work |
 | [.attunic/memory.md](.attunic/memory.md) | Append-only log of settled decisions and open questions; read before proposing a design change |
 <!-- Project-specific / Topics -->
+| [.attunic/localai.md](.attunic/localai.md) | Guideline when reading and editing files in `yaml/LocalAI` folder |
 
 ## Core Rules
 
