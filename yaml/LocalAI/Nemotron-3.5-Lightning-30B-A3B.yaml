@@ -1,0 +1,21 @@
+backend: llama-cpp
+context_size: 262144
+flash_attention: true
+function:
+  automatic_tool_parsing_fallback: true
+  grammar:
+    disable: true
+known_usecases:
+  - chat
+mmap: true
+name: nemotron-3.5-lightning-30b-a3b
+parameters:
+  model: Nemotron-3.5-Lightning-30B-A3B/unsloth-Nemotron-3.5-Lightning-30B-A3B-UD-Q8_K_XL.gguf
+  temperature: 1.0
+  top_k: 0
+  top_p: 0.95
+  min_p: 0
+  repeat_penalty: 1
+  presence_penalty: 0
+template:
+  use_tokenizer_template: true
