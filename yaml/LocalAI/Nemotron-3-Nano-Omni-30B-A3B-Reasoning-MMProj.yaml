@@ -1,0 +1,23 @@
+backend: llama-cpp
+context_size: 204800
+flash_attention: true
+function:
+  automatic_tool_parsing_fallback: true
+  grammar:
+    disable: true
+known_usecases:
+  - chat
+  - vision
+mmap: true
+mmproj: Nemotron-3-Nano-Omni-30B-A3B-Reasoning/unsloth-Nemotron-3-Nano-Omni-30B-A3B-Reasoning-mmproj-F16.gguf
+name: nemotron-3-nano-omni-30b-a3b-reasoning-mmproj
+parameters:
+  model: Nemotron-3-Nano-Omni-30B-A3B-Reasoning/unsloth-Nemotron-3-Nano-Omni-30B-A3B-Reasoning-UD-Q8_K_XL.gguf
+  temperature: 0.6
+  top_k: 0
+  top_p: 0.95
+  min_p: 0
+  repeat_penalty: 1
+  presence_penalty: 0
+template:
+  use_tokenizer_template: true
