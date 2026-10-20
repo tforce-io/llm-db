@@ -4,7 +4,7 @@ flash_attention: true
 function:
   automatic_tool_parsing_fallback: true
   grammar:
-    disable: false
+    disable: true
 known_usecases:
   - chat
 mmap: true

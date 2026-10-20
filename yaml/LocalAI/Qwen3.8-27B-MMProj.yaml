@@ -4,13 +4,13 @@ flash_attention: true
 function:
   automatic_tool_parsing_fallback: true
   grammar:
-    disable: false
+    disable: true
 known_usecases:
   - chat
   - vision
 mmap: true
 mmproj: Qwen3.8-27B/unsloth-Qwen3.8-27B-mmproj-F16.gguf
-name: qwen3.8-27b-vision
+name: qwen3.8-27b-mmproj
 parameters:
   model: Qwen3.8-27B/unsloth-Qwen3.8-27B-Q8_0.gguf
   temperature: 0.7
