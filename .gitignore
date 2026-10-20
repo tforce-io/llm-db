@@ -1,9 +1,36 @@
-# Generated artifacts
+# Attunic Protocol transient memory
+.attunic/wip.md
+
+# Local env and secrets
+.env
+.env.*
+*.local.env
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Go build artifacts
+*.dll
+*.dylib
+*.exe
+*.exe~
+*.so
+
+# Go test artifacts
+*.test
+coverage.out
+coverage.html
+coverage.txt
+
+# Go profiling data
+*.prof
+*.pprof
+profiles/
+
+# Project-specific
+.vscode/
 exported/
 node_modules/
-llm-db
-llm-db.exe
-
-# Local configurations
-.vscode/
 .env
