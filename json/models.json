@@ -3867,7 +3867,7 @@
       "localai": {
         "id": "qwen3.8-27b",
         "limit": {
-          "context": 163840,
+          "context": 131072,
           "output": 65536
         }
       }

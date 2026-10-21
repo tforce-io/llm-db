@@ -1,5 +1,5 @@
 backend: llama-cpp
-context_size: 163840
+context_size: 131072
 flash_attention: true
 function:
   automatic_tool_parsing_fallback: true
