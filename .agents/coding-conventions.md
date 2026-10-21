@@ -104,6 +104,7 @@ The principles below are for all languages. They use camelCase for demonstration
 - Refer to [Go doc conventions](https://go.dev/doc/comment) for specific convention.
 - State a package's purpose once, in its doc comment; do not restate it per file.
 <!-- Project-specific / Go-Comments -->
+- Start function comment with a plural form verb, and summary the intent so a quick glance can understand what it does.
 
 ### Errors
 

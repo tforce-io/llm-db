@@ -57,6 +57,7 @@ List of important folders, files and their roles in the project:
 │   ├── llmdb/              # project models and providers format
 │   ├── bifrost/            # Bifrost datasheet format
 │   ├── opencode/           # OpenCode v1 config format
+│   │   └── v2/             # OpenCode v2 config format
 │   ├── opencode_cloud/     # OpenCode cloud API format
 │   └── dotenv/         # minimal .env parser
 ├── engine/             # cobra wiring, CLI modules (export, format)

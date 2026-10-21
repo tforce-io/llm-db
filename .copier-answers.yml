@@ -6,5 +6,5 @@ copyright_year: 2025
 languages:
 - go
 license: MIT
-license_header: Full
+license_header: SPDX
 project_name: LLM DB
