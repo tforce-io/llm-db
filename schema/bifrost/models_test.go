@@ -98,18 +98,18 @@ func TestLoadImageModels(t *testing.T) {
 		t.Error("expected max_input_tokens to be absent")
 	}
 
-	dalle := models["256-x-256/dall-e-2"]
-	if dalle.PixelInputCost == nil || *dalle.PixelInputCost != 2.4414e-7 {
-		t.Errorf("expected input_cost_per_pixel 2.4414e-7, got %v", dalle.PixelInputCost)
+	schnell := models["nscale/black-forest-labs/FLUX.1-schnell"]
+	if schnell.PixelInputCost == nil || *schnell.PixelInputCost != 1.3e-9 {
+		t.Errorf("expected input_cost_per_pixel 1.3e-9, got %v", schnell.PixelInputCost)
 	}
-	if dalle.PixelOutputCost == nil || *dalle.PixelOutputCost != 0 {
-		t.Errorf("expected output_cost_per_pixel 0, got %v", dalle.PixelOutputCost)
+	if schnell.PixelOutputCost == nil || *schnell.PixelOutputCost != 0 {
+		t.Errorf("expected output_cost_per_pixel 0, got %v", schnell.PixelOutputCost)
 	}
-	if dalle.ImageOutputCost != nil {
+	if schnell.ImageOutputCost != nil {
 		t.Error("expected output_cost_per_image to be absent")
 	}
 
-	canvas := models["1024-x-1024/50-steps/bedrock/amazon.nova-canvas-v1:0"]
+	canvas := models["bedrock/amazon.nova-canvas-v1:0"]
 	if canvas.Provider != "bedrock" {
 		t.Errorf("expected provider 'bedrock', got '%s'", canvas.Provider)
 	}
