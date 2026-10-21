@@ -16,6 +16,7 @@ import (
 	"github.com/tforceaio/llm-db/schema/bifrost"
 	"github.com/tforceaio/llm-db/schema/llmdb"
 	"github.com/tforceaio/llm-db/schema/opencode"
+	v2 "github.com/tforceaio/llm-db/schema/opencode/v2"
 )
 
 const (
@@ -153,8 +154,8 @@ func (m *ExportModule) buildBifrostModel(model llmdb.Model, deployKey string, de
 	return bModel
 }
 
-// Export LLMDB models into OpenCode config.
-func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string, updateGlobalConfig bool) error {
+// Export LLMDB models into OpenCode config with v2 format as the default.
+func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string, updateGlobalConfig, useV1Format bool) error {
 	m.logger.Info().Msg("Loading models...")
 	modelsData, err := os.ReadFile(modelsPath)
 	if err != nil {
@@ -181,7 +182,12 @@ func (m *ExportModule) OpenCode(ollamaURL, ollamaApiKey, bifrostURL, bifrostApiK
 
 	m.logger.Info().Int("count", len(providers.Providers)).Msg("Loaded providers.")
 
-	cfg := m.buildOpenCodeConfig(models, providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey)
+	var cfg any
+	if useV1Format {
+		cfg = m.buildOpenCodeConfig(models, providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey)
+	} else {
+		cfg = m.buildOpenCodeV2Config(models, providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey)
+	}
 
 	m.logger.Info().Str("dir", outputDir).Msg("Creating output directory...")
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
@@ -348,6 +354,142 @@ func (m *ExportModule) buildOpenCodeModel(model llmdb.Model, deployment *llmdb.D
 	return mc
 }
 
+// Return whole configuration for given OpenCode in v2 format.
+func (m *ExportModule) buildOpenCodeV2Config(models *llmdb.Models, providers *llmdb.Providers, ollamaURL, ollamaApiKey, bifrostURL, bifrostApiKey string) *v2.RootConfig {
+	cfg := &v2.RootConfig{
+		Schema:       "https://opencode.ai/config.json",
+		DefaultAgent: "plan",
+		Agents: map[string]v2.AgentConfig{
+			"build": {Color: "primary"},
+			"plan":  {Color: "secondary"},
+		},
+		Providers: make(map[string]v2.ProviderConfig),
+	}
+
+	localProvider := v2.ProviderConfig{Models: make(map[string]v2.ModelConfig)}
+	bifrostProvider := v2.ProviderConfig{Models: make(map[string]v2.ModelConfig)}
+
+	export := func(model llmdb.Model, deployKey string, deployment *llmdb.Deployment) {
+		if deployment == nil || deployment.ID == "" {
+			return
+		}
+		mc := m.buildOpenCodeV2Model(model, deployment)
+		if deployKey == "localai" {
+			localProvider.Models[deployment.ID] = mc
+			return
+		}
+		providerName := ""
+		if p, ok := providers.Providers[deployKey]; ok {
+			providerName = p.Name
+		}
+		mc.ModelID = fmt.Sprintf("%s/%s", deployKey, deployment.ID)
+		mc.Name = fmt.Sprintf("%s (%s)", mc.Name, providerName)
+		bifrostProvider.Models[mc.ModelID] = mc
+	}
+	for _, model := range models.Models {
+		if modelMode(model.Capabilities) != "chat" {
+			continue
+		}
+		for deployKey, deployment := range model.Deployments {
+			export(model, deployKey, &deployment)
+			for _, variant := range deployment.Variants {
+				export(model, deployKey, variant)
+			}
+		}
+	}
+
+	if ollamaP, ok := providers.Providers["localai"]; ok {
+		localProvider.Name = ollamaP.Name
+		localProvider.Package = ollamaP.NPM
+		settings := map[string]any{}
+		if ollamaP.URI != "" {
+			settings["baseURL"] = ollamaP.URI
+		}
+		if ollamaURL != "" {
+			settings["baseURL"] = ollamaURL
+		}
+		if ollamaApiKey != "" {
+			settings["apiKey"] = ollamaApiKey
+		}
+		if len(settings) > 0 {
+			localProvider.Settings = settings
+		}
+	}
+
+	if bifrostP, ok := providers.Providers["bifrost"]; ok {
+		bifrostProvider.Name = bifrostP.Name
+		bifrostProvider.Package = bifrostP.NPM
+		settings := map[string]any{}
+		if bifrostP.URI != "" {
+			settings["baseURL"] = bifrostP.URI
+		}
+		if bifrostURL != "" {
+			settings["baseURL"] = bifrostURL
+		}
+		if bifrostApiKey != "" {
+			settings["apiKey"] = bifrostApiKey
+		}
+		if len(settings) > 0 {
+			bifrostProvider.Settings = settings
+		}
+	}
+
+	cfg.Providers["localai"] = localProvider
+	cfg.Providers["bifrost"] = bifrostProvider
+
+	return cfg
+}
+
+// Return configuration for given OpenCode v2 model.
+func (m *ExportModule) buildOpenCodeV2Model(model llmdb.Model, deployment *llmdb.Deployment) v2.ModelConfig {
+	capabilities := model.Capabilities
+	if len(deployment.Capabilities) > 0 {
+		capabilities = deployment.Capabilities
+	}
+
+	reasoning := containsString(capabilities, llmdb.CapabilityReasoning)
+	temperature := containsString(capabilities, llmdb.CapabilityTemperature)
+	toolCall := containsString(capabilities, llmdb.CapabilityTools) || containsString(capabilities, llmdb.CapabilityFunctionCall)
+
+	cost := m.resolveCost(model.Cost, deployment.Cost)
+	limit := m.resolveLimit(model.Limit, deployment.Limit)
+
+	name := model.Name
+	if deployment.Name != "" {
+		name = fmt.Sprintf("%s [%s]", model.Name, deployment.Name)
+	}
+
+	var cache *v2.ModelCostCache
+	if cost.CacheRead != nil || cost.CacheWrite != nil {
+		cache = &v2.ModelCostCache{Read: cost.CacheRead, Write: cost.CacheWrite}
+	}
+	var vLimit *v2.ModelLimit
+	if limit.Context != nil || limit.Output != nil {
+		vLimit = &v2.ModelLimit{Context: limit.Context, Output: limit.Output}
+	}
+
+	mc := v2.ModelConfig{
+		ModelID: deployment.ID,
+		Name:    name,
+
+		Cost: v2.ModelCosts{{
+			Input:  cost.TextInput,
+			Output: cost.TextOutput,
+			Cache:  cache,
+		}},
+		Limit: vLimit,
+		Capabilities: &v2.Capabilities{
+			Tools:       &toolCall,
+			Input:       model.Modalities.Input,
+			Output:      model.Modalities.Output,
+			Temperature: &temperature,
+			Reasoning:   &v2.Reasoning{Supported: reasoning},
+		},
+	}
+
+	return mc
+}
+
 // Return effective cost for deployment.
 func (m *ExportModule) resolveCost(base llmdb.ModelCost, override *llmdb.ModelCost) llmdb.ModelCost {
 	if override != nil && override.Factor != nil {
@@ -415,7 +557,7 @@ func ExportCmd() *cobra.Command {
 			logger := InitApp()
 			flags := ParseExportFlags(cmd, args)
 			m := NewExportModule(logger, "opencode")
-			m.logError(m.OpenCode(flags.OllamaURL, flags.OllamaApiKey, flags.BifrostURL, flags.BifrostApiKey, flags.UpdateConfig))
+			m.logError(m.OpenCode(flags.OllamaURL, flags.OllamaApiKey, flags.BifrostURL, flags.BifrostApiKey, flags.UpdateConfig, flags.UseV1Format))
 		},
 	}
 
@@ -425,6 +567,7 @@ func ExportCmd() *cobra.Command {
 	opencodeCmd.Flags().String("ollama-api-key", "", "API key for Ollama provider (envvar: OLLAMA_API_KEY)")
 	opencodeCmd.Flags().String("ollama-url", "", "Override Ollama provider base URL (envvar: OLLAMA_URL)")
 	opencodeCmd.Flags().BoolP("deploy", "u", false, "Update global OpenCode config file")
+	opencodeCmd.Flags().Bool("v1", false, "Export in OpenCode v1 config format")
 
 	rootCmd.AddCommand(opencodeCmd)
 	return rootCmd
@@ -438,6 +581,7 @@ type ExportFlags struct {
 	OllamaApiKey  string
 	OllamaURL     string
 	UpdateConfig  bool
+	UseV1Format   bool
 }
 
 // Extract all flags from a Cobra Command.
@@ -448,6 +592,7 @@ func ParseExportFlags(cmd *cobra.Command, args []string) *ExportFlags {
 	ollamaApiKey, _ := cmd.Flags().GetString("ollama-api-key")
 	ollamaURL, _ := cmd.Flags().GetString("ollama-url")
 	updateConfig, _ := cmd.Flags().GetBool("deploy")
+	useV1Format, _ := cmd.Flags().GetBool("v1")
 
 	if hasEnv := loadEnvFile(envFile, true); hasEnv {
 		resolveEnvVar("BIFROST_API_KEY", &bifrostApiKey)
@@ -463,6 +608,7 @@ func ParseExportFlags(cmd *cobra.Command, args []string) *ExportFlags {
 		OllamaApiKey:  ollamaApiKey,
 		OllamaURL:     ollamaURL,
 		UpdateConfig:  updateConfig,
+		UseV1Format:   useV1Format,
 	}
 }
 

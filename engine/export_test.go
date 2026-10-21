@@ -393,3 +393,251 @@ func assertCostField(t *testing.T, label string, got, want *common.Float64) {
 		t.Errorf("%s: want %v, got %v", label, float64(*want), float64(*got))
 	}
 }
+
+func TestBuildOpenCodeV2ConfigChatOnly(t *testing.T) {
+	m := &ExportModule{}
+
+	buildModel := func(capabilities []string) llmdb.Model {
+		return llmdb.Model{
+			Name:         "Model",
+			Capabilities: capabilities,
+			Deployments: map[string]llmdb.Deployment{
+				"localai":    {ID: "id"},
+				"openrouter": {ID: "id"},
+			},
+		}
+	}
+
+	models := &llmdb.Models{
+		Models: map[string]llmdb.Model{
+			"m-chat":    buildModel([]string{llmdb.CapabilityReasoning}),
+			"m-embed":   buildModel([]string{llmdb.CapabilityEmbedding}),
+			"m-imggen":  buildModel([]string{llmdb.CapabilityImageGeneration}),
+			"m-imgedit": buildModel([]string{llmdb.CapabilityImageEdit}),
+		},
+	}
+
+	providers := &llmdb.Providers{Providers: map[string]llmdb.Provider{
+		"localai": {Name: "LocalAI"},
+		"bifrost": {Name: "Bifrost"},
+	}}
+
+	cfg := m.buildOpenCodeV2Config(models, providers, "", "", "", "")
+
+	expected := map[string][]string{
+		"localai": {"id"},
+		"bifrost": {"openrouter/id"},
+	}
+	excluded := []string{"m-embed", "m-imggen", "m-imgedit"}
+
+	for providerKey, keys := range expected {
+		provider, ok := cfg.Providers[providerKey]
+		if !ok {
+			t.Fatalf("expected provider %q in config", providerKey)
+		}
+
+		for _, key := range keys {
+			if _, ok := provider.Models[key]; !ok {
+				t.Errorf("%s: expected chat model %q to be included", providerKey, key)
+			}
+		}
+
+		for _, name := range excluded {
+			if _, ok := provider.Models[name]; ok {
+				t.Errorf("%s: expected non-chat model %q to be excluded", providerKey, name)
+			}
+		}
+	}
+}
+
+func TestBuildOpenCodeV2ConfigVariantNaming(t *testing.T) {
+	m := &ExportModule{}
+
+	models := &llmdb.Models{
+		Models: map[string]llmdb.Model{
+			"glm-4.7-flash-30b-a3b": {
+				Name:         "GLM 4.7 Flash 30B A3B",
+				Capabilities: []string{llmdb.CapabilityReasoning},
+				Deployments: map[string]llmdb.Deployment{
+					"opencode-go": {ID: "glm-4-7-flash"},
+					"localai": {
+						Variants: []*llmdb.Deployment{
+							{ID: "glm-fp8", Name: "fp8"},
+							{ID: "glm-q4"},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	providers := &llmdb.Providers{Providers: map[string]llmdb.Provider{
+		"bifrost":     {Name: "Bifrost"},
+		"localai":     {Name: "LocalAI"},
+		"opencode-go": {Name: "OpenCode Go"},
+	}}
+
+	cfg := m.buildOpenCodeV2Config(models, providers, "", "", "", "")
+
+	bifrostModel, ok := cfg.Providers["bifrost"].Models["opencode-go/glm-4-7-flash"]
+	if !ok {
+		t.Fatalf("expected bifrost model opencode-go/glm-4-7-flash")
+	}
+	if bifrostModel.Name != "GLM 4.7 Flash 30B A3B (OpenCode Go)" {
+		t.Errorf("main deployment name: want %q, got %q", "GLM 4.7 Flash 30B A3B (OpenCode Go)", bifrostModel.Name)
+	}
+
+	fp8Model, ok := cfg.Providers["localai"].Models["glm-fp8"]
+	if !ok {
+		t.Fatalf("expected localai model glm-fp8")
+	}
+	if fp8Model.Name != "GLM 4.7 Flash 30B A3B [fp8]" {
+		t.Errorf("variant deployment.Name: want %q, got %q", "GLM 4.7 Flash 30B A3B [fp8]", fp8Model.Name)
+	}
+
+	q4Model, ok := cfg.Providers["localai"].Models["glm-q4"]
+	if !ok {
+		t.Fatalf("expected localai model glm-q4")
+	}
+	if q4Model.Name != "GLM 4.7 Flash 30B A3B" {
+		t.Errorf("variant without Name: want %q, got %q", "GLM 4.7 Flash 30B A3B", q4Model.Name)
+	}
+}
+
+func TestBuildOpenCodeV2ModelFieldMapping(t *testing.T) {
+	m := &ExportModule{}
+
+	models := &llmdb.Models{
+		Models: map[string]llmdb.Model{
+			"glm-4.7-flash-30b-a3b": {
+				Name: "GLM 4.7 Flash 30B A3B",
+				Capabilities: []string{
+					llmdb.CapabilityReasoning,
+					llmdb.CapabilityTemperature,
+					llmdb.CapabilityTools,
+				},
+				Cost: llmdb.ModelCost{
+					TextInput:  common.Float64Ptr(0.070),
+					TextOutput: common.Float64Ptr(0.400),
+					CacheRead:  common.Float64Ptr(0.0175),
+				},
+				Limit: llmdb.ModelLimit{Context: common.IntPtr(98304), Output: common.IntPtr(16384)},
+				Modalities: llmdb.ModelModalities{
+					Input:  []string{llmdb.ModalityText, llmdb.ModalityImage},
+					Output: []string{llmdb.ModalityText},
+				},
+				Deployments: map[string]llmdb.Deployment{
+					"localai": {ID: "glm-4-7-flash"},
+				},
+			},
+		},
+	}
+
+	providers := &llmdb.Providers{Providers: map[string]llmdb.Provider{
+		"localai": {Name: "LocalAI"},
+	}}
+
+	cfg := m.buildOpenCodeV2Config(models, providers, "", "", "", "")
+
+	mc, ok := cfg.Providers["localai"].Models["glm-4-7-flash"]
+	if !ok {
+		t.Fatalf("expected localai model glm-4-7-flash")
+	}
+
+	if mc.ModelID != "glm-4-7-flash" {
+		t.Errorf("expected modelID 'glm-4-7-flash', got '%s'", mc.ModelID)
+	}
+	if mc.Name != "GLM 4.7 Flash 30B A3B" {
+		t.Errorf("expected name 'GLM 4.7 Flash 30B A3B', got '%s'", mc.Name)
+	}
+
+	caps := mc.Capabilities
+	if caps == nil {
+		t.Fatalf("expected capabilities on v2 model")
+	}
+	if caps.Reasoning == nil || !caps.Reasoning.Supported {
+		t.Errorf("expected reasoning supported, got %+v", caps.Reasoning)
+	}
+	if caps.Tools == nil || !*caps.Tools {
+		t.Errorf("expected tools supported, got %+v", caps.Tools)
+	}
+	if caps.Temperature == nil || !*caps.Temperature {
+		t.Errorf("expected temperature supported, got %+v", caps.Temperature)
+	}
+	if len(caps.Input) != 2 || caps.Input[0] != llmdb.ModalityText || caps.Input[1] != llmdb.ModalityImage {
+		t.Errorf("expected input [text image], got %v", caps.Input)
+	}
+	if len(caps.Output) != 1 || caps.Output[0] != llmdb.ModalityText {
+		t.Errorf("expected output [text], got %v", caps.Output)
+	}
+
+	if mc.Cost == nil || len(mc.Cost) != 1 || mc.Cost[0].Input == nil || float64(*mc.Cost[0].Input) != 0.070 || mc.Cost[0].Output == nil || float64(*mc.Cost[0].Output) != 0.400 {
+		t.Errorf("expected cost input 0.070 output 0.400, got %+v", mc.Cost)
+	}
+	if mc.Cost[0].Cache == nil || mc.Cost[0].Cache.Read == nil || float64(*mc.Cost[0].Cache.Read) != 0.0175 {
+		t.Errorf("expected cache read cost 0.0175, got %+v", mc.Cost[0].Cache)
+	}
+	if mc.Limit == nil || mc.Limit.Context == nil || *mc.Limit.Context != 98304 || mc.Limit.Output == nil || *mc.Limit.Output != 16384 {
+		t.Errorf("expected limit context 98304 output 16384, got %+v", mc.Limit)
+	}
+}
+
+func TestBuildOpenCodeV2ConfigProviderSettings(t *testing.T) {
+	m := &ExportModule{}
+
+	models := &llmdb.Models{
+		Models: map[string]llmdb.Model{
+			"glm-4.7-flash-30b-a3b": {
+				Name:        "GLM 4.7 Flash 30B A3B",
+				Deployments: map[string]llmdb.Deployment{"localai": {ID: "glm-4-7-flash"}},
+			},
+		},
+	}
+
+	providers := &llmdb.Providers{Providers: map[string]llmdb.Provider{
+		"localai": {Name: "LocalAI", NPM: "@ai-sdk/openai-compatible", URI: "http://localhost:9999/v1"},
+	}}
+
+	cases := []struct {
+		name        string
+		ollamaURL   string
+		ollamaKey   string
+		wantBaseURL string
+		wantApiKey  string
+	}{
+		{
+			name:        "provider URI used when no override",
+			ollamaURL:   "",
+			ollamaKey:   "",
+			wantBaseURL: "http://localhost:9999/v1",
+			wantApiKey:  "",
+		},
+		{
+			name:        "override URL and API key replace provider URI",
+			ollamaURL:   "http://override:8080/v1",
+			ollamaKey:   "sk-key",
+			wantBaseURL: "http://override:8080/v1",
+			wantApiKey:  "sk-key",
+		},
+	}
+
+	for _, tt := range cases {
+		t.Run(tt.name, func(t *testing.T) {
+			cfg := m.buildOpenCodeV2Config(models, providers, tt.ollamaURL, tt.ollamaKey, "", "")
+
+			localProvider := cfg.Providers["localai"]
+			if localProvider.Package != "@ai-sdk/openai-compatible" {
+				t.Errorf("expected package '@ai-sdk/openai-compatible', got '%s'", localProvider.Package)
+			}
+			if localProvider.Settings == nil {
+				t.Fatalf("expected settings on localai provider")
+			}
+			if localProvider.Settings["baseURL"] != tt.wantBaseURL {
+				t.Errorf("expected settings baseURL %q, got %v", tt.wantBaseURL, localProvider.Settings["baseURL"])
+			}
+			if tt.wantApiKey != "" && localProvider.Settings["apiKey"] != tt.wantApiKey {
+				t.Errorf("expected settings apiKey %q, got %v", tt.wantApiKey, localProvider.Settings["apiKey"])
+			}
+		})
+	}
+}
